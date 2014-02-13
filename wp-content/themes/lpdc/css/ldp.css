@@ -233,6 +233,7 @@ header {
 	padding-top: 10px;
 	margin-top: -10px;
 	width: 55px;
+	text-transform: uppercase;
 }
 
 .ulPost {
@@ -276,6 +277,7 @@ footer {
 	width: 285px !important;
 	border-right: solid 1px #BABABE;
 	margin-top: 40px;
+	min-height: 170px !important;
 }
 
 .liInside p {
