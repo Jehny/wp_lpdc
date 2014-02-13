@@ -67,28 +67,36 @@
 	    	<div id="secondLine" class="row-fluid">
 	    		<ul class="inline">
 	    			<li	class="span8">
-	    				<ul class="inline ulInsideLi">
-	    					<li class="span5"> <img src="<?php bloginfo('template_url'); ?>/img/img_noticia1.png" alt="Notícia 1" title="Notícia 1" /></li>
-	    					<li class="span7"> 
-		    					<h4 class="open_light colorTexBlue">Últimas descobertas do LPDC</h4>
-								<p class="open_regular font12 colorTextGray"> Inauguração do site do Laboratório de Pesquisa em Doença 
-									de Chagas - UFC. Estudos relacionados ao tratamento de portadores da doença, visando a melhoria da qualidade 
-									de vida desses pacientes,..
-								</p>
-<!-- 								<a href="#" class="btn btn-link linkStyle">Leia mais</a> -->
-							</li>
-						</ul>
-						<ul class="inline ulInsideLi">
-							<li class="span5"> <img src="<?php bloginfo('template_url'); ?>/img/img_noticia1.png" alt="Notícia 1" title="Notícia 1" /></li>
-	    					<li class="span7"> 
-		    					<h4 class="open_light colorTexBlue">Últimas descobertas do LPDC</h4>
-								<p class="open_regular font12 colorTextGray"> Inauguração do site do Laboratório de Pesquisa em Doença 
-									de Chagas - UFC. Estudos relacionados ao tratamento de portadores da doença, visando a melhoria da qualidade 
-									de vida desses pacientes,..
-								</p>
-<!-- 								<a href="#" class="btn btn-link linkStyle">Leia mais</a> -->
-							</li>
-	    				</ul>
+	    				<?php if(have_posts()) : ?>
+						<?php 
+							// The Query
+							query_posts( 'cat=4&orderby=DESC&posts_per_page=2' );
+							while(have_posts()) : the_post(); 
+						?>
+			    				<ul class="inline ulInsideLi">
+			    					<li class="span5"> 
+			    						<?php 
+			    						if ( has_post_thumbnail() ) {
+			    							// mostra a imagem destacada
+			    							the_post_thumbnail();
+			    						}
+			    						?>
+			    					</li>
+			    					<li class="span7"> 
+				    					<h4 class="open_light colorTexBlue"><?php echo the_title();?></h4>
+										<p class="open_regular font12 colorTextGray"> 
+											<?php echo get_the_content(); ?>
+											
+											
+											
+										</p>
+<!-- 										<a href="#" class="btn btn-link linkStyle">Leia mais</a>  -->
+									</li>
+								</ul>
+						<?php endwhile; 
+						wp_reset_query();
+						?>
+						<?php endif; ?>
 					</li>
 	    			<li	class="span4"> 
 						<div class="thumbnail">
@@ -96,43 +104,32 @@
 	    						<h5>Últimos Posts</h5>
 	    					</div>
 	    					<div class="textoCaixas">
-		    					<ul class="inline ulPost">
-		    						<li class="span3">
-										<p class="backgroundBlueDark colorTextWhite open_regular font16 dataPostStyleDia">15</p>
-										<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes">JAN</p>
-									</li>
-		    						<li class="span9 open_regular font12 colorTextGray">
-		    							Inauguração do site do Laboratório de Pesquisa em Doença 
-		    							de Chagas - UFC
-		    							<!-- <a href="#" class="btn btn-link linkStylePost">Leia mais</a> -->
-		    						</li>
-		    					</ul>
+		    					<?php if(have_posts()) : ?>
+								<?php 
+									// The Query
+									query_posts( 'cat=5&order=DESC&orderby=date&posts_per_page=3' );
+									while(have_posts()) : the_post(); 
+								?>
+	    								<ul class="inline ulPost">
+				    						<li class="span3">
+												<p class="backgroundBlueDark colorTextWhite open_regular font16 dataPostStyleDia"><?php the_time('j')?></p>
+												<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes"><?php the_time('M')?></p>
+											</li>
+				    						<li class="span9 open_regular font12 colorTextGray">
+				    							<?php echo get_the_content(); ?>
+				    							<!-- <a href="#" class="btn btn-link linkStylePost">Leia mais</a> -->
+				    						</li>
+				    					</ul>
+	    					
+	    						<?php endwhile; 
+								wp_reset_query();
+								?>
+								<?php endif; ?>
+								<?php  $qntNote = count(query_posts( 'cat=5'));
+									if($qntNote > 3){ ?>
+										<p> <a href="#" class="btn btn-link linkStylePost">Ver todas</a> </p>
+								<?php }?>
 		    					
-		    					<!-- <ul class="inline ulPost">
-		    						<li class="span3">
-										<p class="backgroundBlueDark colorTextWhite open_regular font16 dataPostStyleDia">18</p>
-										<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes">NOV</p>
-									</li>
-		    						<li class="span9 open_regular font12 colorTextGray">
-		    							Inauguração do site do Laboratório de Pesquisa em Doença 
-		    							de Chagas - UFC
-		    							<a href="#" class="btn btn-link linkStylePost">Leia mais</a>
-		    						</li>
-		    					</ul>
-		    					
-		    					<ul class="inline ulPost">
-		    						<li class="span3">
-										<p class="backgroundBlueDark colorTextWhite open_regular font16 dataPostStyleDia">18</p>
-										<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes">NOV</p>
-									</li>
-		    						<li class="span9 open_regular font12 colorTextGray">
-		    							Inauguração do site do Laboratório de Pesquisa em Doença 
-		    							de Chagas - UFC
-		    							<a href="#" class="btn btn-link linkStylePost">Leia mais</a>
-		    						</li>
-		    					</ul>
-		    					
-		    					<p> <a href="#" class="btn btn-link linkStylePost">Ver todas</a> </p> -->
 	    					</div>
 	    				</div>
 					</li>
