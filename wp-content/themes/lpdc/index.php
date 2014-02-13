@@ -4,6 +4,12 @@
 		<div id="banner" class="carousel slide">
 			<!-- Itens de carousel -->
 			<div class="carousel-inner">
+			<?php $banners = get_posts('post_type=banners');
+				foreach ($banners as $banner){
+					echo $banner->post_title;
+					
+				}
+			?>
 			    <div class="active item">
 			    	<img alt="Banner 1" src="<?php bloginfo('template_url'); ?>/img/banner1.png">
 			    </div>
