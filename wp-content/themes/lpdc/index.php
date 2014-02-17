@@ -5,20 +5,19 @@
 			<!-- Itens de carousel -->
 			<div class="carousel-inner">
 			<?php $banners = get_posts('post_type=banners');
-				foreach ($banners as $banner){
-					echo $banner->post_title;
-					
+				if($banners){
+					foreach ($banners as $banner){
+						if($i++ == 1){
+							$active = "active";
+						}else{$active = "";}
+						?>
+						<div class="<?php echo $active; ?> item">
+							<img alt="LPDC Imagens" src="<?php echo wp_get_attachment_url( get_post_thumbnail_id($banner->ID) ); ?>">
+						</div>
+			<?php  }
 				}
+				
 			?>
-			    <div class="active item">
-			    	<img alt="Banner 1" src="<?php bloginfo('template_url'); ?>/img/banner1.png">
-			    </div>
-			    <div class="item">
-			    	<img alt="Banner 2" src="<?php bloginfo('template_url'); ?>/img/banner2.png">
-			    </div>
-		    	<div class="item">
-		    		<img alt="Banner 3" src="<?php bloginfo('template_url'); ?>/img/banner3.png">
-		    	</div>
 		  	</div>
 		  	<!-- Navegador do carousel -->
 			  <a class="carousel-control left" href="#banner" data-slide="prev">&lsaquo;</a>
