@@ -35,6 +35,26 @@
 
 }
 
+/* Página index login*/
+
+.login-username {
+	font-family: 'open_sansregular';
+	color: white;
+	font-size: 12px;
+}
+
+.login-password {
+	font-family: 'open_sansregular';
+	color: white;
+	font-size: 12px;
+}
+
+.login-remember {
+	font-family: 'open_sansregular';
+	color: white;
+	font-size: 12px;
+}
+
 /*
 Página de Projetos
 */
@@ -42,7 +62,6 @@ Página de Projetos
 .projeto .panel-group dd {
 	text-align: justify;
 }
-
 
 /* Classe para Fontes */
 

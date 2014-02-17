@@ -131,11 +131,6 @@ header {
 .labelParticoes{
 	position: relative;
 	float: right;
-	background-color: #1088B6;
-	margin: -10px -4px 10px 0px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
 }
 
 .labelParticoes h5{
@@ -143,7 +138,12 @@ header {
 	color: white;
 	font-weight: normal;
 	width: 90px;
-	margin: 10px;
+	padding: 10px;
+	background-color: #1088B6;
+	margin: -10px -4px 10px 0px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .textoCaixas {
@@ -180,6 +180,45 @@ header {
 
 #thirdLine {
 	
+}
+
+.login {
+	background-color: #1299CB !important;
+	margin-right: 0px !important;
+}
+
+form[name="loginform"] {
+	height: 197px;
+	margin-top: 40px;
+	margin-bottom: 0px;
+	margin-left: 10px;
+}
+
+.login-username {
+	margin-bottom: 0px;
+}
+
+.login-password {
+	margin-bottom: 0px;
+}
+
+.login-remember {
+	
+}
+
+.login-submit {
+}
+
+input[name="wp-submit"]{
+	border: none;
+	border-radius: 3px;
+	background-color: white;
+	font-family: 'open_sansregular';
+	font-size: 12px;
+	color: #0069B5;
+	width: 70px;
+	float: right;
+	margin-right: 20px;
 }
 
 /* Classes auxiliares */
