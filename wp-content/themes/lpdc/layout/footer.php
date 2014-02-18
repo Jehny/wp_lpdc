@@ -39,6 +39,9 @@
 									Telefone: (85) 3489 -1586
 								</p>
 		    				</li>
+		    				<li class="byCC">
+								<p><a href="http://www.cantocerto.com.br"><img src="<?php bloginfo('template_url'); ?>/img/cantoCerto-simboloP.png" alt="Canto Certo" title="Canto Certo"/></a></p>
+		    				</li>
 		    			</ul>
 					</li>
 		    	
