@@ -219,6 +219,25 @@ input[name="wp-submit"]{
 	width: 70px;
 	float: right;
 	margin-right: 20px;
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+input[name="wp-submit"]:hover{
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #006dcc;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1299CB));
+	background-image: -webkit-linear-gradient(top, #0088cc, #1299CB);
+	background-image: -o-linear-gradient(top, #0088cc, ##1299CB);
+	background-image: linear-gradient(to bottom, #0088cc, #1299CB);
+	background-image: -moz-linear-gradient(top, #0088cc, #1299CB);
+	background-repeat: repeat-x;
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border: 1px solid white;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
 
 /* Classes auxiliares */
@@ -334,7 +353,7 @@ footer {
 }
 
 .liInside3 {
-	width: 285px !important;
+	width: 212px !important;
 	margin-top: 40px;
 }
 
@@ -512,13 +531,6 @@ Página de contato
 */
 
 .contato {
-	color: #333;
-	background-color: #f5f5f5;
-	border-color: #ddd;
-	border-bottom: 1px solid transparent;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	min-height: 303px;
 }
 
 .header_contato {
@@ -549,4 +561,60 @@ Página de contato
 
 .contato p {
 	padding: 10px 15px;
+}
+
+.contato form {
+	border: 1px solid #DDDDDD;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+
+.contato form label{
+	
+}
+
+.contato form input{
+	width: 300px;
+}
+
+.contato form textarea {
+	width: 450px;
+}
+
+.btnStyleContato {
+	background: #EEEEEE !important;
+	color: #006dcc !important;
+}
+
+.alert {
+	display: none;
+}
+
+/*Classes auxiliares*/
+
+.byCC {
+	float: right;
+	margin-top: 55px;
+}
+
+.btn-primary {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #006dcc;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1299CB));
+	background-image: -webkit-linear-gradient(top, #0088cc, #1299CB);
+	background-image: -o-linear-gradient(top, #0088cc, ##1299CB);
+	background-image: linear-gradient(to bottom, #0088cc, #1299CB);
+	background-image: -moz-linear-gradient(top, #0088cc, #1299CB);
+	background-repeat: repeat-x;
+	border-color: #0044cc #0044cc #002a80;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	color: #ffffff;
+	background-color: #1088B6;
 }

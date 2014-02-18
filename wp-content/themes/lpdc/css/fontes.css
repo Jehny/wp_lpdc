@@ -37,19 +37,19 @@
 
 /* Página index login*/
 
-.login-username {
+.login-username, .login-username label {
 	font-family: 'open_sansregular';
 	color: white;
 	font-size: 12px;
 }
 
-.login-password {
+.login-password, .login-password label {
 	font-family: 'open_sansregular';
 	color: white;
 	font-size: 12px;
 }
 
-.login-remember {
+.login-remember, .login-remember label {
 	font-family: 'open_sansregular';
 	color: white;
 	font-size: 12px;
@@ -61,6 +61,21 @@ Página de Projetos
 
 .projeto .panel-group dd {
 	text-align: justify;
+}
+
+
+/*
+Página de Contato 
+*/
+
+.contato form input{
+	font-family: 'open_sansregular';
+	font-size: 12px;
+}
+
+.contato form textarea {
+	font-family: 'open_sansregular';
+	font-size: 12px;
 }
 
 /* Classe para Fontes */
