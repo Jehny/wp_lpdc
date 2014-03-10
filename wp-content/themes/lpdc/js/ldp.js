@@ -16,4 +16,12 @@ $(function(){
 		console.log('hide');
 	});
 	
+	// ***
+	// limita a quantidade de caracteres apresentados para ...
+	// ***
+	
+	$('.textLimiter').html(function(i, h) {
+	    return h.length > 75 ? h.slice(0, 74) + ' <span title="' + h + '">...</span>': h;
+	  });
+	
 });
