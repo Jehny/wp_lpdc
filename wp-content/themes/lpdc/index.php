@@ -1,4 +1,4 @@
-<?php include "/layout/header.php"; 
+<?php include "layout/header.php"; 
 	$pageTitle = "Página Inicial";
 ?>
 		<div id="banner" class="carousel slide">
@@ -141,8 +141,8 @@
 												<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes"><?php the_time('M')?></p>
 											</li>
 				    						<li class="span9 open_regular font12 colorTextGray">
-				    							<?php echo get_the_content(); ?>
-				    							<!-- <a href="#" class="btn btn-link linkStylePost">Leia mais</a> -->
+				    							<p class="textLimiter"><?php echo get_the_content(); ?></p>
+				    							<a href="noticias?post=<?php the_ID(); ?>" class="btn btn-link linkStylePost open_regular">Leia mais</a>
 				    						</li>
 				    					</ul>
 	    					
@@ -152,7 +152,7 @@
 								<?php endif; ?>
 								<?php  $qntNote = count(query_posts( 'cat=5'));
 									if($qntNote > 3){ ?>
-										<p> <a href="#" class="btn btn-link linkStylePost">Ver todas</a> </p>
+										<p> <a href="noticias" class="btn btn-link linkStylePost">Ver todas</a> </p>
 								<?php }?>
 		    					
 	    					</div>
@@ -172,4 +172,4 @@
 	    	</div>
 	    </div>  <!-- Fim da Div de Página -->
 	    
-<?php include "/layout/footer.php"; ?>
+<?php include "layout/footer.php"; ?>

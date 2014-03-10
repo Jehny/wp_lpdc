@@ -1,11 +1,9 @@
-<?php include "/layout/header.php"; ?>
+<?php include "layout/header.php"; ?>
 		<div id="pagina" class="projeto">
 			<header class="header_projeto">
 				<h1 class="font24 colorTextWhite open_semibold">Projetos</h1>
 			</header>
 			<dl class="panel-group" id="accordion">
-			
-			
 				<?php $args = array(
 	
 					'offset'          => 0,
@@ -53,6 +51,7 @@
 				<?php endwhile; 
 					wp_reset_query();
 				?>
-				<?php endif; ?>			
+				<?php endif; ?>		
+			</dl>	
 		</div> <!-- Fim da Div de Página -->
-<?php include "/layout/footer.php"; ?>
+<?php include "layout/footer.php"; ?>

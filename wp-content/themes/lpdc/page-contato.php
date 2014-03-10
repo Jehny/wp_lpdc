@@ -1,14 +1,21 @@
 <?php 
 	$sucesso = "";
 	if(isset($_POST['submit'])){
-		$sucesso = "<div class='alert alert-info'>
+		$to = 'jehnyffen@gmail.com';
+		$subject = $_POST['assunto'];
+		$message  = $_POST['descricao'];
+		if(wp_mail( $to, $subject, $message)){
+			$sucesso = "<div class='alert alert-info'>
 				<button type='button' class='close' data-dismiss='alert'>×</button>
 				<strong>Sucesso!</strong>
 				Seu e-mail foi enviado com sucesso.
-			</div>";
+				</div>";
+		}else{
+			
+		}
 	}
 
-include "/layout/header.php"; 
+include "layout/header.php"; 
 ?>
 		<div id="pagina" class="contato">
 			<header class="header_contato">
@@ -36,11 +43,11 @@ include "/layout/header.php";
 				
 				</fieldset>
 				<button type="reset" class="btn btn-small btn-primary btnStyleContato">Cancelar</button>
-				<button type="button" name="submit" class="btn btn-small btn-primary enviar">Enviar</button>				
+				<button type="submit" name="submit" class="btn btn-small btn-primary enviar">Enviar</button>				
 				
 			</form>
 			
 			
 			
 		</div> <!-- Fim da Div de Página -->
-<?php include "/layout/footer.php"; ?>
+<?php include "layout/footer.php"; ?>
