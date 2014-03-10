@@ -63,6 +63,16 @@ Página de Projetos
 	text-align: justify;
 }
 
+/*
+Página de Notícias
+*/
+.noticias .panel-group dd p {
+	text-align: justify;
+}
+
+.linkStylePost {
+	font-size: 12px;
+}
 
 /*
 Página de Contato 

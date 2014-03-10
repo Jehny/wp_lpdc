@@ -268,7 +268,6 @@ input[name="wp-submit"]:hover{
 
 .linkStylePost {
 	float: right;
-	margin-top: 5px;
 }
 
 .ulInsideLi {
@@ -488,7 +487,6 @@ Página de notícias
 
 .noticias {
 	color: #333;
-	background-color: #f5f5f5;
 	border-color: #ddd;
 	border-bottom: 1px solid transparent;
 	border-bottom-right-radius: 3px;
@@ -521,9 +519,37 @@ Página de notícias
 	padding-left: 15px;
 	margin-bottom: 40px;
 }
+.projeto .panel-group dt {
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+	border-bottom: 1px solid transparent;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	padding: 10px;
+}
 
-.noticias p {
-	padding: 10px 15px;
+.noticias .panel-group dt a {
+	color: #666666;
+}
+
+.noticias .panel-group dt span {
+	color: #666666;
+}
+
+.noticias .panel-group dd {
+	margin-right: 10px;
+	margin-bottom: 20px;
+	margin-top: 20px;	
+}
+
+.noticias .panel-group dd img {
+	float: left;
+	margin-right: 20px;
+}
+
+.textLimiter {
+	margin-bottom: 0px;
 }
 
 /*
