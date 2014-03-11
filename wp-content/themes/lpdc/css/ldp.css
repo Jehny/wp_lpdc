@@ -546,6 +546,7 @@ Página de notícias
 .noticias .panel-group dd img {
 	float: left;
 	margin-right: 20px;
+	margin-bottom: 10px;
 }
 
 .textLimiter {
