@@ -442,12 +442,16 @@ Página de serviços
 
 .servicos {
 	color: #333;
-	background-color: #f5f5f5;
 	border-color: #ddd;
 	border-bottom: 1px solid transparent;
 	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 3px;
 	min-height: 303px;
+}
+
+.servicos h2 {
+	line-height: 20px;
+	padding: 0px;
 }
 
 .header_servicos {
@@ -477,8 +481,10 @@ Página de serviços
 	
 }
 
-.servicos p {
-	padding: 10px 15px;
+.servicos p img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 10px;
 }
 
 /*
