@@ -60,4 +60,14 @@ function my_custom_logo() {
 }
 
 
+
+function limpaHtml($arrayParam, $string){
+	$array = explode(',', $arrayParam);
+	$d = count($array);
+	for($i = 0; $i < $d; $i++){
+		$newstring = str_replace($array[$i],"",$string);
+	}
+	echo $newstring;
+}
+
 ?>

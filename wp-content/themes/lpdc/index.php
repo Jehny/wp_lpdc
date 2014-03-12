@@ -92,10 +92,11 @@
 	    	<div id="secondLine" class="row-fluid">
 	    		<ul class="inline">
 	    			<li	class="span8">
+	    				<?php $idDesc = get_category_by_slug('descoberta'); ?>
 	    				<?php if(have_posts()) : ?>
 						<?php 
 							// The Query
-							query_posts( 'cat=4&orderby=DESC&posts_per_page=2' );
+							query_posts( 'cat='.$idDesc->term_id .'&orderby=DESC&posts_per_page=2' );
 							while(have_posts()) : the_post(); 
 						?>
 			    				<ul class="inline ulInsideLi">
@@ -129,10 +130,11 @@
 	    						<h5>Últimos Posts</h5>
 	    					</div>
 	    					<div class="textoCaixas">
+	    					<?php $idNoticia = get_category_by_slug('noticias');?>
 		    					<?php if(have_posts()) : ?>
 								<?php 
 									// The Query
-									query_posts( 'cat=5&order=DESC&orderby=date&posts_per_page=3' );
+									query_posts( 'cat='.$idNoticia->term_id.'&order=DESC&orderby=date&posts_per_page=3' );
 									while(have_posts()) : the_post(); 
 								?>
 	    								<ul class="inline ulPost">
@@ -141,7 +143,7 @@
 												<p class="backgroundBlueWhite colorTextWhite open_regular font16 dataPostStyleMes"><?php the_time('M')?></p>
 											</li>
 				    						<li class="span9 open_regular font12 colorTextGray">
-				    							<p class="textLimiter"><?php echo get_the_content(); ?></p>
+				    							<p class="textLimiter"><?php echo strip_tags(get_the_content()); ?></p>
 				    							<a href="noticias?post=<?php the_ID(); ?>" class="btn btn-link linkStylePost open_regular">Leia mais</a>
 				    						</li>
 				    					</ul>
@@ -150,7 +152,7 @@
 								wp_reset_query();
 								?>
 								<?php endif; ?>
-								<?php  $qntNote = count(query_posts( 'cat=5'));
+								<?php  $qntNote = count(query_posts( 'cat=' . $idNoticia->term_id));
 									if($qntNote > 3){ ?>
 										<p> <a href="noticias" class="btn btn-link linkStylePost">Ver todas</a> </p>
 								<?php }?>

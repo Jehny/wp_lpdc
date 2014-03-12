@@ -8,13 +8,15 @@
 			$idObj = get_category_by_slug('servico'); 
 			?>
 				<?php $servico = get_post($idObj->term_id);	?>
-				<?php if(have_posts()) { ?>
+				<?php if(have_posts()) : ?>
 				<?php 
 					// The Query
-					query_posts( 'cat='.$idObj->term_id );
+					$query = query_posts( 'cat='.$idObj->term_id );
+					if ($query){
 					while(have_posts()) : the_post(); 
 				?>
 				<h2 class="open_regular font18">
+				
 				<?php echo the_title();?>
 				</h2>
 				<p>
@@ -29,9 +31,11 @@
 				</p>
 				<?php endwhile; 
 					wp_reset_query();
+				}else{
+					echo "<h3>Página sem conteúdo para serviços</h3>";
+				}
 				?>
-				<?php } else { ?>
-					<p> Página em Construção</p>
-				<?php } ?>	
+				<?php endif; ?>	
+				
 		</div> <!-- Fim da Div de Página -->
 <?php include "layout/footer.php"; ?>
