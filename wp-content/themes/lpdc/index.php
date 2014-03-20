@@ -92,7 +92,7 @@
 	    	<div id="secondLine" class="row-fluid">
 	    		<ul class="inline">
 	    			<li	class="span8">
-	    				<?php $idDesc = get_category_by_slug('descoberta'); ?>
+	    				<?php $idDesc = get_category_by_slug('descobertas'); ?>
 	    				<?php if(have_posts()) : ?>
 						<?php 
 							// The Query
