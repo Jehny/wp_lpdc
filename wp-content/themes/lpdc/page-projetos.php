@@ -23,7 +23,7 @@
 				<?php if(have_posts()) : ?>
 				<?php 
 					// The Query
-					query_posts( 'cat=2' );
+					query_posts( 'cat=1' );
 					$i = 0;
 					while(have_posts()) : the_post(); 
 					$i++;

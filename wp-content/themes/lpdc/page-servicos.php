@@ -5,7 +5,7 @@
 			</header>
 			<?php 
 // 			var_dump(get_category(6, '', ''));
-			$idObj = get_category_by_slug('servico'); 
+			$idObj = get_category_by_slug('projetos'); 
 			?>
 				<?php $servico = get_post($idObj->term_id);	?>
 				<?php if(have_posts()) : ?>
