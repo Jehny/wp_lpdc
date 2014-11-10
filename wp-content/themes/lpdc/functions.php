@@ -70,4 +70,68 @@ function limpaHtml($arrayParam, $string){
 	echo $newstring;
 }
 
+function pegar_opcao_atendimento($atendimento){
+	global $wpdb;
+	return $wpdb->get_results( 'SELECT * FROM opcao_atendimento WHERE atendimento = ' . $atendimento);
+
+}
+
+function listar_perguntas_historia_familiar(){
+	global $wpdb;
+	return $wpdb->get_results( 'SELECT * FROM historia_familiar');
+
+}
+
+function revisao_de_sistemas_sistema($id_sistema = 0) {
+	global $wpdb;
+	return $wpdb->get_results('SELECT * FROM sistemas WHERE id = ' . $id_sistema);
+}
+
+function total_sistemas(){
+	global $wpdb;
+	$total = $wpdb->get_var('SELECT COUNT(*) FROM sistemas'); 
+	return $total;
+}
+
+function nome_sistema($id = 0) {
+	global $wpdb;
+	$tipo = $wpdb->get_row('SELECT * FROM sistemas WHERE id='. $id);
+	echo $tipo->nome; 
+}
+
+function revisao_de_sistemas_sinais($id_sistema = 0) {
+	global $wpdb;
+	return $wpdb->get_results('SELECT * FROM sinais WHERE id_sistemas =' . $id_sistema);
+}
+
+function total_tipo_exames(){
+	global $wpdb;
+	$total = $wpdb->get_var('SELECT COUNT(*) FROM tipo_exame'); 
+	return $total;
+}
+
+function evolucao_exames_tipo($id = 0) {
+	global $wpdb;
+	$tipo = $wpdb->get_row('SELECT * FROM tipo_exame WHERE id='. $id);
+	echo $tipo->nome; 
+}
+
+function exames($id = 0){
+	global $wpdb;
+	return $wpdb->get_results('SELECT * FROM exames WHERE id_tipo_exames =' . $id);
+}
+
+function total_exames($id = 0){
+	global $wpdb;
+	$total = $wpdb->get_var('SELECT COUNT(*) FROM exames WHERE id_tipo_exames = ' . $id); 
+	return $total;
+}
+
+
+// Ficha dois
+function pergunta_aderencia(){
+	global $wpdb;
+	return $wpdb->get_results('SELECT * FROM pergunta_aderencia');
+}
+
 ?>

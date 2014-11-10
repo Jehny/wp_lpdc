@@ -4,8 +4,10 @@
 				<h1 class="font24 colorTextWhite open_semibold">Serviços</h1>
 			</header>
 			<?php 
-// 			var_dump(get_category(6, '', ''));
-			$idObj = get_category_by_slug('projetos'); 
+			$page = get_page_by_title( 'Serviços' );
+			echo  $page->post_content;
+			echo "<br />";
+			$idObj = get_category_by_slug('servicos'); 
 			?>
 				<?php $servico = get_post($idObj->term_id);	?>
 				<?php if(have_posts()) : ?>
@@ -31,8 +33,6 @@
 				</p>
 				<?php endwhile; 
 					wp_reset_query();
-				}else{
-					echo "<h3>Página sem conteúdo para serviços</h3>";
 				}
 				?>
 				<?php endif; ?>	

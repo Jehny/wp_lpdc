@@ -9,7 +9,8 @@
 				    				Somos um laboratório de pesquisa em doença de chagas referência 
 				    				no tratamento de pessoas carentes..
 				    			</p>
-<!-- 				    			<a href="#" class="btn btn-link linkStyleFooter font12">Leia mais</a> -->
+				    			
+				    			<a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Quem Somos' ) ) ); ?>" class="btn btn-link linkStyleFooter font12">Leia mais</a>
 		    				</li>
 		    			</ul>
 					</li>

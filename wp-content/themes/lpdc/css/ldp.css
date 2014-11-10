@@ -28,6 +28,13 @@ body {
 	display: block;
 }
 
+#pagina2 {
+	position: relative;
+	width: 86%;
+	margin: 50px auto;
+	display: block;
+}
+
 .beforeHeader {
 	height: 50px;
 	top: 30px;
@@ -63,7 +70,7 @@ header {
 }
 
 .logoTopo{
-	margin-left: 18%;
+	margin-left: 7%;
 	margin-top: -30px;
 	position: absolute;
 	overflow: hidden;
@@ -525,6 +532,10 @@ Página de notícias
 	padding-left: 15px;
 	margin-bottom: 40px;
 }
+
+.title_maior {
+	width: 212px !important;
+}
 .projeto .panel-group dt {
 	color: #333;
 	background-color: #f5f5f5;
@@ -560,10 +571,18 @@ Página de notícias
 }
 
 /*
+Página de Quem somos
+*/
+.quem_somos {
+	text-align: justify;
+	width: 98%;
+}
+/*
 Página de contato
 */
 
 .contato {
+	background: #F5F5F5;
 }
 
 .header_contato {
@@ -597,10 +616,10 @@ Página de contato
 }
 
 .contato form {
-	border: 1px solid #DDDDDD;
 	padding-left: 20px;
 	padding-top: 20px;
 	padding-bottom: 30px;
+	overflow: hidden;
 }
 
 .contato form label{
@@ -609,10 +628,12 @@ Página de contato
 
 .contato form input{
 	width: 300px;
+	height: 33px;
 }
 
 .contato form textarea {
 	width: 450px;
+	margin-bottom: 25px;
 }
 
 .btnStyleContato {
@@ -620,11 +641,647 @@ Página de contato
 	color: #006dcc !important;
 }
 
+.contato form fieldset {
+	width: 45%;
+	float: left;
+}
+
 .alert {
 	display: none;
 }
 
+.sucesso {
+	display: block !important;
+}
+
+/* Cadastro de Pacientes */
+.cadastro-paciente {
+	
+}
+
+.header_cadastro-paciente {
+	padding-top: 10px;
+	border-top: 3px solid #1088B6;
+}
+
+.header_cadastro-paciente h1 {
+	position: relative;
+	background-color: #1088B6;
+	margin: -10px -4px 10px 0px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-top-left-radius: 0px;
+	-moz-border-top-right-radius: 0px;
+	-moz-border-bottom-left-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	width: 150px;
+	padding-left: 15px;
+	margin-bottom: 40px;
+}
+
+.cadastro-paciente .cabecalho {
+	border: 1px solid;
+	padding: 10px 0;
+	width: 99.8%;
+}
+
+.cadastro-paciente .cabecalho p {
+	padding: 0;
+	margin: 0;
+}
+
+.cadastro-paciente .title {	
+	padding: 25px 0;
+}
+
+.cadastro-paciente p {
+	padding: 10px 15px;
+}
+
+.cadastro-paciente form {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+.cadastro-paciente form label{
+	
+}
+
+.cadastro-paciente form input{
+	width: 250px;
+	height: 25px;
+}
+
+.cadastro-paciente form textarea {
+	width: 450px;
+	margin-bottom: 25px;
+}
+
+.cadastro-paciente form fieldset {
+	width: 100%;
+	float: left;
+	margin: 5px 0;
+}
+
+.cadastro-paciente form fieldset div {
+	width: 33%;
+	float: left;
+}
+
+.cadastro-paciente form .numero {
+	width: 150px;
+}
+
+.cadastro-paciente form .sessao {
+	margin-bottom: 2%;
+}
+
+.cadastro-paciente form .sessao h5 {
+	background: #F3F3F3;
+	padding: 1% 0;
+	margin-bottom: 4%;
+}
+
+.cadastro-paciente form .sessao .div_full {
+	width: 100%;
+}
+
+.cadastro-paciente form .sessao .div_maior {
+	width: 66%;
+}
+
+.cadastro-paciente form .sessao .input_maior {
+	width: 95%;
+}
+
+.cadastro-paciente form .sessao .div_media {
+	width: 50%;
+}
+
+.cadastro-paciente form .sessao .input_media {
+	width: 95%;
+}
+
+.cadastro-paciente form .sessao .input_menor {
+	width: 150px;
+}
+
+
+.cadastro-paciente form input[type='radio'] {
+	width: 20px;
+	height: 16px;
+	margin-top: 0px;
+}
+
+.cadastro-paciente form .radio-label {
+	margin-right: 3%;
+}
+
+.cadastro-paciente form .interior {
+	width: 65%;
+}
+
+.cadastro-paciente form .interior input {
+	width: 211px;
+}
+
+.cadastro-paciente form .radio-div {
+	margin-top: 11px;
+
+}
+
+.cadastro-paciente form .div_estado {
+	width: 31%;
+}
+
+.cadastro-paciente form .idoso_div {
+	width: 70%;
+}
+
+.cadastro-paciente form .idoso_div input {
+	width: 286px;
+}
+
+.cadastro-paciente form .radio-idoso {
+	margin-top: 11px;
+	width: 29%;
+
+}
+
+.cadastro-paciente form .radio-ocupacao {
+	margin-top: 11px;
+	width: 40%;
+
+}
+
+.cadastro-paciente form .ocupacao_div {
+	width: 70%;
+}
+
+.cadastro-paciente .div_radio {
+	width: 20%;
+}
+
+.cadastro-paciente .div_serie {
+	width: 40%;
+} 
+
+.cadastro-paciente .div_serie label {
+	width: 13%;
+	float: left;
+}
+
+.atendimento .divisao {
+	overflow: hidden;
+	margin-bottom: 3%;
+
+}
+
+.atendimento h6 {
+	padding: 1%;
+	width: 20%;
+	background: rgb(233, 252, 255);
+}
+
+.atendimento .opcao_check {
+	width: 25%;
+	float: left;
+}
+
+.atendimento h6 input[type="date"] {
+	width: 53% !important;
+	font-size: 12px;
+	margin-top: 0;
+	margin-bottom: 0px;
+}
+
+.atendimento input {
+	width: 25px !important;
+	height: 16px !important;
+	margin-top: 0px;
+}
+
+.atendimento .att2, .atendimento .att3, .atendimento .att4, .atendimento .att5, .atendimento .att6 {
+	display: none;
+}
+
+.religiao .div_radio {
+	width: 30%;
+}
+
+.residencias h6 {
+	padding: 1%;
+	width: 20%;
+	background: rgb(233, 252, 255);
+}
+
+.residencia {
+	
+}
+
+.aspectos .div_radio {
+	width: 16%;
+	display: inline-block;
+}
+
+.aspectos textarea {
+	width: 97% !important;
+}
+
+.centro .div_radio {
+	width: 50%;
+}
+
+.historia_familiar .div_maior {
+	width: 88% !important;
+}
+
+.historia_familiar .div_menor {
+	width: 12%;
+}
+
+.historia_familiar .div_menor .div_radio {
+	width: 50%;
+}
+
+.antecedentes .label-p {
+	padding-left: 0;
+	float: left;
+	padding-top: 0;
+}
+
+.antecedentes .div_radio {
+	width: 11%;
+	padding-top: 0px;
+}
+
+.antecedentes .div_menor {
+	width: 44%;
+}
+
+.antecedentes .div_maior {
+	width: 53% !important;
+}
+
+.medicamentos .primeiro, .medicamentos_uso .primeiro {
+	margin-left: 0;
+}
+
+.medicamentos input {
+	width: 90% !important;
+}
+
+.medicamentos .input_menor {
+	width: 75% !important;
+}
+
+.medicamentos .mais, .medicamentos_uso .mais {
+	vertical-align: super;
+}
+
+.medicamentos .dois, .medicamentos .tres, .medicamentos .quatro {
+	display: none;
+} 
+
+.medicamentos_uso .linha .primeiro {
+	margin-left: 0;
+}
+
+.medicamentos_uso .linha {
+	overflow: hidden;
+	border: 1px solid #DDDDDD;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 2%;
+}
+.medicamentos_uso .linha input{
+	width: 90%;
+}
+
+.medicamentos_uso .linha .input_menor {
+	width: 75% !important;
+}
+
+.medicamentos_uso .obs p{
+	margin-bottom: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.medicamentos_uso .dois_uso,
+.medicamentos_uso .tres_uso,
+.medicamentos_uso .quatro_uso,
+.medicamentos_uso .cinco_uso, 
+.medicamentos_uso .seis_uso,
+.medicamentos_uso .sete_uso,
+.medicamentos_uso .oito_uso {
+	display: none;
+}
+
+.revisao_sistemas div {
+	border: 1px solid #DDDDDD;
+	padding-left: 1%;
+	height: 60px;
+	padding-top: 0px;
+	font-size: 12px;
+}
+.revisao_sistemas input {
+	width: 8% !important;
+}
+
+.revisao_sistemas .check {
+	border: none;
+	height: initial;
+	float: left;
+	width: 18.8%;
+	font-size: 12px;
+	line-height: 0;
+}
+
+.revisao_sistemas .span10 {
+	width: 85%;
+}
+
+.habitos .div_radio {
+	float: left;
+}
+
+.habitos .div_radio_obs {
+	width: 24%;
+	float: left;
+}
+
+.habitos .div_radio_obs2 {
+	width: 18%;
+	float: left;
+}
+
+.habitos .span2 {
+	border: 1px solid #DDDDDD;
+	padding-left: 10px;
+}
+
+.habitos .caixa {
+	height: 64px;
+	padding-top: 1.5%;
+}
+
+.habitos .caixa2 {
+	height: 83px;
+	padding-top: 2.5%;
+}
+
+.habitos .caixa3 {
+	height: 64px;
+	padding-top: 1%;
+}
+
+.habitos .caixa4 {
+	height: 84px;
+	padding-top: 2%;
+}
+
+.habitos .span8 {
+	width: 70%;
+	border: 1px solid #DDDDDD;
+	padding-left: 10px;
+}
+
+.habitos p {
+	padding: 0;
+	font-size: 12px;
+}
+
+.habitos .div_text_obs {
+	width: 28%;
+	float: left;
+}
+
+.habitos .div_2 input {
+	width: 25%;
+	height: 17px;
+	margin-top: 5px;
+}
+
+.habitos .div_2 .input_menor {
+	width: 22% !important;
+}
+
+.habitos input[name="tipo_ativiadade_fisica"] {
+	width: 73%;
+	margin-left: 1%;
+}
+
+.habitos .div_check {
+	width: 25%;
+	float: left;
+}
+
+.habitos .div_check input {
+	width: 7%;
+	margin-top: 0;
+}
+
+.habitos input[type="text"] {
+	height: 17px;
+}
+
+.exames_clinicos .col, .exames_clinicos2 .col {
+	min-height: 62px;
+	border: 1px solid #DDDDDD;
+	margin-left: 0;
+	padding-left: 5px;
+}
+
+.exames_clinicos .span2 {
+	width: 16.4%;
+}
+
+.exames_clinicos .span1 {
+	width: 13.87%;
+} 
+
+.exames_clinicos .span1 input[type="date"], .exames_clinicos2 .span1 input[type="date"] {
+	width: 84%;
+	height: 18px;
+	margin-top: -15px;
+	margin-bottom: 0;
+	font-size: 12px;
+	border: none;
+}
+
+.exames_clinicos .span1 input, .exames_clinicos2 .span1 input  {
+	width: 84%;
+	margin-top: 6%;
+	border: none;
+	border-bottom: inherit;
+	box-shadow: none;
+}
+
+.exames_clinicos .span2 input {
+	width: 89%;
+	margin-top: 6%;
+	border: none;
+	border-bottom: inherit;
+	box-shadow: none;
+}
+
+.exames_clinicos .span2 input[type="date"]{
+	height: 16px;
+	font-size: 12px;
+	margin-top: -15px;
+	margin-bottom: 0px;
+	border: none;
+}
+
+.exames_clinicos .span4 {
+	width: 34%;
+}
+
+.exames_clinicos .span4 input {
+	width: 94%;
+	margin-top: 3%;
+	border: none;
+	border-bottom: inherit;
+	box-shadow: none;
+}
+
+.exames_clinicos2 .span1 {
+	width: 12%;
+
+}
+
+.exames_clinicos2 .span1 input[type="date"] {
+	margin-top: 7px;
+	font-size: 11px;
+}
+
+.exames_clinicos2 .span3 {
+	text-align: center;
+}
+
+.exames_clinicos2 .span3 p {
+	padding: 0;
+	margin-bottom: 2.2px;
+}
+
+.exames_clinicos2 .span5 {
+	width: 28%;
+}
+
+.exames_clinicos2 .span5 input{
+	width: 93%;
+	border: none;
+	border-bottom: inherit;
+	box-shadow: none;
+	margin-bottom: 12px;
+}
+
+.exames_clinicos2 .div_radio {
+	width: 100%;
+	margin-bottom: 7px;
+}
+
+.exames_clinicos2 .div_radio input {
+	width: 14% !important;
+	display: table;
+	margin-left: 25%;
+	float: left;
+}
+
+.exames_clinicos2 .div_radio p {
+	width: 35%;
+	display: table;
+	margin-bottom: 0;
+	margin-top: -4px;
+	text-align: left;
+
+}
+
+.exames_clinicos2 h6 {
+	margin-bottom: 8px;
+}
+
+.evolucao textarea {
+	width: 98.5% !important;
+}
+
+.formulario {
+	padding: 10px;
+	border: solid 1px #DDDDDD;
+}
+
+/* FIcha Dois */
+.perguntas_aderencia {
+	margin-left: 5px !important;
+}
+.perguntas_aderencia .radio-div {
+	width: 9%;
+	float: left;
+}
+
+.perguntas_aderencia .checkbox {
+	width: 15%;
+	float: left;
+}
+
+.perguntas_aderencia .checkbox input {
+	width: inherit;
+	height: inherit;
+}
+
+.perguntas_aderencia p {
+	padding-left: 0;
+	margin-bottom: 0;
+}
+
+
+.perguntas_aderencia .input_menor {
+	width:  5% !important;
+}
+
+.perguntas_aderencia .resposta {
+	padding-left: 7%;
+}
+
+.perguntas_aderencia .resposta .div_radio{
+	width: 25%;
+}
+
+.perguntas_aderencia .continua p {
+	float: left;
+}
+
+.perguntas_aderencia .continua .div_radio {
+	margin-top: 2.5%;
+}
+
 /*Classes auxiliares*/
+
+.text_align_right {
+	margin: auto;
+	text-align: right;
+}
+
+.text_align_right label {
+	margin-right: 15%;
+}
+
+.primeiro {
+	margin-left: 0 !important;
+}
+
+.display_none {
+	display: none;
+}
 
 .byCC {
 	float: right;
@@ -635,11 +1292,11 @@ Página de contato
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	background-color: #006dcc;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#1299CB));
-	background-image: -webkit-linear-gradient(top, #0088cc, #1299CB);
-	background-image: -o-linear-gradient(top, #0088cc, ##1299CB);
-	background-image: linear-gradient(to bottom, #0088cc, #1299CB);
-	background-image: -moz-linear-gradient(top, #0088cc, #1299CB);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5DC6FB), to(#258BB0));
+	background-image: -webkit-linear-gradient(top, #5DC6FB, #258BB0);
+	background-image: -o-linear-gradient(top, #5DC6FB, #258BB0);
+	background-image: linear-gradient(to bottom, #5DC6FB, #258BB0);
+	background-image: -moz-linear-gradient(top, #5DC6FB, #258BB0);
 	background-repeat: repeat-x;
 	border-color: #0044cc #0044cc #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -650,4 +1307,9 @@ Página de contato
 .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
 	color: #ffffff;
 	background-color: #1088B6;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5DC6FB), to(#258BB0));
+	background-image: -webkit-linear-gradient(top, #5DC6FB, #258BB0);
+	background-image: -o-linear-gradient(top, #5DC6FB, #258BB0);
+	background-image: linear-gradient(to bottom, #5DC6FB, #258BB0);
+	background-image: -moz-linear-gradient(top, #5DC6FB, #258BB0);
 }

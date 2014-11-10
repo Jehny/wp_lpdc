@@ -3,10 +3,14 @@
 	<ul class="inline"> 
         <?php 
                 $paginas = get_pages('sort_column=menu_order&sort_order=ASC'); 
-                foreach ($paginas as $pagina): 
-        ?> 
-        <li><a href="<?php echo get_permalink($pagina->ID) ?>"><?php echo $pagina->post_title ?></a></li> 
+                foreach ($paginas as $pagina):
+                	if($pagina->menu_order != ''){
 
-        <?php endforeach; ?> 
+        ?> 
+        				<li><a href="<?php echo get_permalink($pagina->ID) ?>"><?php echo $pagina->post_title ?></a></li> 
+
+
+        <?php 		}
+        		endforeach; ?> 
 	</ul>
 </div>

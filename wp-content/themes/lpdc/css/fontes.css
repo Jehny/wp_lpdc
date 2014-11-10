@@ -88,7 +88,34 @@ Página de Contato
 	font-size: 12px;
 }
 
+/* Cadastro de Pacientes */
+.cadastro-paciente .cabecalho {
+	text-align: center;
+}
+
+.cadastro-paciente .cabecalho p {
+	text-transform: uppercase;
+	font-family: 'open_sanssemibold';
+}
+
+.cadastro-paciente .title h4 {
+	text-transform: uppercase;
+	text-decoration: underline;
+	font-family: 'open_sanssemibold';
+	text-align: center;
+}
+
+.cadastro-paciente form .sessao h5 {
+	text-transform: uppercase;
+	font-family: 'open_sanssemibold';
+	text-align: center;
+}
+
 /* Classe para Fontes */
+
+.centro {
+	text-align: center;
+}
 
 .open_regular {
 	font-family: 'open_sansregular';
