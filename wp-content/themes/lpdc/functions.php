@@ -134,4 +134,45 @@ function pergunta_aderencia(){
 	return $wpdb->get_results('SELECT * FROM pergunta_aderencia');
 }
 
+// Busca de pacientes 
+function buscar_paciente($n_paciente, $prontuario, $pesquisador, $nome){
+	global $wpdb;
+
+	if($n_paciente != ""){
+		$filtro_1 = " num_paciente = " . $n_paciente;
+		$where = ' WHERE ';
+	}else {
+		$filtro_1 =  "";
+	}
+
+	if($prontuario != ""){
+		$filtro_2 = " num_prontuario = " . $prontuario;
+		$where = ' WHERE ';
+	}else {
+		$filtro_2 =  "";
+	}
+
+	if($pesquisador != ""){
+		$filtro_3 = " pesquisador = " . $pesquisador;
+		$where = ' WHERE ';
+	}else {
+		$filtro_3 =  "";
+	}
+
+	if($nome != ""){
+		$filtro_4 = " nome = " . $nome;
+		$where = ' WHERE ';
+	}else {
+		$filtro_4 =  "";
+	}
+
+	if(isset($where)){
+		if($filtro_1 != ""){
+			$buscar = $where . $filtro_1;
+		}
+	}
+
+	return $wpdb->get_results('SELECT * FROM paciente');	
+}
+
 ?>
