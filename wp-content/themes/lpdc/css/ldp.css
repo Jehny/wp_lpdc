@@ -1264,6 +1264,27 @@ Página de contato
 	margin-top: 2.5%;
 }
 
+#busca_paciente {
+	border: 1px solid #DDDDDD;
+	padding: 2%;
+}
+
+.lista {
+	border: 1px solid #DDDDDD;
+}
+
+.lista td {
+	border-top: none;
+}
+
+.lista .titulo_busca {
+	font-weight: bold;
+}
+
+.edit_lista {
+	font-size: 2em;
+}
+
 /*Classes auxiliares*/
 
 .text_align_right {
