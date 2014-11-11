@@ -18,6 +18,7 @@
 	<title> LPDC - <?php echo get_the_title(); ?></title>
 	<link href="<?php bloginfo('template_url'); ?>/css/ldp.css" rel="stylesheet" media="screen">
 	<link href="<?php bloginfo('template_url'); ?>/css/fontes.css" rel="stylesheet" media="screen">
+	<link href="<?php bloginfo('template_url'); ?>/css/icons.css" rel="stylesheet" media="screen">
 	<script src="<?php bloginfo('template_url'); ?>/js/jquery-2.0.3.min.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/ldp.js"></script>
