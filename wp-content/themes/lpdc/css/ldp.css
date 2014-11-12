@@ -1271,25 +1271,88 @@ Página de contato
 
 .lista {
 	border: 1px solid #DDDDDD;
+	margin-bottom: 2%;
 }
 
-.lista td {
-	border-top: none;
+.busca_resultado .lista:nth-child(odd) {
+	background: #F1F1F1;
 }
 
-.lista .titulo_busca {
+.lista .label2 {
+	width: 7.2%;
+	color: #5A5A5A;
 	font-weight: bold;
 }
 
-.edit_lista {
+.lista .label3 {
+	width: 9%;
+	color: #5A5A5A;
+	font-weight: bold;
+}
+
+.lista .label1 {
+	font-weight: bold;
+	color: #5A5A5A;
+	width: 3%;
+}
+
+.lista .label1_1 {
+	font-weight: bold;
+	color: #5A5A5A;
+	width: 4.5%;
+}
+
+.lista .result {
+	margin-left: 1%;
+}
+
+.lista .pesq {
+	width: 42.5%;
+}
+
+.lista .nome {
+	width: 67%;
+}
+
+.lista .titulo_busca_p {
+	font-weight: bold;
+	width: 3%;
+	padding-right: 0;
+}
+
+.lista .titulo_busca_pp {
+	font-weight: bold;
+	width: 3%;
+	padding-right: 0;
+}
+
+.lista .titulo_busca_m {
+	font-weight: bold;
+	width: 8%;
+	padding-right: 0;
+}
+
+.lista .titulo_busca_g {
+	font-weight: bold;
+	width: 9%;
+	padding-right: 0;
+}
+
+.lista .linha {
+	padding-left: 1%;
+	padding-top: 1%;
+}
+
+.lista .edit_lista {
 	font-size: 2em;
+	padding-left: 44%;
 }
 
 /*Classes auxiliares*/
 
 .text_align_right {
 	margin: auto;
-	text-align: right;
+	text-align: right !important;
 }
 
 .text_align_right label {
