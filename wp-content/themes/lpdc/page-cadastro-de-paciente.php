@@ -1,5 +1,9 @@
 <?php 
 
+if(isset($_GET['cod'])){
+
+}
+
 if(isset($_POST['submit'])){
 	// Inserir dados na tabela Paciente
 	$table = 'paciente';
@@ -181,26 +185,25 @@ if(isset($_POST['submit'])){
 	}
 
 	// REVISÃO DE SISTEMAS 
-	// $table_revisao_sistemas = 'revisao_sistemas';
-	// $total = total_sistemas();
-	// $sinais = "";
-	// for ($i=1; $i <= $total ; $i++) { 
-	// 	foreach ($_POST[$i] as $key => $value) {
-	// 		$sinais .= $value;
-	// 		$sinais .= ";";
-	// 	}
-	// 	if($sinais != ""){
-	// 		$nome_sistema = nome_sistema($i);
-	// 		$data_sistemas = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'sistema_nome'=> $nome_sistema,
-	// 			'sintoma_nome'=> $sinais,
-	// 			'sistema_id'=> $i
-	// 		);
+	$table_revisao_sistemas = 'revisao_sistemas';
+	$total = total_sistemas();
+	$sinais = "";
+	for ($i=1; $i <= $total ; $i++) { 
+		foreach ($_POST[$i] as $key => $value) {
+			$sinais .= $value;
+		}
+		if($sinais != ""){
+			$nome_sistema = revisao_de_sistemas_sistema($i);
+			$data_sistemas = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'sistema_nome'=> $nome_sistema,
+				'sintoma_nome'=> $sinais,
+				'sistema_id'=> $i
+			);
 
-	// 		$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
-	// 	}
-	// }
+			$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
+		}
+	}
 
 	// Hábitos de Vida
 	// Fuma 
@@ -1883,9 +1886,14 @@ include "layout/header.php";
 								</div> 
 								<div class="span10 primeiro">
 									<?php 
-										$sinais = revisao_de_sistemas_sinais($i);
+										$sinais = revisao_de_sistemas_sinais($i, $value='');
 										foreach ($sinais as $sinal) {
-											echo "<div class='check'><input type='checkbox' name='".$id."[]' value='".$sinal->nome."'>". $sinal->nome . "</div> ";
+											if($sinal->id == $value){
+												echo "<div class='check'><input type='checkbox' name='".$id."[]' value='".$sinal->nome."' checked = checked>". $sinal->nome . "</div> ";	
+											} else {
+												echo "<div class='check'><input type='checkbox' name='".$id."[]' value='".$sinal->nome."'>". $sinal->nome . "</div> ";	
+											}
+											
 										}
 									?>
 								</div>

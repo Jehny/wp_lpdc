@@ -1,7 +1,31 @@
 <?php 
 
+if(isset($_GET['cod'])){
+	$num_paciente = $_GET['cod'];
+}
+
 if(isset($_POST['submit'])){
+	// inserir dados na ficha 2
+	$paciente_ficha_2 = 'paciente_ficha_2';
 	
+	$data_paciente_ficha_2 = array(
+		'num_paciente'=> $_POST['num_paciente'],
+		'nome_paciente'=> $_POST['nom_paciente'],
+		'etapa'=> $_POST['etapa'],
+		'data'=> $_POST['data']
+	);
+	$wpdb->insert( $paciente_ficha_2, $data_paciente_ficha_2, $format );
+
+	// Inserir dados na tabela de avaliacao_aderencias
+	$avaliacao_aderencia = 'avaliacao_aderencia';
+	
+	$data_avaliacao_aderencia = array(
+		'num_paciente'=> $_POST['num_paciente'],
+		'id_pergunta'=> $_POST['nom_paciente'],
+		'des_pergunta'=> $_POST['etapa'],
+		'resposta'=> $_POST['data']
+	);
+	$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
 
 }
 
@@ -80,6 +104,7 @@ include "layout/header.php";
 								<div class="radio-div">
 									<input type="radio" name="perg_aderencia_1" value="Não"><span class="radio-label">Não</span>
 								</div>
+								<input type="hidden" name="perg1" value="Durante a 1ª/2ª etapa do tratamento, o Sr. (a) deixou de tomar o Benzonidazol alguma vez ou tomou menos comprimidos receitados pelo médico?">
 							</div>
 
 							<div class="span12 perguntas_aderencia">
@@ -91,6 +116,11 @@ include "layout/header.php";
 								<label>Aproximadamente quantas vezes?</label>
 								<input type="text" value="" name="perg_aderencia_2">
 							</div>
+							<input type="hidden" name="perg2" value="Quantos comprimidos em média deixou de tomar?">
+							<input type="hidden" name="perg3" value="Aproximadamente quantas vezes?">
+							<input type="hidden" name="perg4" value="Por que?">
+							<input type="hidden" name="perg5" value="Quantos comprimidos no total o paciente tomou na 1ª/2ª etapa?">
+							<input type="hidden" name="perg6" value="Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?">
 
 							<div class="span12 perguntas_aderencia">
 								<label>Por que?</label>

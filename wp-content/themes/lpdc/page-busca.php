@@ -1,6 +1,10 @@
 <?php
-if(issset($_POST['submit'])){
-	
+if(isset($_POST['submit'])){
+	$nome = $_POST['nome'];
+	$num_paciente = $_POST['num_paciente'];
+	$num_prontuario = $_POST['num_prontuario'];
+	$pesquisador = $_POST['pesquisador'];
+	$result = buscar_paciente($num_paciente, $num_prontuario, $pesquisador, $nome);
 }
 
 include "layout/header.php"; 
@@ -49,27 +53,34 @@ include "layout/header.php";
 				</form>
 			</div>
 
-			<div class="row-fluid">
-				<div class="sessao">
-					<h5>Resultado</h5>
-				</div>
-				<table class="table lista">
-					<tr>
-						<td class="titulo_busca">Nº Paciente:</td>
-						<td></td>
-						<td class="titulo_busca">Pesquisador:</td>
-						<td></td>
-						<td class="titulo_busca">Data:</td>
-						<td></td>
-						<td><i class="icon-editar edit_lista"></i></td>
-					</tr>
-					<tr>
-						<td colspan="4" class="titulo_busca">Nome:</td>
-						<td></td>
-						<td class="titulo_busca">Nº Prontuário:</td>
-						<td></td>
-					</tr>
-				</table>
+			<div class="row-fluid busca_resultado">
+				
+			<?php 	if(isset($result)){ ?>
+						<div class="sessao">
+							<h5>Resultado</h5>
+						</div>
+					<?php
+						foreach ($result as $key) { ?>		
+					
+							<div class="row-fluid lista">
+								<div class="row-fluid linha">
+									<div class="span2 label2">Nº Paciente:</div>
+									<div class="span2 result"><?php echo $key->num_paciente; ?></div>
+									<div class="span2 label2">Pesquisador:</div>
+									<div class="span3 result pesq"><?php echo $key->pesquisador; ?></div>
+									<div class="span1 label1_1 text_align_right">Data:</div>
+									<div class="span1 result"><?php echo $key->data; ?></div>
+									<div class="span1"><a href=""><i class="icon-editar edit_lista"></i></a></div>
+								</div>
+								<div class="row-fluid linha">
+									<div class="span1 label1">Nome:</div>
+									<div class="span6 nome"><?php echo $key->nome; ?></div>
+									<div class="span2 label3">Nº Prontuário:</div>
+									<div class="span2 result"><?php echo $key->num_prontuario; ?></div>
+								</div>
+							</div>
+			<?php 		}
+					}	?>
 			</div>
 
 		</div>

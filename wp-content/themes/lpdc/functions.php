@@ -135,44 +135,124 @@ function pergunta_aderencia(){
 }
 
 // Busca de pacientes 
-function buscar_paciente($n_paciente, $prontuario, $pesquisador, $nome){
+function buscar_paciente($n_paciente="", $prontuario="", $pesquisador="", $nome=""){
 	global $wpdb;
 
 	if($n_paciente != ""){
-		$filtro_1 = " num_paciente = " . $n_paciente;
-		$where = ' WHERE ';
+		$filtro_1 = " AND num_paciente like '%" . $n_paciente  . "%'";
 	}else {
 		$filtro_1 =  "";
 	}
 
 	if($prontuario != ""){
-		$filtro_2 = " num_prontuario = " . $prontuario;
-		$where = ' WHERE ';
+		$filtro_2 = " AND num_prontuario like '%" . $prontuario  . "%'";
 	}else {
 		$filtro_2 =  "";
 	}
 
 	if($pesquisador != ""){
-		$filtro_3 = " pesquisador = " . $pesquisador;
-		$where = ' WHERE ';
+		$filtro_3 = " AND pesquisador like '%" . $pesquisador . "%'";
 	}else {
 		$filtro_3 =  "";
 	}
 
-	if($nome != ""){
-		$filtro_4 = " nome = " . $nome;
-		$where = ' WHERE ';
-	}else {
-		$filtro_4 =  "";
-	}
+	return $wpdb->get_results("SELECT * FROM paciente WHERE nome like '%" . $nome . "%'" . $filtro_1 . $filtro_2. $filtro_3);	
+}
 
-	if(isset($where)){
-		if($filtro_1 != ""){
-			$buscar = $where . $filtro_1;
-		}
-	}
+function buscar_paciente_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_row('SELECT * FROM paciente WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
 
-	return $wpdb->get_results('SELECT * FROM paciente');	
+function buscar_atendimento_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM atendimento_paciente WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_exames_clinicos_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM exames_clinicos WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_funcao_hepatica_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM funcao_hepatica WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_funcao_renal_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM funcao_renal WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_habitos_vida_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM habitos_vida WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_hemograma_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM hemograma WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_med_que_utiliza_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM med_que_utiliza WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_med_utilizados_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM med_que_utiliza WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_outros_param_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM outros_param WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_outro_ex_bioq_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM outro_ex_bioq WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_problemas_saude_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM problemas_saude WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_residencia_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM residencia WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_revisao_sistemas_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_uso_medicamento_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM uso_medicamento WHERE num_paciente='. $num_paciente);
+	return $tipo; 
+}
+
+function buscar_total_porcentagem_id($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM total_porcentagem WHERE num_paciente='. $num_paciente);
+	return $tipo; 
 }
 
 ?>
