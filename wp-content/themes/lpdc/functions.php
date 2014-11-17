@@ -96,7 +96,7 @@ function total_sistemas(){
 function nome_sistema($id = 0) {
 	global $wpdb;
 	$tipo = $wpdb->get_row('SELECT * FROM sistemas WHERE id='. $id);
-	echo $tipo->nome; 
+	return $tipo->nome; 
 }
 
 function revisao_de_sistemas_sinais($id_sistema = 0) {
@@ -237,9 +237,9 @@ function buscar_residencia_id($num_paciente){
 	return $tipo; 
 }
 
-function buscar_revisao_sistemas_id($num_paciente){
+function buscar_revisao_sistemas_id($num_paciente, $id_sistema){
 	global $wpdb;
-	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas WHERE num_paciente='. $num_paciente);
+	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas_sintomas WHERE num_paciente='. $num_paciente . ' AND id_sistema = ' . $id_sistema );
 	return $tipo; 
 }
 

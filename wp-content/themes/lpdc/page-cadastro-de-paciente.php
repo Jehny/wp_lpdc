@@ -5,6 +5,7 @@ if(isset($_GET['cod'])){
 }
 
 if(isset($_POST['submit'])){
+
 	// Inserir dados na tabela Paciente
 	$table = 'paciente';
 	
@@ -91,7 +92,7 @@ if(isset($_POST['submit'])){
 
 	if($_POST['residiu'] == 'Não'){
 		for($i=1; $i < 5; $i++){
-			$periodo = 'periodo'. $i;
+			$periodo = 'periodo_resid_'. $i;
 			if(isset($_POST[$periodo]) && $_POST[$periodo] != ''){
 				$area = 'area'.$i;
 				$cobertura = 'cobertura'. $i;
@@ -180,7 +181,7 @@ if(isset($_POST['submit'])){
 				'inicio'=> $_POST[$inicio_uso]
 			);
 
-			$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+			$wpdb->insert( $table_med_que_utiliza, $data_med_utilizados, $format );
 		}
 	}
 
@@ -188,30 +189,39 @@ if(isset($_POST['submit'])){
 	$table_revisao_sistemas = 'revisao_sistemas';
 	$total = total_sistemas();
 	$sinais = "";
-	for ($i=1; $i <= $total ; $i++) { 
-		foreach ($_POST[$i] as $key => $value) {
-			$sinais .= $value;
-		}
-		if($sinais != ""){
-			$nome_sistema = revisao_de_sistemas_sistema($i);
-			$data_sistemas = array(
-				'num_paciente'=> $_POST['num_paciente'],
-				'sistema_nome'=> $nome_sistema,
-				'sintoma_nome'=> $sinais,
-				'sistema_id'=> $i
-			);
+	for ($i=1; $i <= $total; $i++) { 
+		if($_POST[$i] != ''){
+			foreach ($_POST[$i] as $key => $value) {
+				$sinais = $i;
+				$tabel_sintomas = 'revisao_sistemas_sintoma';
+				$data_sintomas = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'id_sistema'=> $sinais,
+					'sintoma'=> $value
+				);
 
-			$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
+				$wpdb->insert( $tabel_sintomas, $data_sintomas, $format );
+			}
+			if($sinais){
+				$nome = nome_sistema($sinais);
+				$data_sistemas = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'sistema_nome'=> $nome,
+					'sistema_id'=> $i
+				);
+
+				$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
+			}
 		}
 	}
 
 	// Hábitos de Vida
 	// Fuma 
 	$table_habitos_vida = 'habitos_vida';
-	if($_POST['fuma'] == 'Sim'){
-		$pratica_fuma = "Sim";
+	if($_POST['fuma'] == 'S'){
+		$pratica_fuma = "S";
 	}else {
-		$pratica_fuma = "Não";
+		$pratica_fuma = "N";
 	}
 	$data_habitos_vida_fuma = array(
 		'num_paciente'=> $_POST['num_paciente'],
@@ -224,10 +234,10 @@ if(isset($_POST['submit'])){
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_fuma, $format );
 	
 	// Toma café
-	if($_POST['cafe'] == 'Sim'){
-		$pratica_cafe = "Sim";
+	if($_POST['cafe'] == 'S'){
+		$pratica_cafe = "S";
 	}else {
-		$pratica_cafe = "Não";
+		$pratica_cafe = "N";
 	}
 	$data_habitos_vida_cafe = array(
 		'num_paciente'=> $_POST['num_paciente'],
@@ -240,15 +250,15 @@ if(isset($_POST['submit'])){
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_cafe, $format );
 
 	// Ingere bebidas alcoólicas?
-	if($_POST['bebida'] == 'Sim'){
-		$pratica_bebe = "Sim";
+	if($_POST['bebida'] == 'S'){
+		$pratica_bebe = "S";
 	}else {
-		$pratica_bebe = "Não";
+		$pratica_bebe = "N";
 	}
 	$data_habitos_vida_bebe = array(
 		'num_paciente'=> $_POST['num_paciente'],
 		'pratica'=> 'Ingere bebidas alcoólicas?',
-		'pratica_atual'=> $pratica_cafe,
+		'pratica_atual'=> $pratica_bebe,
 		'frequencia'=> $_POST['frequencia_bebe'],
 		'tempo_deixou'=> $_POST['qnt_tempo_bebe'],
 		'motivo'=> $_POST['motivo_bebe']
@@ -256,10 +266,10 @@ if(isset($_POST['submit'])){
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_bebe, $format );
 
 	// Utiliza chás de plantas medicinais?
-	if($_POST['cha'] == 'Sim'){
-		$pratica_cha = "Sim";
+	if($_POST['cha'] == 'S'){
+		$pratica_cha = "S";
 	}else {
-		$pratica_cha = "Não";
+		$pratica_cha = "N";
 	}
 	$data_habitos_vida_cha = array(
 		'num_paciente'=> $_POST['num_paciente'],
@@ -274,10 +284,10 @@ if(isset($_POST['submit'])){
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_cha, $format );
 
 	// Pratica atividade física?
-	if($_POST['atividade_fisica'] == 'Sim'){
-		$pratica_atividade = "Sim";
+	if($_POST['atividade_fisica'] == 'S'){
+		$pratica_atividade = "S";
 	}else {
-		$pratica_atividade = "Não";
+		$pratica_atividade = "N";
 	}
 	$data_habitos_vida_atividade = array(
 		'num_paciente'=> $_POST['num_paciente'],
@@ -289,22 +299,29 @@ if(isset($_POST['submit'])){
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_atividade, $format );
 	
 	// Você considera sua alimentação saudável?
-	if($_POST['alimentacao'] == 'Sim'){
-		$pratica_alimentacao = "Sim";
+	if($_POST['alimentacao'] == 'S'){
+		$pratica_alimentacao = "S";
 	}else {
-		$pratica_alimentacao = "Não";
+		$pratica_alimentacao = "N";
 	}
+	$alimentacao = "";
+	foreach ($_POST['tipo_alimentacao_1'] as $key => $value) {
+		$alimentacao .= $value;
+		$alimentacao .= ";";
+	}
+	
+
 	$data_habitos_vida_alimentacao = array(
 		'num_paciente'=> $_POST['num_paciente'],
 		'pratica'=> 'Você considera sua alimentação saudável?',
 		'pratica_atual'=> $pratica_alimentacao,
-		'tipo_alimentacao'=> $_POST['tipo_alimentacao'],
+		'tipo_alimentacao'=> $alimentacao,
 		'outros'=> $_POST['outros_alimentacao']
 	);
 	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_alimentacao, $format );
 
 
-	//EVOLUÇÃO DE PARÂMETROS LABORATORIAIS E CLÍNICOS
+	//EVOLUÇÃO DE PARÂ[]METROS LABORATORIAIS E CLÍNICOS
 	$table_hemograma = 'hemograma';
 	$table_funcao_renal = 'funcao_renal';
 	$table_funcao_hepatica = 'funcao_hepatica';
@@ -323,101 +340,115 @@ if(isset($_POST['submit'])){
 	for($i = 1; $i <= 6; $i++){
 
 		// pega a data da coleta, se tiver passa para os exames e insere no banco
-		if(isset($_POST['coleta1_'.$i]) && $_POST['coleta1_'.$i] != '0000-00-00'){
+		//if(isset($_POST['coleta1_'.$i]) && $_POST['coleta1_'.$i] != '0000-00-00'){
 			if($i < 4){
-				// inserir na tabela de Hemograma
-				$exames_hemograma = exames(1);
-				foreach ($exames_hemograma as $key) {
-					$data_hemograma = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_1'],
-						'obs'=> $_POST[$key->id.'obs'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_hemograma, $data_hemograma, $format );
+				if(isset($_POST['coleta'.$i.'_1']) && $_POST['coleta'.$i.'_1'] != '0000-00-00' && $_POST['coleta'.$i.'_1'] != ''){
+					// inserir na tabela de Hemograma
+					$exames_hemograma = exames(1);
+					foreach ($exames_hemograma as $key) {
+						$data_hemograma = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_1'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_hemograma, $data_hemograma, $format );
+					}
 				}
 
 				// inserir na tabela de funcao Renal
-				$exames_funcao_renal = exames(2);
-				foreach ($exames_funcao_renal as $key) {
-					$data_funcao_renal = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_2'],
-						'obs'=> $_POST[$key->id.'obs'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+				if(isset($_POST['coleta'.$i.'_2']) && $_POST['coleta'.$i.'_2'] != '0000-00-00' && $_POST['coleta'.$i.'_2'] != ''){
+					$exames_funcao_renal = exames(2);
+					foreach ($exames_funcao_renal as $key) {
+						$data_funcao_renal = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_2'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+					}
 				}
 
 				// inserir na tabela de funcao Renal
 				$exames_funcao_hepatica = exames(3);
-				foreach ($exames_funcao_hepatica as $key) {
-					$data_funcao_hepatica = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_3'],
-						'obs'=> $_POST[$key->id.'obs'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+				if(isset($_POST['coleta'.$i.'_3']) && $_POST['coleta'.$i.'_3'] != '0000-00-00' && $_POST['coleta'.$i.'_3'] != '' ){
+					foreach ($exames_funcao_hepatica as $key) {
+						$data_funcao_hepatica = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_3'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+					}
 				}
 
 				// inserir na tabela de Outros exames bioquimicos
-				$exames_outro_ex_bioq = exames(4);
-				foreach ($exames_outro_ex_bioq as $key) {
-					$data_outro_ex_bioq = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_4'],
-						'obs'=> $_POST[$key->id.'obs'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+				if(isset($_POST['coleta'.$i.'_4']) && $_POST['coleta'.$i.'_4'] != '0000-00-00' && $_POST['coleta'.$i.'_4'] != ''){
+					$exames_outro_ex_bioq = exames(4);
+					foreach ($exames_outro_ex_bioq as $key) {
+						$data_outro_ex_bioq = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_4'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+					}
 				}
 
 				// inserir na tabela de Teste para Chagas
-				$exames_teste_chagas = exames(5);
-				foreach ($exames_teste_chagas as $key) {
-					$data_teste_chagas = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_5'],
-						'obs'=> $_POST[$key->id.'obs'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+				if(isset($_POST['coleta'.$i.'_5']) && $_POST['coleta'.$i.'_5'] != '0000-00-00' && $_POST['coleta'.$i.'_5'] != ''){
+					$exames_teste_chagas = exames(5);
+					foreach ($exames_teste_chagas as $key) {
+						$data_teste_chagas = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_5'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+					}
 				}
 
 				// inserir na tabela de Outros Parâmetros
+				if(isset($_POST['coleta'.$i.'_6']) && $_POST['coleta'.$i.'_6'] != '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
 				$exames_outros_param = exames(6);
-				foreach ($exames_outros_param as $key) {
-					$data_outros_param = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_6'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+					foreach ($exames_outros_param as $key) {
+						$data_outros_param = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_6'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+					}
 				}
 			}
 
 			if($i > 4){
 				// inserir na tabela de Outros Parâmetros
-				$exames_outros_param = exames(6);
-				foreach ($exames_outros_param as $key) {
-					$data_outros_param = array(
-						'num_paciente'=> $_POST['num_paciente'],
-						'nome'=> $key->nome,
-						'coleta'=> $_POST['coleta'.$i.'_6'],
-						'valor'=> $_POST[$key->id.'coleta'.$i]
-					);
-					$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+				if(isset($_POST['coleta'.$i.'_6']) && $_POST['coleta'.$i.'_6'] != '0000-00-00'  && $_POST['coleta'.$i.'_6'] != ''){
+					$exames_outros_param = exames(6);
+					foreach ($exames_outros_param as $key) {
+						$data_outros_param = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_6'],
+							'valor'=> $_POST[$key->id.'coleta'.$i]
+						);
+						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+					}
 				}
 				
 			}
-		}
+		//}
 	}
 
 	//Exames Clínicos
@@ -426,7 +457,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'eletro_date_'.$i;
 		$valor = 'eletro_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
 			if($_POST['eletro'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -451,7 +482,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'eco_date_'.$i;
 		$valor = 'eco_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != '') {
 			if($_POST['eco'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -476,7 +507,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'holter_date_'.$i;
 		$valor = 'holter_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
 			if($_POST['holter'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -501,7 +532,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'rx_co_date_'.$i;
 		$valor = 'rx_co_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
 			if($_POST['rx_coracao'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -526,7 +557,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'rx_eso_date_'.$i;
 		$valor = 'rx_eso_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
 			if($_POST['rx_esofago'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -551,7 +582,7 @@ if(isset($_POST['submit'])){
 	for($i=1; $i < 5; $i++){
 		$date = 'enema_date_'.$i;
 		$valor = 'enema_valor_'.$i;
-		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'  && $_POST[$date] != ''){
 			if($_POST['enema'] == '1'){
 				$tipo = 'Normal';
 			}else{
@@ -940,7 +971,7 @@ include "layout/header.php";
 									<div>
 										<div>
 											<label>PERÍODO:</label>	
-											<input type="text" name="periodo1" value="">
+											<input type="text" name="periodo_resid_1" value="">
 										</div>							
 									</div>
 									
@@ -1020,7 +1051,7 @@ include "layout/header.php";
 									<div>
 										<div>
 											<label>PERÍODO:</label>	
-											<input type="text" name="periodo2" value="">
+											<input type="text" name="periodo_resid_2" value="">
 										</div>							
 									</div>
 									
@@ -1099,7 +1130,7 @@ include "layout/header.php";
 									<div>
 										<div>
 											<label>PERÍODO:</label>	
-											<input type="text" name="periodo3" value="">
+											<input type="text" name="periodo_resid_3" value="">
 										</div>							
 									</div>
 									
@@ -1178,7 +1209,7 @@ include "layout/header.php";
 									<div>
 										<div>
 											<label>PERÍODO:</label>	
-											<input type="text" name="periodo4" value="">
+											<input type="text" name="periodo_resid_4" value="">
 										</div>							
 									</div>
 									
@@ -1342,7 +1373,7 @@ include "layout/header.php";
 									<input type="radio" name="problema-controlado2" value="Sim">Sim
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="problem-controlado2" value="Não">Não
+									<input type="radio" name="problema-controlado2" value="Não">Não
 								</div>
 							</div>
 							<div class="centro"><input type="text" name="problema-data2" value=""></div>
@@ -2077,22 +2108,22 @@ include "layout/header.php";
 						<div class="span8 primeiro">
 							<div class="">Tipo de alimentação:</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em massas">Rica em massas
+								<input type='checkbox' name='tipo_alimentacao_1[]' value='Rica em massas'>Rica em massas
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas">Rica em frutas
+								<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em frutas">Rica em frutas
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha">Rica em carne vermelha
+								<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne vermelha">Rica em carne vermelha
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura">Rica em verdura
+								<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em verdura">Rica em verdura
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca">Rica em carne branca
+								<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne branca">Rica em carne branca
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras">Rica em óleos e gorduras
+								<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em óleos e gorduras">Rica em óleos e gorduras
 							</div>
 							<div class="">
 								Outros. Epecificar: <input type="text" name="outros_alimentacao" value="">

@@ -18,14 +18,46 @@ if(isset($_POST['submit'])){
 
 	// Inserir dados na tabela de avaliacao_aderencias
 	$avaliacao_aderencia = 'avaliacao_aderencia';
-	
-	$data_avaliacao_aderencia = array(
-		'num_paciente'=> $_POST['num_paciente'],
-		'id_pergunta'=> $_POST['nom_paciente'],
-		'des_pergunta'=> $_POST['etapa'],
-		'resposta'=> $_POST['data']
-	);
-	$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
+	foreach ($_POST['perg_aderencia_4'] as $key => $value) {
+		$porque = $value;
+		$porque .= ";";
+	}
+	for($i=1; $i < 7; $i++){
+		if($i == 4){
+			$resposta = $porque;
+		}else {
+			$resposta = $_POST['perg_aderencia_'.$i];
+		}
+		$data_avaliacao_aderencia = array(
+			'num_paciente'=> $_POST['num_paciente'],
+			'id_pergunta'=> $_POST['nom_paciente'],
+			'des_pergunta'=> $_POST['perg'.$i],
+			'resposta'=> $resposta
+		);
+		$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
+	}
+
+	$reacoes_indesejaveis = 'reacoes_indesejaveis';
+
+	$data_reacoes_indesejaveis = array (
+		'num_paciente'=>$_POST['num_paciente'],
+		'pergunta'=> 'Você sentiu alguma reação indesejável durante a 1ª/2ª etapa do tratamento?',
+		'resposta'=>$_POST['reacao1']
+		);
+	$wpdb->insert( $reacoes_indesejaveis, $data_reacoes_indesejaveis, $format );
+
+	if($_POST['reacao1'] == 'Sim'){
+		$reacoes_indesejaveis_ram = 'reacoes_indesejaveis_ram';
+		for($i=1; $i<8; $i++){
+			$data_reacoes_indesejaveis_ram = array (
+				'num_paciente'=>$_POST['num_paciente'],
+				'ram'=>$_POST['ram'.$i],
+				'qual_dia'=>$_POST['dia'.$i],
+				'continua'=>$_POST['continua'.$i],
+			);
+		}
+
+	}
 
 }
 
@@ -109,12 +141,12 @@ include "layout/header.php";
 
 							<div class="span12 perguntas_aderencia">
 								<label>Quantos comprimidos em média deixou de tomar?</label>
-								<input type="text" value="" name="perg_aderencia_3">
+								<input type="text" value="" name="perg_aderencia_2">
 							</div>
 
 							<div class="span12 perguntas_aderencia">
 								<label>Aproximadamente quantas vezes?</label>
-								<input type="text" value="" name="perg_aderencia_2">
+								<input type="text" value="" name="perg_aderencia_3">
 							</div>
 							<input type="hidden" name="perg2" value="Quantos comprimidos em média deixou de tomar?">
 							<input type="hidden" name="perg3" value="Aproximadamente quantas vezes?">
@@ -125,36 +157,36 @@ include "layout/header.php";
 							<div class="span12 perguntas_aderencia">
 								<label>Por que?</label>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Não quis tomar">Não quis tomar
+									<input type="checkbox" name="perg_aderencia_4" value="Não quis tomar">Não quis tomar
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Para durar mais">Para durar mais
+									<input type="checkbox" name="perg_aderencia_4" value="Para durar mais">Para durar mais
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Dose alta">Dose alta
+									<input type="checkbox" name="perg_aderencia_4" value="Dose alta">Dose alta
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Reação desagradável">Reação desagradável
+									<input type="checkbox" name="perg_aderencia_4" value="Reação desagradável">Reação desagradável
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Não sabe tomar">Não sabe tomar
+									<input type="checkbox" name="perg_aderencia_4" value="Não sabe tomar">Não sabe tomar
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Sente-se bem">Sente-se bem
+									<input type="checkbox" name="perg_aderencia_4" value="Sente-se bem">Sente-se bem
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="porque_aderencia" value="Esquecimento">Esquecimento
+									<input type="checkbox" name="perg_aderencia_4" value="Esquecimento">Esquecimento
 								</div>
 							</div>
 							<div class="span12 perguntas_aderencia">
 								<p><strong>Percentual de aderência (Calculado pelo farmacêutico):</strong></p>
 								<div>
 									<label>Quantos comprimidos no total o paciente tomou na 1ª/2ª etapa?</label>
-									<input type="text" name="qnt_comprimidos" value="">
+									<input type="text" name="perg_aderencia_5" value="">
 								</div>
 								<div>
 									<label>Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?</label>
-									<input type="text" name="qnt_comprimidos_tomados" value="">
+									<input type="text" name="perg_aderencia_6" value="">
 								</div>
 								<input type="text" name="porcentagem" id="porcentagem" value="" class="input_menor">
 							</div>
@@ -341,7 +373,7 @@ include "layout/header.php";
 								<input type="text" name="tempo_medicamentos" value="" class="input_media">
 							</div>
 						</fieldset>	
-						
+						<input type="hidden" name="num_paciente" value="<?php echo $num_paciente; ?>">
 					</div>
 
 					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
