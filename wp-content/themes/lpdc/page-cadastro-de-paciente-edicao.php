@@ -19,6 +19,8 @@ if(isset($_GET['cod'])){
 	// $obj_revisao_sistemas = buscar_revisao_sistemas_id($numero_paciente);
 	$obj_uso_medicamento = buscar_uso_medicamento_id($numero_paciente);
 
+} else {
+	$numero_paciente = '';
 }
 
 if(isset($_POST['submit'])){
@@ -731,9 +733,20 @@ include "layout/header.php";
 							<div class="divisao att1">
 							<?php 
 								$atendimento_1 = pegar_opcao_atendimento(1);
-								echo "<h6>1º Atendimento <input type='date' name='data_atend' value='' required></h6>";
+								$check = buscar_atendimento_id($numero_paciente);
+								$total_check = count($check);
+								$array_atend = array();
+								for($i=0; $i<$total_check; $i++){
+									array_push($array_atend, $check[$i]->dados);
+								}
+								echo "<h6>1º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_1 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
@@ -799,18 +812,25 @@ include "layout/header.php";
 						<fieldset>
 							<div>
 								<label>Data de nascimento:</label>
-								<input type="text" name="dt_nascimento" value="">
+								<input type="text" name="dt_nascimento" value="<?php echo $obj_paciente->dt_nascimento; ?>">
 							</div>
 
 							<div>
 								<label>Local de nascimento:</label>
-								<input type="text" name="local_nascimento" value="">
+								<input type="text" name="local_nascimento" value="<?php echo $obj_paciente->local_nascimento; ?>">
 							</div>
 							<div>
 								<label>Sexo:</label>
 								<div class="radio-idoso">
-									<input type="radio" name="sexo" value="M"><span class="radio-label">M</span>
-									<input type="radio" name="sexo" value="F"><span class="radio-label">F</span>
+									<?php if($obj_paciente->sexo == 'F'){
+									?>
+										<input type="radio" name="sexo" value="M"><span class="radio-label">M</span>
+										<input type="radio" name="sexo" value="F" checked><span class="radio-label">F</span>
+									<?php } else { ?>
+										<input type="radio" name="sexo" value="M" checked><span class="radio-label">M</span>
+										<input type="radio" name="sexo" value="F"><span class="radio-label">F</span>
+									<?php } ?>
+									
 								</div>
 							</div>
 						</fieldset>
@@ -819,127 +839,238 @@ include "layout/header.php";
 							<div>
 								<label>Trabalha?</label>
 								<div class="radio-ocupacao">
-									<input type="radio" name="trabalha" value="Sim" id="ocupacao-sim"><span class="radio-label">Sim</span>
-									<input type="radio" name="trabalha" value="Não" id="ocupacao-nao"><span class="radio-label">Não</span>
+									<?php if($obj_paciente->trabalha == 'Sim') { ?>
+											<input type="radio" name="trabalha" value="Sim" id="ocupacao-sim" checked><span class="radio-label">Sim</span>
+											<input type="radio" name="trabalha" value="Não" id="ocupacao-nao"><span class="radio-label">Não</span>
+									<?php } else { ?>
+											<input type="radio" name="trabalha" value="Sim" id="ocupacao-sim"><span class="radio-label">Sim</span>
+											<input type="radio" name="trabalha" value="Não" id="ocupacao-nao" checked><span class="radio-label">Não</span>
+									<?php } ?>
 								</div>
 							</div>
 							<div>
 								<label>Qual a ocupação? </label>
-								<input type="text" name="ocupacao" value="" disabled="disabled" id="ocupacao">
+								<?php if($obj_paciente->ocupacao != "") { ?>
+									<input type="text" name="ocupacao" value="<?php echo $obj_paciente->ocupacao; ?>" id="ocupacao">
+								<?php } else { ?>
+									<input type="text" name="ocupacao" value="" disabled="disabled" id="ocupacao">
+								<?php } ?>
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_full">
 								<label><strong>Escolaridade</strong></label>
-								<div class="div_serie">
-									<label>Série:</label>
-									<input type="text" name="serie" value="">
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="AN">AN
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="Fundamental Inc.">Fundamental Inc.
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="Fund. cp.">Fund. cp
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="Médio inc.">Médio inc.
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="M. cp.">M. cp.
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="escolaridade" value="Superior">Superior
-								</div>
+								<?php if($obj_paciente->escolaridade != "AN" 
+								&& $obj_paciente->escolaridade != "Fundamental Inc." 
+								&& $obj_paciente->escolaridade != "Fund. cp." 
+								&& $obj_paciente->escolaridade != "Médio inc."
+								&& $obj_paciente->escolaridade != "M. cp."
+								&& $obj_paciente->escolaridade != "Superior" ) { ?>
+									<div class="div_serie">
+										<label>Série:</label>
+										<input type="text" name="serie" value="<?php echo $obj_paciente->escolaridade; ?>">
+									</div>
+								<?php } else { ?>
+										<div class="div_serie">
+											<label>Série:</label>
+											<input type="text" name="serie" value="">
+										</div>
+									<?php } 
+										if($obj_paciente->escolaridade == "AN") {
+									?>
+											<div class="div_radio">
+												<input type="radio" name="escolaridade" value="AN" checked>AN
+											</div>
+									<?php 	} else { ?>
+											<div class="div_radio">
+												<input type="radio" name="escolaridade" value="AN" checked>AN
+											</div>
+									<?php 	} if($obj_paciente->escolaridade == "Fundamental Inc.") { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Fundamental Inc." checked>Fundamental Inc.
+												</div>
+									<?php 	} else { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Fundamental Inc.">Fundamental Inc.
+												</div>
+									<?php 	} if($obj_paciente->escolaridade == "Fund. cp.") { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Fund. cp." checked>Fund. cp
+												</div>
+									<?php 	} else { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Fund. cp.">Fund. cp
+												</div>
+									<?php 	} if($obj_paciente->escolaridade == "Médio inc.") { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Médio inc." checked>Médio inc.
+												</div>
+									<?php 	} else { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Médio inc.">Médio inc.
+												</div>
+									<?php	} if($obj_paciente->escolaridade == "M. cp.") { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="M. cp." checked>M. cp.
+												</div>
+									<?php	} else { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Médio inc.">Médio inc.
+												</div>
+									<?php	} if($obj_paciente->escolaridade == "Superior") { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Superior" checked>Superior
+												</div>
+									<?php	} else { ?>
+												<div class="div_radio">
+													<input type="radio" name="escolaridade" value="Superior">Superior
+												</div>
+									<?php 	} ?>
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_media">
 								<label><strong>Renda familiar</strong></label>
-								<div class="div_radio">
-									<input type="radio" name="renda-familiar" value="< 1 SM "> < 1 SM
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="renda-familiar" value="1 SM ">1 SM
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="renda-familiar" value="2 a 4 SM ">2 a 4 SM
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="renda-familiar" value=">= 5 SM "> >= 5 SM
-								</div>
+								<?php if($obj_paciente->renda == '< 1 SM ') { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="< 1 SM " checked> < 1 SM
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="< 1 SM "> < 1 SM
+										</div>
+								<?php } if($obj_paciente->renda == '1 SM ') { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="1 SM " checked>1 SM
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="1 SM ">1 SM
+										</div>
+								<?php } if($obj_paciente->renda == '2 a 4 SM ') { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="2 a 4 SM " checked>2 a 4 SM
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value="2 a 4 SM ">2 a 4 SM
+										</div>
+								<?php } if($obj_paciente->renda == '>= 5 SM ') { ?> 
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value=">= 5 SM " checked> >= 5 SM
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="renda-familiar" value=">= 5 SM "> >= 5 SM
+										</div>
+								<?php } ?>
 							</div>
 
 							<div class="div_media">
 								<label><strong>Estado civil</strong></label>
-								<div class="div_radio">
-									<input type="radio" name="estado-civil" value="Solteiro"> Solteiro
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="estado-civil" value="Casado">Casado
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="estado-civil" value="Viúvo">Viúvo
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="estado-civil" value="Amigado">Amigado
-								</div>
+								<?php if($obj_paciente->estado_civil == 'Solteiro') { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Solteiro" checked> Solteiro
+											</div>
+								<?php } else { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Solteiro" checked> Solteiro
+											</div>
+								<?php } if($obj_paciente->estado_civil == 'Casado') { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Casado" checked>Casado
+											</div>
+								<?php } else { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Casado">Casado
+											</div>
+								<?php } if($obj_paciente->estado_civil == 'Viúvo') { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Viúvo" checked>Viúvo
+											</div>
+								<?php } else { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Viúvo">Viúvo
+											</div>
+								<?php } if($obj_paciente->estado_civil == 'Amigado') { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Amigado" checked>Amigado
+											</div>
+								<?php } else { ?>
+											<div class="div_radio">
+												<input type="radio" name="estado-civil" value="Amigado">Amigado
+											</div>
+								<?php } ?>
 							</div>
 						</fieldset>
 						<fieldset>
 							<div>
 								<label>Peso</label>
-								<input type="text" name="peso" value="">
+								<input type="text" name="peso" value="<?php echo $obj_paciente->peso; ?>">
 							</div>
 							<div>
 								<label>Altura</label>
-								<input type="text" name="altura" value="">
+								<input type="text" name="altura" value="<?php echo $obj_paciente->altura; ?>">
 							</div>
 							<div>
 								<label>IMC</label>
-								<input type="text" name="imc" value="">
+								<input type="text" name="imc" value="<?php echo $obj_paciente->imc; ?>">
 							</div>
 						</fieldset>
 
 						<fieldset>
 							<div class="religiao">
 								<label><strong>Cor</strong></label>
-								<div class="div_radio">
-									<input type="radio" name="cor" value="Branco"> Branco
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="cor" value="Pardo">Pardo
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="cor" value="Negro">Negro
-								</div>
+								<?php if($obj_paciente->cor == 'Branco') { ?>
+										<div class="div_radio">
+											<input type="radio" name="cor" value="Branco" checked> Branco
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="cor" value="Branco"> Branco
+										</div>
+								<?php } if($obj_paciente->cor == 'Pardo') { ?>
+									<div class="div_radio">
+										<input type="radio" name="cor" value="Pardo" checked> Pardo
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="cor" value="Pardo" checked> Pardo
+									</div>
+								<?php } if($obj_paciente->cor == 'Negro') { ?>
+									<div class="div_radio">
+										<input type="radio" name="cor" value="Negro" checked>Negro
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="cor" value="Negro">Negro
+									</div>
+								<?php } ?>
 							</div>
 
 							<div>
 								<div class="div_serie">
 									<label>Religião</label>
-									<input type="text" name="religiao" value="">
+									<input type="text" name="religiao" value="<?php echo $obj_paciente->religiao; ?>">
 								</div>
 							</div>
 							<div class="religiao">
 								<label>Pratica?</label>
-								<div class="div_radio">
-									<input type="radio" name="religiao-pratica" value="Sim">Sim
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="religiao-pratica" value="Não">Não
-								</div>
+								<?php if($obj_paciente->pratica == 'Sim') { ?>
+									<div class="div_radio">
+										<input type="radio" name="religiao-pratica" value="Sim" checked>Sim
+									</div>
+									<div class="div_radio">
+										<input type="radio" name="religiao-pratica" value="Não">Não
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="religiao-pratica" value="Sim">Sim
+									</div>
+									<div class="div_radio">
+										<input type="radio" name="religiao-pratica" value="Não" checked>Não
+									</div>
+								<?php } ?>
 							</div>
 							
 						</fieldset>
@@ -947,30 +1078,49 @@ include "layout/header.php";
 						<fieldset>
 							<div class="religiao">
 								<label>Plano de saúde</label>
-								<div class="div_radio">
-									<input type="radio" name="plano-saude" value="Sim">Sim
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="plano-saude" value="Não">Não
-								</div>
+								<?php if($obj_paciente->plano_saude == 'Sim') { ?>
+										<div class="div_radio">
+											<input type="radio" name="plano-saude" value="Sim" checked>Sim
+										</div>
+										<div class="div_radio">
+											<input type="radio" name="plano-saude" value="Não">Não
+										</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="plano-saude" value="Sim">Sim
+									</div>
+									<div class="div_radio">
+										<input type="radio" name="plano-saude" value="Não" checked>Não
+									</div>
+								<?php } ?>
 							</div>
 
 							<div class="div_maior">
 								<label>Onde adquire medicamentos?</label>
-								<input type="text" name="adquire-medicamento" value="" class="input_maior">
+								<input type="text" name="adquire-medicamento" value="<?php echo $obj_paciente->adquire_med; ?>" class="input_maior">
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_full">
 								<label><strong>Residiu o tempo todo em um mesmo local?</strong></label>
-								<div class="div_radio">
-									<input type="radio" name="residiu" value="Sim" id="residiu-sim">Sim
-								</div>
+								<?php if($obj_paciente->residiu == 'Sim') { ?>
+										<div class="div_radio">
+											<input type="radio" name="residiu" value="Sim" id="residiu-sim" checked>Sim
+										</div>
 
-								<div class="div_radio">
-									<input type="radio" name="residiu" value="Não" id="residiu-nao">Não
-								</div>
+										<div class="div_radio">
+											<input type="radio" name="residiu" value="Não" id="residiu-nao">Não
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="residiu" value="Sim" id="residiu-sim">Sim
+										</div>
+
+										<div class="div_radio">
+											<input type="radio" name="residiu" value="Não" id="residiu-nao" checked>Não
+										</div>
+								<?php } ?>
+
 							</div>
 						</fieldset>
 						<div id="residencia1" class="residencia display_none">
@@ -1296,61 +1446,108 @@ include "layout/header.php";
 						<fieldset>
 							<div class="div_full aspectos">
 								<label>Há quanto tempo sabe que tem a doença?</label>
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="Menos de 1 ano">Menos de 1 ano
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="1 a 5 anos">1 a 5 anos
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="6 a 10 anos">6 a 10 anos
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="11 a 15 anos">11 a 15 anos
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="15 a 20 anos">15 a 20 anos
-								</div>
-
-								<div class="div_radio">
-									<input type="radio" name="tempo-doenca" value="Mais de 20 anos">Mais de 20 anos
-								</div>
+								<?php if($obj_paciente->tempo_doenca == 'Menos de 1 ano') { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="Menos de 1 ano" checked>Menos de 1 ano
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="Menos de 1 ano">Menos de 1 ano
+									</div>
+								<?php }  if($obj_paciente->tempo_doenca == '1 a 5 anos') { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="1 a 5 anos" checked>1 a 5 anos
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="1 a 5 anos">1 a 5 anos
+									</div>
+								<?php } if($obj_paciente->tempo_doenca == '6 a 10 anos'){ ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="6 a 10 anos" checked>6 a 10 anos
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="6 a 10 anos">6 a 10 anos
+									</div>
+								<?php } if($obj_paciente->tempo_doenca == '11 a 15 anos') { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="11 a 15 anos" checked>11 a 15 anos
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="11 a 15 anos">11 a 15 anos
+									</div>
+								<?php } if($obj_paciente->tempo_doenca == '15 a 20 anos') { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="15 a 20 anos" checked>15 a 20 anos
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="15 a 20 anos">15 a 20 anos
+									</div>
+								<?php } if($obj_paciente->tempo_doenca == 'Mais de 20 anos'){ ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="Mais de 20 anos" checked>Mais de 20 anos
+									</div>
+								<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="tempo-doenca" value="Mais de 20 anos">Mais de 20 anos
+									</div>
+								<?php } ?>
 							</div>
 						</fieldset>
 
 						<fieldset>
 							<div class="div_full aspectos">
 								<label>Como descobriu que tem a doença?</label>
-								<textarea name="descoberta-doenca" cols="80" rows="5"></textarea>
+								<textarea name="descoberta-doenca" cols="80" rows="5"><?php echo $obj_paciente->descoberta_doenca; ?></textarea>
 							</div>
 						</fieldset>
 
 						<fieldset>
 							<div class="div_full aspectos">
 								<label>Você percebe algum sofrimento, desconforto, ou dor física que associe a essa doença? Qual(is)?(Citar sintomas relacionados ao coração e ao TGI)</label>
-								<textarea name="sintomas-doenca" cols="80" rows="5"></textarea>
+								<textarea name="sintomas-doenca" cols="80" rows="5"><?php echo $obj_paciente->sintomas_doenca; ?></textarea>
 							</div>
 						</fieldset>
 
 						<fieldset>
 							<div class="div_full">
 								<label>Estágio da doença(a partir do prontuário):</label>
-								<div class="div_radio">
-									<input type="radio" name="estagio-doenca" value="Forma Indeterminada">Forma Inderteminada
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="estagio-doenca" value="Forma Cardíaca">Forma Cardíaca
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="estagio-doenca" value="Forma Digestiva">Forma Digestiva
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="estagio-doenca" value="Forma Mista">Forma Mista
-								</div>
+								<?php if($obj_paciente->estagio_doenca == 'Forma Indeterminada'){ ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Indeterminada" checked>Forma Inderteminada
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Indeterminada">Forma Inderteminada
+										</div>
+								<?php } if($obj_paciente->estagio_doenca == 'Forma Cardíaca') { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Cardíaca" checked>Forma Cardíaca
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Cardíaca">Forma Cardíaca
+										</div>
+								<?php } if($obj_paciente->estagio_doenca == 'Forma Digestiva') { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Digestiva" checked>Forma Digestiva
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Digestiva">Forma Digestiva
+										</div>
+								<?php } if($obj_paciente->estagio_doenca == 'Forma Mista') { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Mista" checked>Forma Mista
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="estagio-doenca" value="Forma Mista">Forma Mista
+										</div>
+								<?php } ?>
 							</div>
 						</fieldset>
 					</div>
@@ -1441,7 +1638,7 @@ include "layout/header.php";
 					<div class="sessao row-fluid aspectos">
 						<h5>História Médica pregressiva</h5>
 						
-						<textarea name="historia-medica" cols="80" rows="5"></textarea>
+						<textarea name="historia-medica" cols="80" rows="5"><?php echo $obj_paciente->historico; ?></textarea>
 
 					</div>
 
@@ -1459,14 +1656,26 @@ include "layout/header.php";
 
 									?>
 								</div>
-								<div class="div_menor">
-									<div class="div_radio">
-										<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Sim">Sim
+
+							<?php if(($key->num == '1' && $obj_paciente->possui_historico == 'Sim') || ($key->num == '2' && $obj_paciente->historico_morte == 'Sim') || ($key->num == '3' && $obj_paciente->historico_card == 'Sim')) { ?>
+										<div class="div_menor">
+											<div class="div_radio">
+												<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Sim" checked>Sim
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Não">Não
+											</div>
+										</div>
+							<?php } else { ?>
+									<div class="div_menor">
+										<div class="div_radio">
+											<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Sim">Sim
+										</div>
+										<div class="div_radio">
+											<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Não" checked>Não
+										</div>
 									</div>
-									<div class="div_radio">
-										<input type="radio" name="hist-fam-<?php echo $key->num; ?>" value="Não">Não
-									</div>
-								</div>
+							<?php } ?> 
 							</fieldset>
 						<?php } ?>
 						
@@ -1478,49 +1687,81 @@ include "layout/header.php";
 							<h6>Alergias</h6>
 							<div class="div_menor">
 								<p class="label-p">Histórico de RAM: </p>
-								<div class="div_radio">
-									<input type="radio" name="alergia" value="S">S
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="alergia" value="N">N
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="alergia" value="NS">NS
-								</div>
+							<?php if($obj_paciente->ale_hist_ram == 'S') { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="S" checked>S
+									</div>
+							<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="S">S
+									</div>
+							<?php } if($obj_paciente->ale_hist_ram == 'N') { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="N" checked>N
+									</div>
+							<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="N">N
+									</div>
+							<?php } if($obj_paciente->ale_hist_ram == 'NS') { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="NS" checked>NS
+									</div>
+							<?php } else  { ?>
+									<div class="div_radio">
+										<input type="radio" name="alergia" value="NS">NS
+									</div>
+							<?php } ?>
 							</div>
 							<div class="div_maior">
 								<p class="label-p">Medicamento causador: </p>
-								<input type="text" value="" name="med_causador">
+								<input type="text" value="<?php echo $obj_paciente->ale_med_causador; ?>" name="med_causador">
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_full">
 								<label>Especificar RAM:</label>
-								<input type="text" value="" name="RAM" class="input_maior">
+								<input type="text" value="<?php echo $obj_paciente->ale_esp_ram; ?>" name="RAM" class="input_maior">
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_menor">
 								<p class="label-p">Alergia a algum alimento? </p>
-								<div class="div_radio">
-									<input type="radio" name="alergia_alimento" value="S">S
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="alergia_alimento" value="N">N
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="alergia_alimento" value="NS">NS
-								</div>
+								<?php if($obj_paciente->ale_alimento == 'S') { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="S" checked>S
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="S">S
+										</div>
+								<?php } if($obj_paciente->ale_alimento == 'N') { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="N" checked>N
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="N">N
+										</div>
+								<?php } if($obj_paciente->ale_alimento == 'NS') { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="NS" checked>NS
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="alergia_alimento" value="NS">NS
+										</div>
+								<?php } ?>
 							</div>
 							<div class="div_maior">
 								<p class="label-p">Especificar: </p>
-								<input type="text" value="" name="ale_alimento">
+								<input type="text" value="<?php echo $obj_paciente->ale_espec_alimento; ?>" name="ale_alimento">
 							</div>
 						</fieldset>
 						<fieldset>
 							<div class="div_full">
 								<label>Outros:</label>
-								<input type="text" value="" name="outros" class="input_maior">
+								<input type="text" value="<?php echo $obj_paciente->ale_outros; ?>" name="outros" class="input_maior">
 							</div>
 						</fieldset>
 					</div>
@@ -1885,19 +2126,19 @@ include "layout/header.php";
 						<h5>Informações sobre a prescrição do benzonidazol</h5>
 						<div class="span3 primeiro">
 							<label>Quantidade total de comp. prescritos:</label>
-							<input type="text" name="qnt_prescritos" value="">
+							<input type="text" name="qnt_prescritos" value="<?php echo $obj_paciente->qnt_comp_presc; ?>">
 						</div>
 						<div class="span3">
 							<label>Posologia:</label>
-							<input type="text" name="posologia_presc" value="">
+							<input type="text" name="posologia_presc" value="<?php echo $obj_paciente->dose_diaria; ?>">
 						</div>
 						<div class="span3">
 							<label>Dose diária (mg/Kg/dia):</label>
-							<input type="text" name="dose_diaria" value="">
+							<input type="text" name="dose_diaria" value="<?php echo $obj_paciente->posologia; ?>">
 						</div>
 						<div class="span3">
 							<label>Dose total ingerida durante o tto (g):</label>
-							<input type="text" name="dose_ingerida" value="">
+							<input type="text" name="dose_ingerida" value="<?php echo $obj_paciente->dose_total; ?>">
 						</div>
 					</div>
 
@@ -2457,7 +2698,7 @@ include "layout/header.php";
 
 					<div class="sessao row-fluid evolucao">
 						<h5>Evolução do Paciente:</h5>
-						<textarea name="evolucao_paciente" rows="10" cols="200"></textarea>
+						<textarea name="evolucao_paciente" rows="10" cols="200"><?php echo $obj_paciente->evolucao; ?></textarea>
 					</div>
 
 					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>

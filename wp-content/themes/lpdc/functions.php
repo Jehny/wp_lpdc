@@ -171,6 +171,12 @@ function buscar_atendimento_id($num_paciente){
 	return $tipo; 
 }
 
+function buscar_atendimento_id_data($num_paciente){
+	global $wpdb;
+	$tipo = $wpdb->get_row('SELECT * FROM atendimento_paciente WHERE num_paciente='. $num_paciente);
+	return $tipo->data; 
+}
+
 function buscar_exames_clinicos_id($num_paciente){
 	global $wpdb;
 	$tipo = $wpdb->get_results('SELECT * FROM exames_clinicos WHERE num_paciente='. $num_paciente);
