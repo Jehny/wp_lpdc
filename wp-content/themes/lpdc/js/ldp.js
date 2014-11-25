@@ -26,6 +26,17 @@ $(function(){
 		$('.quatro').css('display', 'block');
 	});
 
+	// medicamentos utilizados
+	$('.mais_medic2').bind("click", function(){
+		$('.linha2').css('display', 'block');
+	});
+	$('.mais_medic3').bind("click", function(){
+		$('.linha3').css('display', 'block');
+	});
+	$('.mais_medic4').bind("click", function(){
+		$('.linha4').css('display', 'block');
+	});
+
 	// medicamentos que utiliza
 	$('.medic_uso2').bind("click", function(){
 		$('.dois_uso').css('display', 'block');
@@ -54,6 +65,34 @@ $(function(){
 	$('.medic_uso8').bind("click", function(){
 		$('.oito_uso').css('display', 'block');
 	});
+
+	$('.medic_uso2').bind("click", function(){
+		$('.uso_linha3').css('display', 'block');
+	});
+
+	$('.medic_uso3').bind("click", function(){
+		$('.uso_linha4').css('display', 'block');
+	});
+
+	$('.medic_uso4').bind("click", function(){
+		$('.uso_linha5').css('display', 'block');
+	});
+
+	$('.medic_uso5').bind("click", function(){
+		$('.uso_linha6').css('display', 'block');
+	});
+
+	$('.medic_uso6').bind("click", function(){
+		$('.uso_linha7').css('display', 'block');
+	});
+
+	$('.medic_uso7').bind("click", function(){
+		$('.uso_linha8').css('display', 'block');
+	});
+
+	// $('.medic_uso8').bind("click", function(){
+	// 	$('.uso_linha8').css('display', 'block');
+	// });
 	
 	// ***
 	// limita a quantidade de caracteres apresentados para ...
