@@ -950,6 +950,10 @@ Página de contato
 	display: none;
 } 
 
+.medicamentos .linha2, .medicamentos .linha3, .medicamentos .linha4 {
+	display: none;
+} 
+
 .medicamentos_uso .linha .primeiro {
 	margin-left: 0;
 }
@@ -982,7 +986,15 @@ Página de contato
 .medicamentos_uso .cinco_uso, 
 .medicamentos_uso .seis_uso,
 .medicamentos_uso .sete_uso,
-.medicamentos_uso .oito_uso {
+.medicamentos_uso .oito_uso,
+.medicamentos_uso .uso_linha2,
+.medicamentos_uso .uso_linha3,
+.medicamentos_uso .uso_linha4,
+.medicamentos_uso .uso_linha5, 
+.medicamentos_uso .uso_linha6,
+.medicamentos_uso .uso_linha7,
+.medicamentos_uso .uso_linha8
+{
 	display: none;
 }
 
