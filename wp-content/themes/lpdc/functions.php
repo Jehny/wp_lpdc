@@ -215,7 +215,7 @@ function buscar_med_que_utiliza_id($num_paciente){
 
 function buscar_med_utilizados_id($num_paciente){
 	global $wpdb;
-	$tipo = $wpdb->get_results('SELECT * FROM med_que_utiliza WHERE num_paciente='. $num_paciente);
+	$tipo = $wpdb->get_results('SELECT * FROM med_utilizados WHERE num_paciente='. $num_paciente);
 	return $tipo; 
 }
 

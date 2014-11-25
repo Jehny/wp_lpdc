@@ -351,7 +351,8 @@ if(isset($_POST['submit'])){
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_1'],
 							'obs'=> $_POST[$key->id.'obs'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_hemograma, $data_hemograma, $format );
 					}
@@ -366,7 +367,8 @@ if(isset($_POST['submit'])){
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_2'],
 							'obs'=> $_POST[$key->id.'obs'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
 					}
@@ -381,7 +383,8 @@ if(isset($_POST['submit'])){
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_3'],
 							'obs'=> $_POST[$key->id.'obs'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
 					}
@@ -396,7 +399,8 @@ if(isset($_POST['submit'])){
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_4'],
 							'obs'=> $_POST[$key->id.'obs'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
 					}
@@ -411,7 +415,8 @@ if(isset($_POST['submit'])){
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_5'],
 							'obs'=> $_POST[$key->id.'obs'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
 					}
@@ -425,7 +430,8 @@ if(isset($_POST['submit'])){
 							'num_paciente'=> $_POST['num_paciente'],
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_6'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
 					}
@@ -441,7 +447,8 @@ if(isset($_POST['submit'])){
 							'num_paciente'=> $_POST['num_paciente'],
 							'nome'=> $key->nome,
 							'coleta'=> $_POST['coleta'.$i.'_6'],
-							'valor'=> $_POST[$key->id.'coleta'.$i]
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
 						);
 						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
 					}

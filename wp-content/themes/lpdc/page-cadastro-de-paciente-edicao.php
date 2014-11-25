@@ -1559,80 +1559,57 @@ include "layout/header.php";
 							<div class="centro"><label>Início</label></div>
 	
 						</fieldset>
-
-						<fieldset>
-							<div class="centro">1.<input type="text" name="problema1" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado1" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado1" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data1" value=""></div>
-						</fieldset>
-						<fieldset>
-							<div class="centro">2.<input type="text" name="problema2" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado2" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problem-controlado2" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data2" value=""></div>
-						</fieldset>
-						<fieldset>
-							<div class="centro">3.<input type="text" name="problema3" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado3" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado3" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data3" value=""></div>
-						</fieldset>
-						<fieldset>
-							<div class="centro">4.<input type="text" name="problema4" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado4" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado4" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data4" value=""></div>
-						</fieldset>
-						<fieldset>
-							<div class="centro">5.<input type="text" name="problema5" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado5" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado5" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data5" value=""></div>
-						</fieldset>
-						<fieldset>
-							<div class="centro">6.<input type="text" name="problema6" value=""></div>
-							<div class="centro">
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado6" value="Sim">Sim
-								</div>
-								<div class="div_radio">
-									<input type="radio" name="problema-controlado6" value="Não">Não
-								</div>
-							</div>
-							<div class="centro"><input type="text" name="problema-data6" value=""></div>
-						</fieldset>
+								
+						<?php 
+							$qnt_problema = count($obj_problemas_saude);
+							$j=1;
+							foreach($obj_problemas_saude as $prob){
+								echo "<fieldset>";
+								echo "<div class='centro'>".$j.".<input type='text' name='problema".$j."' value='".$prob->problema."'></div>
+								<div class='centro'>";
+									if($prob->controlado == "Sim"){
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$j."' value='Sim' checked>Sim";
+										echo "</div>";
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$j."' value='Não'>Não";
+										echo "</div>";
+									}else {
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$j."' value='Sim'>Sim";
+										echo "</div>";
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$j."' value='Não' checked>Não";
+										echo "</div>";
+									}
+								echo "</div>";
+								echo "<div class='centro'><input type='text' name='problema-data".$j."' value='".$prob->inicio."'></div>";
+								echo "</fieldset>";
+							$j++;
+							}
+						?>
 						
+						
+						<?php
+							if($qnt_problema < 7){
+								$total = 7 - $qnt_problema;
+								for($i=1; $i < $total; $i++){
+									$q = $i + $qnt_problema;
+									echo "<fieldset>";
+									echo "<div class='centro'>".$q.".<input type='text' name='problema".$q."' value=''></div>
+									<div class='centro'>";
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$q."' value='Sim'>Sim";
+										echo "</div>";
+										echo "<div class='div_radio'>";
+											echo "<input type='radio' name='problema-controlado".$q."' value='Não'>Não";
+										echo "</div>";
+									echo "</div>";
+									echo "<div class='centro'><input type='text' name='problema-data".$q."' value=''></div>";
+									echo "</fieldset>";
+								}
+							}
+							?>
 					</div>
 
 					<div class="sessao row-fluid aspectos">
@@ -1768,354 +1745,211 @@ include "layout/header.php";
 
 					<div class="sessao row-fluid medicamentos">
 						<h5>Medicamentos utilizados a 15 dias atrás</h5>
-						<div class="span3 primeiro"><h6>Medicmentos</h6></div>
+						<div class="span3 primeiro"><h6>Medicamentos</h6></div>
 						<div class="span3"><h6>Indicação</h6></div>
 						<div class="span3"><h6>Respostas</h6></div>
 						<div class="span3"><h6>Período de uso</h6></div>
-						<div class="linha">
-							<div class="span3 primeiro">
-								<input type="text" name="medicamento1" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="indicacao1" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="resposta1" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="periodo1" value="" class="input_menor">
-								<a href="javascript:void(0);" class="mais_medic2 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha dois">
-							<div class="span3 primeiro">
-								<input type="text" name="medicamento2" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="indicacao2" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="resposta2" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="periodo2" value="" class="input_menor">
-								<a href="javascript:void(0);" class="mais_medic3 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
+						<?php $qnt_med = count($obj_med_utilizados);
+						  $i = 1;
+							foreach ($obj_med_utilizados as $med) {
 
-						<div class="linha tres">
-							<div class="span3 primeiro">
-								<input type="text" name="medicamento3" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="indicacao3" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="resposta3" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="periodo3" value="" class="input_menor">
-								<a href="javascript:void(0);" class="mais_medic4 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-
-						<div class="linha quatro">
-							<div class="span3 primeiro">
-								<input type="text" name="medicamento4" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="indicacao4" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="resposta4" value="">
-							</div>
-							<div class="span3">
-								<input type="text" name="periodo4" value="" class="input_menor">
-							</div>
-						</div>
+								if($i < 5 && $med->medicamento !='' && $i != 4){
+									$j = $i+1;
+									echo "<div class='linha'>
+											<div class='span3 primeiro'>
+												<input type='text' name='medicamento".$i."' value='".$med->medicamento."'>
+											</div>
+											<div class='span3'>
+												<input type='text' name='indicacao".$i."' value='".$med->indicacao."'>
+											</div>
+											<div class='span3'>
+												<input type='text' name='resposta".$i."' value='".$med->resposta."'>
+											</div>
+											<div class='span3'>
+												<input type='text' name='periodo".$i."' value='".$med->periodo."' class='input_menor'>
+												<a href='javascript:void(0);' class='mais_medic".$j." mais'><img src='"; 
+												bloginfo('template_url'); 
+												echo "/img/mais.png'></a>
+											</div>
+										</div>";
+										$i++;
+								} 
+							}
+							if($qnt_med < 5){
+								$j = $qnt_med +1;
+								for($i=$j; $i < 5; $i++){
+									$q = $i+1;
+									if($i != 4){
+										echo "<div class='linha linha".$i."'>
+											<div class='span3 primeiro'>
+												<input type='text' name='medicamento".$i."' value=''>
+											</div>
+											<div class='span3'>
+												<input type='text' name='indicacao".$i."' value=''>
+											</div>
+											<div class='span3'>
+												<input type='text' name='resposta".$i."' value=''>
+											</div>
+											<div class='span3'>
+												<input type='text' name='periodo".$i."' value='' class='input_menor'>
+												<a href='javascript:void(0);' class='mais_medic".$q." mais'><img src='";
+												bloginfo('template_url'); 
+												echo "/img/mais.png'></a>
+											</div>
+										</div>";
+									}else {
+										echo "<div class='linha linha".$i."'>
+												<div class='span3 primeiro'>
+													<input type='text' name='medicamento".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<input type='text' name='indicacao".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<input type='text' name='resposta".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<input type='text' name='periodo".$i."' value='' class='input_menor'>
+												</div>
+											</div>";
+									}
+								}
+							}
+								
+						?>
 					</div>
 
 					<div class="sessao row-fluid medicamentos_uso">
 						<h5>Medicamentos que utiliza (uso contínuo)</h5>
-						<div class="linha">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso1" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia1" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado1" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso1" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso1" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta1" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso1" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso1" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso2 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha dois_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso2" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia2" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado2" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso2" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso2" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta2" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso2" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso2" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso3 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha tres_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso3" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia3" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado3" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso3" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso3" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta3" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso3" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso3" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso4 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha quatro_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso4" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia4" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado4" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso4" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso4" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta4" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso4" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso4" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso5 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha cinco_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso5" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia5" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado5" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso5" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso5" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta5" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso5" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso5" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso6 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha seis_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso6" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia6" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado6" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso6" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso6" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta6" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso6" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso6" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso7 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha sete_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso7" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia7" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado7" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso7" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso7" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta7" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso7" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso7" value="" class="input_menor">
-								<a href="javascript:void(0);" class="medic_uso8 mais"><img src="<?php bloginfo('template_url'); ?>/img/mais.png"></a>
-							</div>
-						</div>
-						<div class="linha oito_uso">
-							<div class="span3 primeiro">
-								<label>Medicamento</label>
-								<input type="text" name="medicamento_uso8" value="">
-							</div>
-							<div class="span3">
-								<label>Posologia</label>
-								<input type="text" name="posologia8" value="">
-							</div>
-							<div class="span3">
-								<label>Indicado por*</label>
-								<input type="text" name="indicado8" value="">
-							</div>
-							<div class="span3">
-								<label>Indicação de uso</label>
-								<input type="text" name="indicacao_uso8" value="">
-							</div>
-							<div class="span3 primeiro">
-								<label>Modo de uso</label>
-								<input type="text" name="modo_uso8" value="">
-							</div>
-							<div class="span3">
-								<label>Respostas</label>
-								<input type="text" name="resposta8" value="">
-							</div>
-							<div class="span3">
-								<label>Efeitos indesejáveis</label>
-								<input type="text" name="efeito_uso8" value="">
-							</div>
-								<div class="span3">
-								<label>Início</label>
-								<input type="text" name="inicio_uso8" value="">
-							</div>
-						</div>
+						<?php $qnt_q_utiliza = count($obj_med_que_utiliza); 
+						 	$i = 1;
+							foreach ($obj_med_que_utiliza as $m) {
+								if($i < 8 && $med->medicamento !='' && $i != 7){
+									
+								echo "<div class='linha'>
+										<div class='span3 primeiro'>
+											<label>Medicamento</label>
+											<input type='text' name='medicamento_uso".$i."' value='".$m->medicamento."'>
+										</div>
+										<div class='span3'>
+											<label>Posologia</label>
+											<input type='text' name='posologia".$i."' value='".$m->posologia."'>
+										</div>
+										<div class='span3'>
+											<label>Indicado por*</label>
+											<input type='text' name='indicado".$i."' value='".$m->indicado_por."'>
+										</div>
+										<div class='span3'>
+											<label>Indicação de uso</label>
+											<input type='text' name='indicacao_uso".$i."' value='".$m->ind_uso."'>
+										</div>
+										<div class='span3 primeiro'>
+											<label>Modo de uso</label>
+											<input type='text' name='modo_uso".$i."' value='".$m->modo_uso."'>
+										</div>
+										<div class='span3'>
+											<label>Respostas</label>
+											<input type='text' name='resposta".$i."' value='".$m->resposta."'>
+										</div>
+										<div class='span3'>
+											<label>Efeitos indesejáveis</label>
+											<input type='text' name='efeito_uso".$i."' value='".$m->efeitos."'>
+										</div>
+											<div class='span3'>
+											<label>Início</label>
+											<input type='text' name='inicio_uso".$i."' value='".$m->inicio."' class='input_menor'>
+											<a href='javascript:void(0);' class='medic_uso".$i."' mais'><img src='";
+											bloginfo('template_url'); 
+											echo "/img/mais.png'></a>
+										</div>
+									</div>";
+									$i++;
+								}
+							}
+
+							if($qnt_q_utiliza < 8){
+								$j = $qnt_q_utiliza +1;
+								for($i=$j; $i < 9; $i++){
+									$q = $i+1;
+									if($i != 8){
+										echo "<div class='linha uso_linha".$i."'>
+												<div class='span3 primeiro'>
+													<label>Medicamento</label>
+													<input type='text' name='medicamento_uso".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Posologia</label>
+													<input type='text' name='posologia".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Indicado por*</label>
+													<input type='text' name='indicado".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Indicação de uso</label>
+													<input type='text' name='indicacao_uso".$i."' value=''>
+												</div>
+												<div class='span3 primeiro'>
+													<label>Modo de uso</label>
+													<input type='text' name='modo_uso".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Respostas</label>
+													<input type='text' name='resposta".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Efeitos indesejáveis</label>
+													<input type='text' name='efeito_uso".$i."' value=''>
+												</div>
+													<div class='span3'>
+													<label>Início</label>
+													<input type='text' name='inicio_uso".$i."' value='' class='input_menor'>
+													<a href='javascript:void(0);' class='medic_uso".$i."' mais'><img src='";
+													bloginfo('template_url'); 
+													echo "/img/mais.png'></a>
+												</div>
+											</div>";
+										}else {
+											echo "<div class='linha uso_linha".$i."'>
+												<div class='span3 primeiro'>
+													<label>Medicamento</label>
+													<input type='text' name='medicamento_uso".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Posologia</label>
+													<input type='text' name='posologia".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Indicado por*</label>
+													<input type='text' name='indicado".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Indicação de uso</label>
+													<input type='text' name='indicacao_uso".$i."' value=''>
+												</div>
+												<div class='span3 primeiro'>
+													<label>Modo de uso</label>
+													<input type='text' name='modo_uso".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Respostas</label>
+													<input type='text' name='resposta".$i."' value=''>
+												</div>
+												<div class='span3'>
+													<label>Efeitos indesejáveis</label>
+													<input type='text' name='efeito_uso".$i."' value=''>
+												</div>
+													<div class='span3'>
+													<label>Início</label>
+													<input type='text' name='inicio_uso".$i."' value='' class='input_menor'>
+												</div>
+											</div>";
+
+										}
+										$q++;
+									}
+								}
+						?>
 						<div class="obs">
 							<p>*Indicado por: AM-automedicação; Md-Médico; Par-Parente; ProfS-Profissional de saúde; Ot.-Outro</p>
 							<p><strong>(OBS.: Se paciente mulher em idade fértil, questioná-la sobre o uso de anticoncepcional)</strong></p>
