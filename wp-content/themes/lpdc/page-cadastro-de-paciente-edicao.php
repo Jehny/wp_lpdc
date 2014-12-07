@@ -4,12 +4,10 @@ if(isset($_GET['cod'])){
 	$numero_paciente = $_GET['cod'];
 
 	$obj_paciente = buscar_paciente_id($numero_paciente);
-	$obj_atendimento = buscar_atendimento_id($numero_paciente);
 	$obj_exames_clinicos = buscar_exames_clinicos_id($numero_paciente);
 	$obj_funcao_hepatica = buscar_funcao_hepatica_id($numero_paciente);
 	$obj_funcao_renal = buscar_funcao_renal_id($numero_paciente);
 	$obj_habitos_vida = buscar_habitos_vida_id($numero_paciente);
-	$obj_hemograma = buscar_hemograma_id($numero_paciente);
 	$obj_med_que_utiliza = buscar_med_que_utiliza_id($numero_paciente);
 	$obj_med_utilizados = buscar_med_utilizados_id($numero_paciente);
 	$obj_outros_param = buscar_outros_param_id($numero_paciente);
@@ -597,7 +595,7 @@ include "layout/header.php";
 ?>
 		<div id="pagina2" class="cadastro-paciente">
 			<header class="header_cadastro-paciente">
-				<h1 class="font24 colorTextWhite open_semibold title_maior">Cadastro Paciente</h1>
+				<h1 class="font24 colorTextWhite open_semibold title_maior">Edição Paciente</h1>
 			</header>
 
 			<div class="cabecalho row-fluid">
@@ -733,7 +731,7 @@ include "layout/header.php";
 							<div class="divisao att1">
 							<?php 
 								$atendimento_1 = pegar_opcao_atendimento(1);
-								$check = buscar_atendimento_id($numero_paciente);
+								$check = buscar_atendimento_id($numero_paciente, 1);
 								$total_check = count($check);
 								$array_atend = array();
 								for($i=0; $i<$total_check; $i++){
@@ -751,57 +749,147 @@ include "layout/header.php";
 
 							?>
 							</div>
-
-							<div class="divisao att2">
+							<?php
+							$check2 = buscar_atendimento_id($numero_paciente, 2); 
+							if($check2){
+								$display = "";
+							}else {
+								$display = "att2";
+							}
+							?>
+							<div class="divisao <?php echo $display; ?>">
 							<?php 
 								$atendimento_2 = pegar_opcao_atendimento(2);
-								echo "<h6>2º Atendimento</h6>";
+								$total_check2 = count($check2);
+								$array_atend2 = array();
+								for($i=0; $i<$total_check2; $i++){
+									array_push($array_atend2, $check2[$i]->dados);
+								}
+								echo "<h6>2º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_2 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_2[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend2)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
 							</div>
 
-							<div class="divisao att3">
+							<?php
+							$check3 = buscar_atendimento_id($numero_paciente, 3); 
+							if($check3){
+								$display = "";
+							}else {
+								$display = "att3";
+							}
+							?>
+							<div class="divisao <?php echo $display; ?>">
 							<?php 
 								$atendimento_3 = pegar_opcao_atendimento(3);
-								echo "<h6>3º Atendimento</h6>";
+								$total_check3 = count($check3);
+								$array_atend3 = array();
+								for($i=0; $i<$total_check3; $i++){
+									array_push($array_atend3, $check3[$i]->dados);
+								}
+								echo "<h6>3º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_3 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_3[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend3)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
 							</div>
 
-							<div class="divisao att4">
+							<?php
+							$check4 = buscar_atendimento_id($numero_paciente, 4); 
+							if($check4){
+								$display = "";
+							}else {
+								$display = "att4";
+							}
+							?>
+							<div class="divisao <?php echo $display; ?>">
 							<?php 
 								$atendimento_4 = pegar_opcao_atendimento(4);
-								echo "<h6>4º Atendimento</h6>";
+								$total_check4 = count($check4);
+								$array_atend4= array();
+								for($i=0; $i<$total_check4; $i++){
+									array_push($array_atend4, $check4[$i]->dados);
+								}
+								echo "<h6>4º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_4 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_4[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend4)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
 							</div>
 
-							<div class="divisao att5">
+							<?php
+							$check5 = buscar_atendimento_id($numero_paciente, 5); 
+							if($check5){
+								$display = "";
+							}else {
+								$display = "att5";
+							}
+							?>
+							<div class="divisao <?php echo $display; ?>">
 							<?php 
-								$atendimento_5 = pegar_opcao_atendimento(1);
-								echo "<h6>5º Atendimento</h6>";
+								$atendimento_5 = pegar_opcao_atendimento(5);
+								$total_check5 = count($check5);
+								$array_atend5= array();
+								for($i=0; $i<$total_check5; $i++){
+									array_push($array_atend5, $check5[$i]->dados);
+								}
+								echo "<h6>5º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_5 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_5[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend5)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
 							</div>
+							
 
-							<div class="divisao att6">
+							<?php
+							$check6 = buscar_atendimento_id($numero_paciente, 6); 
+							if($check6){
+								$display = "";
+							}else {
+								$display = "att6";
+							}
+							?>
+							<div class="divisao <?php echo $display; ?>">
 							<?php 
-								$atendimento_6 = pegar_opcao_atendimento(1);
-								echo "<h6>6º Atendimento</h6>";
+								$atendimento_6 = pegar_opcao_atendimento(6);
+								$total_check6 = count($check6);
+								$array_atend6= array();
+								for($i=0; $i<$total_check6; $i++){
+									array_push($array_atend6, $check6[$i]->dados);
+								}
+								echo "<h6>6º Atendimento <input type='date' name='data_atend' value='". buscar_atendimento_id_data($numero_paciente) ."' required></h6>";
 								foreach ($atendimento_6 as $key) {
-									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_6[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									if(in_array($key->opcao, $array_atend6)) {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."' checked=checked><span>" . $key->opcao . "</span></div>";
+									} else {
+										echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
+									}
+									
 								}
 
 							?>
@@ -1986,7 +2074,11 @@ include "layout/header.php";
 						</div>
 							<?php 
 								for ($i=1; $i < 14; $i++) {
-									
+									$sinais_bd = buscar_revisao_sistemas_id($numero_paciente, $i);
+									$sinais_array = array();
+									foreach($sinais_bd as $bd_sinais){
+										array_push($sinais_array, $bd_sinais->sintoma);
+									}
 							?>
 
 								<div class="span2 primeiro">
@@ -2001,9 +2093,9 @@ include "layout/header.php";
 								</div> 
 								<div class="span10 primeiro">
 									<?php 
-										$sinais = revisao_de_sistemas_sinais($i, $value='');
+										$sinais = revisao_de_sistemas_sinais($i);
 										foreach ($sinais as $sinal) {
-											if($sinal->id == $value){
+											if(in_array($sinal->nome, $sinais_array)){
 												echo "<div class='check'><input type='checkbox' name='".$id."[]' value='".$sinal->nome."' checked = checked>". $sinal->nome . "</div> ";	
 											} else {
 												echo "<div class='check'><input type='checkbox' name='".$id."[]' value='".$sinal->nome."'>". $sinal->nome . "</div> ";	
@@ -2031,30 +2123,53 @@ include "layout/header.php";
 						<div class="span2 primeiro caixa">
 							<p><strong>Fuma?</strong></p>
 						</div>
+						<?php $fuma = buscar_habitos_de_vida($numero_paciente, 'Fuma?'); 
+						?>
 						<div class="span2 primeiro caixa">
-							<div class="div_radio">
-								<input type="radio" name="fuma" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="fuma" value="N">N
-							</div>
+						<?php if($fuma->pratica_atual == 'S'){ ?>
+								<div class="div_radio">
+									<input type="radio" name="fuma" value="S" checked>S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="fuma" value="N">N
+								</div>
+						<?php } else { ?>
+								<div class="div_radio">
+									<input type="radio" name="fuma" value="S">S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="fuma" value="N" checked>N
+								</div>
+						<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="div_text_obs">Se fuma: Qual a frequência?</div>
 							<div class="div_radio_obs">
+							<?php if($fuma->frequencia == '0-10 cigarros/dia'){ ?>
+								<input type="radio" name="frequencia_fuma" value="0-10 cigarros/dia" checked>0-10 cigarros/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_fuma" value="0-10 cigarros/dia">0-10 cigarros/dia
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs">
+							<?php if($fuma->frequencia == '10-20 cigarros/dia'){ ?>
+								<input type="radio" name="frequencia_fuma" value="10-20 cigarros/dia" checked>10-20 cigarros/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_fuma" value="10-20 cigarros/dia">10-20 cigarros/dia
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs">
+							<?php if($fuma->frequencia == 'Acima de 20cigarros/dia'){ ?>
+								<input type="radio" name="frequencia_fuma" value="Acima de 20cigarros/dia"checked>Acima de 20 cigarros/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_fuma" value="Acima de 20cigarros/dia">Acima de 20 cigarros/dia
+							<?php } ?>
 							</div>
 
 							<div class="div_2">
 								Se já fumou: Há quanto tempo deixou de usar?
-								<input type="text" name="qnt_tempo_fuma" value="">
-								Motivo? <input type="text" name="motivo_fuma" value="">
+								<input type="text" name="qnt_tempo_fuma" value="<?php echo $fuma->tempo_deixou; ?>">
+								Motivo? <input type="text" name="motivo_fuma" value="<?php echo $fuma->motivo; ?>">
 							</div>
 							
 						</div>
@@ -2063,59 +2178,108 @@ include "layout/header.php";
 							<p><strong>Toma café?</strong></p>
 						</div>
 						<div class="span2 primeiro caixa">
-							<div class="div_radio">
-								<input type="radio" name="cafe" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="cafe" value="N">N
-							</div>
+						<?php
+							$cafe = buscar_habitos_de_vida($numero_paciente, 'Toma café?');  
+							if($cafe->pratica_atual == 'S'){ ?>
+								<div class="div_radio">
+									<input type="radio" name="cafe" value="S" checked>S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="cafe" value="N">N
+								</div>
+						<?php } else { ?>
+								<div class="div_radio">
+									<input type="radio" name="cafe" value="S">S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="cafe" value="N" checked>N
+								</div>
+						<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="div_text_obs">Se toma café: Qual a frequência?</div>
 							<div class="div_radio_obs">
-								<input type="radio" name="frequencia_cafe" value="1 xícara/dia">1 xícara/dia
+								<?php if($cafe->frequencia == '1 xícara/dia'){ ?>
+									<input type="radio" name="frequencia_cafe" value="1 xícara/dia" checked>1 xícara/dia
+								<?php } else { ?>
+									<input type="radio" name="frequencia_cafe" value="1 xícara/dia">1 xícara/dia
+								<?php } ?>
 							</div>
 							<div class="div_radio_obs">
-								<input type="radio" name="frequencia_cafe" value="2-3 xícaras/dia">2-3 xícaras/dia
+								<?php if($cafe->frequencia == '2-3 xícaras/dia'){ ?>
+									<input type="radio" name="frequencia_cafe" value="2-3 xícaras/dia" checked>2-3 xícaras/dia
+								<?php } else { ?>
+									<input type="radio" name="frequencia_cafe" value="2-3 xícaras/dia">2-3 xícaras/dia
+								<?php } ?>
 							</div>
 							<div class="div_radio_obs">
-								<input type="radio" name="frequencia_cafe" value="Acima de 6/dia">Acima de 6/dia
+								<?php if($cafe->frequencia == 'Acima de 6/dia'){ ?>
+									<input type="radio" name="frequencia_cafe" value="Acima de 6/dia" checked>Acima de 6/dia
+								<?php } else { ?>
+									<input type="radio" name="frequencia_cafe" value="Acima de 6/dia">Acima de 6/dia
+								<?php } ?>
+								
 							</div>
 
 							<div class="div_2">
 								Se já tomava café: Há quanto tempo deixou de tomar?
-								<input type="text" name="qnt_tempo_cafe" value="" class="input_menor">
-								Motivo? <input type="text" name="motivo_cafe" value="" class="input_menor">
+								<input type="text" name="qnt_tempo_cafe" value="<?php echo $cafe->tempo_deixou; ?>" class="input_menor">
+								Motivo? <input type="text" name="motivo_cafe" value="<?php echo $cafe->motivo; ?>" class="input_menor">
 							</div>
 						</div>
 
 						<div class="span2 primeiro caixa2">
 							<p><strong>Ingere bebidas alcoólicas?</strong></p>
 						</div>
+						
 						<div class="span2 primeiro caixa2">
-							<div class="div_radio">
-								<input type="radio" name="bebida" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="bebida" value="N">N
-							</div>
+							<?php
+								$bebida = buscar_habitos_de_vida($numero_paciente, 'Ingere bebidas alcoólicas?');  
+								if($bebida->pratica_atual == 'S'){ ?>
+									<div class="div_radio">
+										<input type="radio" name="bebida" value="S" checked>S
+									</div>
+									<div class="div_radio">
+										<input type="radio" name="bebida" value="N">N
+									</div>
+							<?php } else { ?>
+									<div class="div_radio">
+										<input type="radio" name="bebida" value="S">S
+									</div>
+									<div class="div_radio">
+										<input type="radio" name="bebida" value="N" checked>N
+									</div>
+							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="">Se bebe: analisar possibilidade do paciente ser alcoólatra. Em média consome:</div>
 							<div class="div_radio_obs">
+							<?php if($bebida->frequencia == '1 copo/semana'){ ?>
+								<input type="radio" name="frequencia_bebe" value="1 copo/semana" checked>1 copo/semana
+							<?php } else { ?>
 								<input type="radio" name="frequencia_bebe" value="1 copo/semana">1 copo/semana
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs">
-								<input type="radio" name="frequencia_bebe" value="2-6 copos/semana">2-6 copos/semana
+								<?php if($bebida->frequencia == '2-6 copos/semana'){ ?>
+									<input type="radio" name="frequencia_bebe" value="2-6 copos/semana" checked>2-6 copos/semana
+								<?php } else { ?>
+									<input type="radio" name="frequencia_bebe" value="2-6 copos/semana">2-6 copos/semana
+								<?php } ?>
 							</div>
 							<div class="div_radio_obs">
-								<input type="radio" name="frequencia_bebe" value="7-12 copos/semana">7-12 copos/semana
+								<?php if($bebida->frequencia == '7-12 copos/semana'){ ?>
+									<input type="radio" name="frequencia_bebe" value="7-12 copos/semana" checked>7-12 copos/semana
+								<?php } else { ?>
+									<input type="radio" name="frequencia_bebe" value="7-12 copos/semana">7-12 copos/semana
+								<?php } ?>
+								
 							</div>
 							<br />
 							<div class="div_2">
 								Se bebia: Há quanto tempo deixou de beber?
-								<input type="text" name="qnt_tempo_bebe" value="" class="input_menor">
-								Motivo? <input type="text" name="motivo_bebe" value="" class="input_menor">
+								<input type="text" name="qnt_tempo_bebe" value="<?php echo $bebida->tempo_deixou; ?>" class="input_menor">
+								Motivo? <input type="text" name="motivo_bebe" value="<?php echo $bebida->motivo; ?>" class="input_menor">
 							</div>
 						</div>
 
@@ -2123,31 +2287,59 @@ include "layout/header.php";
 							<p><strong>Utiliza chás de plantas medicinais?</strong></p>
 						</div>
 						<div class="span2 primeiro caixa3">
-							<div class="div_radio">
-								<input type="radio" name="cha" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="cha" value="N">N
-							</div>
+						<?php
+							$plantas = buscar_habitos_de_vida($numero_paciente, 'Utiliza chás de plantas medicinais?');  
+							if($plantas->pratica_atual == 'S'){ ?>
+								<div class="div_radio">
+									<input type="radio" name="cha" value="S" checked>S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="cha" value="N">N
+								</div>
+							<?php } else { ?>
+								<div class="div_radio">
+									<input type="radio" name="cha" value="S">S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="cha" value="N" checked>N
+								</div>
+							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="div_text_obs">Se sim qual a frequência?</div>
 							<div class="div_radio_obs2">
+							<?php if($plantas->frequencia == '1 xícara/dia'){ ?>
+								<input type="radio" name="frequencia_cha" value="1 xícara/dia" checked>1 xícara/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_cha" value="1 xícara/dia">1 xícara/dia
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs2">
+							<?php if($plantas->frequencia == '2-3 xícaras/dia'){ ?>
+								<input type="radio" name="frequencia_cha" value="2-3 xícaras/dia" checked>2-3 xícaras/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_cha" value="2-3 xícaras/dia">2-3 xícaras/dia
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs2">
+							<?php if($plantas->frequencia == '4-6 xícaras/dia'){ ?>
+								<input type="radio" name="frequencia_cha" value="4-6 xícaras/dia" checked>4-6 xícaras/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_cha" value="4-6 xícaras/dia">4-6 xícaras/dia
+							<?php } ?>
 							</div>
 							<div class="div_radio_obs2">
+							<?php if($plantas->frequencia == 'Acima de 6/dia'){ ?>
+								<input type="radio" name="frequencia_cha" value="Acima de 6/dia" checked>Acima de 6/dia
+							<?php } else { ?>
 								<input type="radio" name="frequencia_cha" value="Acima de 6/dia">Acima de 6/dia
+							<?php } ?>
+								
 							</div>
 							<br />
 							<div class="div_2">
-								Tipo de planta que utiliza?	<input type="text" name="cha_tipo_planta" value="">
-								Para qual indicação? <input type="text" name="cha_indicacao" value="">
+								Tipo de planta que utiliza?	<input type="text" name="cha_tipo_planta" value="<?php echo $plantas->tipo_planta; ?>">
+								Para qual indicação? <input type="text" name="cha_indicacao" value="<?php echo $plantas->indicacao_planta; ?>">
 							</div>
 						</div>
 
@@ -2155,26 +2347,49 @@ include "layout/header.php";
 							<p><strong>Pratica atividade física?</strong></p>
 						</div>
 						<div class="span2 primeiro caixa3">
-							<div class="div_radio">
-								<input type="radio" name="atividade_fisica" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="atividade_fisica" value="N">N
-							</div>
+						<?php
+							$atividade = buscar_habitos_de_vida($numero_paciente, 'Pratica atividade física?');  
+							if($atividade->pratica_atual == 'S'){ ?>
+								<div class="div_radio">
+									<input type="radio" name="atividade_fisica" value="S" checked>S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="atividade_fisica" value="N">N
+								</div>
+							<?php } else { ?>
+								<div class="div_radio">
+									<input type="radio" name="atividade_fisica" value="S">S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="atividade_fisica" value="N" checked>N
+								</div>
+							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="div_2">
-								Tipo de prática que realiza?<input type="text" name="tipo_ativiadade_fisica" value="">
+								Tipo de prática que realiza?<input type="text" name="tipo_ativiadade_fisica" value="<?php echo $atividade->tipo_atividade; ?>">
 							</div>
 							<div class="div_text_obs">Frequência:</div>
 							<div class="div_radio_obs2">
-								<input type="radio" name="ativ_fisica_freq" value="1-2x/semana">1-2x/semana
+								<?php if($atividade->frequencia == '1-2x/semana'){ ?>
+									<input type="radio" name="ativ_fisica_freq" value="1-2x/semana" checked>1-2x/semana
+								<?php } else { ?>
+									<input type="radio" name="ativ_fisica_freq" value="1-2x/semana">1-2x/semana
+								<?php } ?>
 							</div>
 							<div class="div_radio_obs2">
-								<input type="radio" name="ativ_fisica_freq" value="3-4x/semana">3-4x/semana
+								<?php if($atividade->frequencia == '3-4x/semana'){ ?>
+									<input type="radio" name="ativ_fisica_freq" value="3-4x/semana" checked>3-4x/semana
+								<?php } else { ?>
+									<input type="radio" name="ativ_fisica_freq" value="3-4x/semana">3-4x/semana
+								<?php } ?>
 							</div>
 							<div class="div_radio_obs2">
-								<input type="radio" name="ativ_fisica_freq" value="5-7x/semana">5-7x/semana
+								<?php if($atividade->frequencia == '5-7x/semana'){ ?>
+									<input type="radio" name="ativ_fisica_freq" value="5-7x/semana" checked>5-7x/semana
+								<?php } else { ?>
+									<input type="radio" name="ativ_fisica_freq" value="5-7x/semana">5-7x/semana
+								<?php } ?>
 							</div>
 						</div>
 
@@ -2182,35 +2397,73 @@ include "layout/header.php";
 							<p><strong>Você considera sua alimentação saudável?</strong></p>
 						</div>
 						<div class="span2 primeiro caixa4">
-							<div class="div_radio">
-								<input type="radio" name="alimentacao" value="S">S
-							</div>
-							<div class="div_radio">
-								<input type="radio" name="alimentacao" value="N">N
-							</div>
+						<?php
+							$alimentacao = buscar_habitos_de_vida($numero_paciente, 'Você considera sua alimentação saudável?');  
+							if($alimentacao->pratica_atual == 'S'){ ?>
+								<div class="div_radio">
+									<input type="radio" name="alimentacao" value="S" checked>S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="alimentacao" value="N">N
+								</div>
+							<?php } else { ?>
+								<div class="div_radio">
+									<input type="radio" name="alimentacao" value="S">S
+								</div>
+								<div class="div_radio">
+									<input type="radio" name="alimentacao" value="N" checked>N
+								</div>
+							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
 							<div class="">Tipo de alimentação:</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em massas">Rica em massas
+								<?php $tipo = explode(";", $alimentacao->tipo_alimentacao); ?>
+
+								<?php if(in_array("Rica em massas", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em massas" checked>Rica em massas
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em massas">Rica em massas
+								<?php } ?>
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas">Rica em frutas
+								<?php if(in_array("Rica em frutas", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas" checked>Rica em frutas
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas">Rica em frutas
+								<?php } ?>
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha">Rica em carne vermelha
+								<?php if(in_array("Rica em carne vermelha", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha" checked>Rica em carne vermelha
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha">Rica em carne vermelha
+								<?php } ?>
+								
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura">Rica em verdura
+								<?php if(in_array("Rica em verdura", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura" checked>Rica em verdura
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura">Rica em verdura
+								<?php } ?>
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca">Rica em carne branca
+								<?php if(in_array("Rica em carne branca", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca" checked>Rica em carne branca
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca">Rica em carne branca
+								<?php } ?>
 							</div>
 							<div class="div_check">
-								<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras">Rica em óleos e gorduras
+								<?php if(in_array("Rica em óleos e gorduras", $tipo)){ ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras" checked>Rica em óleos e gorduras
+								<?php } else { ?>
+									<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras">Rica em óleos e gorduras
+								<?php } ?>
 							</div>
 							<div class="">
-								Outros. Epecificar: <input type="text" name="outros_alimentacao" value="">
+								Outros. Epecificar: <input type="text" name="outros_alimentacao" value="<?php echo $alimentacao->outros; ?>">
 							</div>
 						</div>
 					</div>
@@ -2231,42 +2484,76 @@ include "layout/header.php";
 							?>		
 									<div class="span1 col">
 										<h6>1º COLETA</h6>
-										<input type="date" name="coleta1_<?php echo $i; ?>" value="">
+										<?php 
+											$data = buscar_outros_param_id_data($numero_paciente, 1); 
+											$data2 = buscar_outros_param_id_data($numero_paciente, 2);
+											$data3 = buscar_outros_param_id_data($numero_paciente, 3);
+											$data4 = buscar_outros_param_id_data($numero_paciente, 4); 
+											$data5 = buscar_outros_param_id_data($numero_paciente, 5);
+											$data6 = buscar_outros_param_id_data($numero_paciente, 6);
+										?>
+										<input type="date" name="coleta1_<?php echo $i; ?>" value="<?php echo $data->coleta; ?>">
 									</div>
 									<div class="span1 col">
 										<h6>2º COLETA</h6>
-										<input type="date" name="coleta2_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta2_<?php echo $i; ?>" value="<?php echo $data2->coleta; ?>">
 									</div>
 									<div class="span1 col">
 										<h6>3º COLETA</h6>
-										<input type="date" name="coleta3_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta3_<?php echo $i; ?>" value="<?php echo $data3->coleta; ?>">
 									</div>
 									<div class="span1 col">
 										<h6>4º COLETA</h6>
-										<input type="date" name="coleta4_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta4_<?php echo $i; ?>" value="<?php echo $data4->coleta; ?>">
 									</div>
 									<div class="span1 col">
 										<h6>5º COLETA</h6>
-										<input type="date" name="coleta5_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta5_<?php echo $i; ?>" value="<?php echo $data5->coleta; ?>">
 									</div>
 									<div class="span1 col">
 										<h6>6º COLETA</h6>
-										<input type="date" name="coleta6_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta6_<?php echo $i; ?>" value="<?php echo $data6->coleta; ?>">
 									</div>
 							<?php 
 								} else {
 							?>
 									<div class="span2 col">
 										<h6>1º COLETA</h6>
-										<input type="date" name="coleta1_<?php echo $i; ?>" value="">
+										<?php if($i == 1) {
+											$data = buscar_hemograma_id_data($numero_paciente, 1); 
+											$data2 = buscar_hemograma_id_data($numero_paciente, 2); 
+											$data3 = buscar_hemograma_id_data($numero_paciente, 3); 
+										}else if($i == 2) {
+											$data = buscar_funcao_renal_id_data($numero_paciente, 1);
+											$data2 = buscar_funcao_renal_id_data($numero_paciente, 2);
+											$data3 = buscar_funcao_renal_id_data($numero_paciente, 3);   
+										}else if($i == 3) {
+											$data = buscar_funcao_hepatica_id_data($numero_paciente, 1); 
+											$data2 = buscar_funcao_hepatica_id_data($numero_paciente, 2); 
+											$data3 = buscar_funcao_hepatica_id_data($numero_paciente, 3); 
+										}else if($i == 4) {
+											$data = buscar_ex_bioq_id_data($numero_paciente, 1); 
+											$data2 = buscar_ex_bioq_id_data($numero_paciente, 2);
+											$data3 = buscar_ex_bioq_id_data($numero_paciente, 3);
+										}else if($i == 5) {
+											$data = buscar_teste_chagas_id_data($numero_paciente, 1); 
+											$data2 = buscar_teste_chagas_id_data($numero_paciente, 2);
+											$data3 = buscar_teste_chagas_id_data($numero_paciente, 3);  
+										}else {
+											$data = buscar_outros_param_id_data($numero_paciente, 1); 
+											$data2 = buscar_outros_param_id_data($numero_paciente, 2);
+											$data3 = buscar_outros_param_id_data($numero_paciente, 3);
+										}
+										?>
+										<input type="date" name="coleta1_<?php echo $i; ?>" value="<?php echo $data->coleta; ?>">
 									</div>
 									<div class="span2 col">
 										<h6>2º COLETA</h6>
-										<input type="date" name="coleta2_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta2_<?php echo $i; ?>" value="<?php echo $data2->coleta; ?>">
 									</div>
 									<div class="span2 col">
 										<h6>3º COLETA</h6>
-										<input type="date" name="coleta3_<?php echo $i; ?>" value="">
+										<input type="date" name="coleta3_<?php echo $i; ?>" value="<?php echo $data3->coleta; ?>">
 									</div>
 									<div class="span4 col">
 										<h6>Observações</h6>
@@ -2278,6 +2565,34 @@ include "layout/header.php";
 						<?php 
 								$exames = exames($i);
 								foreach ($exames as $ex) {
+									if($i==1){
+										$valor = buscar_hemograma_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_hemograma_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_hemograma_por_valor($numero_paciente, 3, $ex->nome);
+									} else if($i==2){
+										$valor = buscar_funcao_renal_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_funcao_renal_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_funcao_renal_por_valor($numero_paciente, 3, $ex->nome);
+									} else if($i==3){
+										$valor = buscar_funcao_hepatica_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_funcao_hepatica_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_funcao_hepatica_por_valor($numero_paciente, 3, $ex->nome);
+									} else if($i==4){
+										$valor = buscar_ex_bioq_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_ex_bioq_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_ex_bioq_por_valor($numero_paciente, 3, $ex->nome);
+									} else if($i==5){
+										$valor = buscar_teste_chagas_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_teste_chagas_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_teste_chagas_por_valor($numero_paciente, 3, $ex->nome);
+									} else if($i==6){
+										$valor = buscar_outros_param_por_valor($numero_paciente, 1, $ex->nome);
+										$valor2 = buscar_outros_param_por_valor($numero_paciente, 2, $ex->nome);
+										$valor3 = buscar_outros_param_por_valor($numero_paciente, 3, $ex->nome);
+										$valor4 = buscar_outros_param_por_valor($numero_paciente, 4, $ex->nome);
+										$valor5 = buscar_outros_param_por_valor($numero_paciente, 5, $ex->nome);
+										$valor6 = buscar_outros_param_por_valor($numero_paciente, 6, $ex->nome);
+									}
 						?>
 									<div class="span2 primeiro col">
 										<h6><?php echo $ex->nome; ?></h6>
@@ -2285,37 +2600,38 @@ include "layout/header.php";
 						<?php	
 									if($i == 6){
 						?>				<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta1'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta1'; ?>" value="<?php echo $valor->valor; ?>">
 										</div>
 										<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta2'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta2'; ?>" value="<?php echo $valor2->valor; ?>">
 										</div>
 										<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id. 'coleta3'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id. 'coleta3'; ?>" value="<?php echo $valor3->valor; ?>">
 										</div>
 										<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id. 'coleta4'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id. 'coleta4'; ?>" value="<?php echo $valor4->valor; ?>">
 										</div>
 										<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta5'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta5'; ?>" value="<?php echo $valor5->valor; ?>">
 										</div>	
 										<div class="span1 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta6'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta6'; ?>" value="<?php echo $valor6->valor; ?>">
 										</div>
 						<?php
 									} else {
+										
 						?>
 										<div class="span2 col">
-											<input type="text" name="<?php echo $ex->id .'coleta1'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id .'coleta1'; ?>" value="<?php echo $valor->valor; ?>">
 										</div>
 										<div class="span2 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta2'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta2'; ?>" value="<?php echo $valor2->valor; ?>">
 										</div>
 										<div class="span2 col">
-											<input type="text" name="<?php echo $ex->id . 'coleta3'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'coleta3'; ?>" value="<?php echo $valor3->valor; ?>">
 										</div>
 										<div class="span4 col">
-											<input type="text" name="<?php echo $ex->id . 'obs'; ?>" value="">
+											<input type="text" name="<?php echo $ex->id . 'obs'; ?>" value="<?php echo $valor->obs; ?>">
 										</div>
 						<?php
 									}
@@ -2326,206 +2642,299 @@ include "layout/header.php";
 					<div class="sessao row-fluid exames_clinicos2">
 						<h5>Exames Clínicos</h5>
 						<div class="row-fluid">
+							<?php 
+								$eletro =  buscar_exames_clinicos($numero_paciente, "Eletrocardiograma"); 
+								$eletro_dados = buscar_exames_clinicos_todos($numero_paciente, "Eletrocardiograma");
+								if($eletro->valor == 1){
+									$check = "checked";
+									$check2 = "";
+								}else {
+									$check = "";
+									$check2 = "checked";
+								}
+							?>
 							<div class="span3 primeiro col">
 								<h6>Eletrocardiograma</h6>
 								<div class="div_radio">
-									<input type="radio" name="eletro" value="1">
+									<input type="radio" name="eletro" value="1" <?php echo $check; ?> >
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="eletro" value="2">
+									<input type="radio" name="eletro" value="2" <?php echo $check2; ?> >
 									<p>(2) Anormal</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eletro_date_1" value="">
-								<input type="text" name="eletro_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eletro_date_2" value="">
-								<input type="text" name="eletro_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eletro_date_3" value="">
-								<input type="text" name="eletro_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eletro_date_4" value="">
-								<input type="text" name="eletro_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($eletro_dados);
+								foreach ($eletro_dados as $e) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='eletro_date_".$i."' value='".$e->data."'>
+											<input type='text' name='eletro_valor_".$i."' value='".$e->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($eletro_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='eletro_date_".$k."' value=''>
+											<input type='text' name='eletro_valor_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
+							
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="eletro_obs" value="">
+								<input type="text" name="eletro_obs" value="<?php echo $eletro->obs; ?>">
 							</div>
 						</div>
 
 						<div class="row-fluid">
 							<div class="span3 primeiro col">
 								<h6>Ecocardiograma</h6>
+								<?php 
+									$eco =  buscar_exames_clinicos($numero_paciente, "Ecocardiograma");
+									$eco_dados =  buscar_exames_clinicos_todos($numero_paciente, "Ecocardiograma");  
+									if($eco->valor == 1){
+										$check = "checked";
+										$check2 = "";
+									}else {
+										$check = "";
+										$check2 = "checked";
+									}
+								?>
 								<div class="div_radio">
-									<input type="radio" name="eco" value="1">
+									<input type="radio" name="eco" value="1" <?php echo $check; ?> >
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="eco" value="2">
+									<input type="radio" name="eco" value="2" <?php echo $check2; ?> >
 									<p>(2) Anormal</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eco_date_1" value="">
-								<input type="text" name="eco_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eco_date_2" value="">
-								<input type="text" name="eco_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eco_date_3" value="">
-								<input type="text" name="eco_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="eco_date_4" value="">
-								<input type="text" name="eco_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($eco_dados);
+								foreach ($eco_dados as $e) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='eco_date_".$i."' value='".$e->data."'>
+											<input type='text' name='eco_date_".$i."' value='".$e->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($eco_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='eco_date_".$k."' value=''>
+											<input type='text' name='eco_date_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="eco_obs" value="">
+								<input type="text" name="eco_obs" value="<?php echo $eco->obs; ?>">
 							</div>
 						</div>
 
 						<div class="row-fluid">
 							<div class="span3 primeiro col">
 								<h6>Holter</h6>
+								<?php 
+									$holter =  buscar_exames_clinicos($numero_paciente, "Holter"); 
+									$holter_dados =  buscar_exames_clinicos_todos($numero_paciente, "Holter");  
+									if($eletro->valor == 1){
+										$check = "checked";
+										$check2 = "";
+									}else {
+										$check = "";
+										$check2 = "checked";
+									}
+								?>
 								<div class="div_radio">
-									<input type="radio" name="holter" value="1">
+									<input type="radio" name="holter" value="1" <?php echo $check; ?>>
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="holter" value="2">
+									<input type="radio" name="holter" value="2" <?php echo $check2; ?>>
 									<p>(2) Anormal</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="holter_date_1" value="">
-								<input type="text" name="holter_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="holter_date_2" value="">
-								<input type="text" name="holter_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="holter_date_3" value="">
-								<input type="text" name="holter_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="holter_date_4" value="">
-								<input type="text" name="holter_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($holter_dados);
+								foreach ($holter_dados as $h) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='holter_date_".$i."' value='".$h->data."'>
+											<input type='text' name='holter_date_".$i."' value='".$h->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($holter_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='holter_date_".$k."' value=''>
+											<input type='text' name='holter_date_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
+							
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="holter_obs" value="">
+								<input type="text" name="holter_obs" value="<?php echo $holter->obs; ?>">
 							</div>
 						</div>
 
 						<div class="row-fluid">
 							<div class="span3 primeiro col">
 								<h6>RX Coração</h6>
+								<?php 
+									$rx_coracao =  buscar_exames_clinicos($numero_paciente, "RX Coração"); 
+									$rx_coracao_dados =  buscar_exames_clinicos_todos($numero_paciente, "RX Coração"); 
+									if($eletro->valor == 1){
+										$check = "checked";
+										$check2 = "";
+									}else {
+										$check = "";
+										$check2 = "checked";
+									}
+								?>
 								<div class="div_radio">
-									<input type="radio" name="rx_coracao" value="1">
+									<input type="radio" name="rx_coracao" value="1" <?php echo $check; ?> >
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="rx_coracao" value="2">
+									<input type="radio" name="rx_coracao" value="2" <?php echo $check2; ?> >
 									<p>(2) Dilatação</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_co_date_1" value="">
-								<input type="text" name="rx_co_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_co_date_2" value="">
-								<input type="text" name="rx_co_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_co_date_3" value="">
-								<input type="text" name="rx_co_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_co_date_4" value="">
-								<input type="text" name="rx_co_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($rx_coracao_dados);
+								foreach ($rx_coracao_dados as $rx) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='holter_date_".$i."' value='".$rx->data."'>
+											<input type='text' name='holter_date_".$i."' value='".$rx->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($rx_coracao_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='holter_date_".$k."' value=''>
+											<input type='text' name='holter_date_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="rx_co_obs" value="">
+								<input type="text" name="rx_co_obs" value="<?php echo $rx_coracao->obs; ?>">
 							</div>
 						</div>
 
 						<div class="row-fluid">
 							<div class="span3 primeiro col">
 								<h6>RX Esôfago</h6>
+								<?php 
+									$rx_esofago =  buscar_exames_clinicos($numero_paciente, "RX Esôfago"); 
+									$rx_esofago_dados =  buscar_exames_clinicos_todos($numero_paciente, "RX Esôfago"); 
+									if($rx_esofago->valor == 1){
+										$check = "checked";
+										$check2 = "";
+									}else {
+										$check = "";
+										$check2 = "checked";
+									}
+								?>
 								<div class="div_radio">
-									<input type="radio" name="rx_esofago" value="1">
+									<input type="radio" name="rx_esofago" value="1" <?php echo $check; ?> >
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="rx_esofago" value="2">
+									<input type="radio" name="rx_esofago" value="2" <?php echo $check2; ?> >
 									<p>(2) Dilatação</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_eso_date_1" value="">
-								<input type="text" name="rx_eso_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_eso_date_2" value="">
-								<input type="text" name="rx_eso_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_eso_date_3" value="">
-								<input type="text" name="rx_eso_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="rx_eso_date_4" value="">
-								<input type="text" name="rx_eso_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($rx_esofago_dados);
+								foreach ($rx_esofago_dados as $rx) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='rx_eso_date_".$i."' value='".$rx->data."'>
+											<input type='text' name='rx_eso_date_".$i."' value='".$rx->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($rx_esofago_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='rx_eso_date_".$k."' value=''>
+											<input type='text' name='rx_eso_date_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="rx_eso_obs" value="">
+								<input type="text" name="rx_eso_obs" value="<?php echo $rx_esofago->obs; ?>">
 							</div>
 						</div>
 
 						<div class="row-fluid">
 							<div class="span3 primeiro col">
 								<h6>Enema Opaco</h6>
+								<?php 
+									$enema =  buscar_exames_clinicos($numero_paciente, "Enema Opaco"); 
+									$enema_dados =  buscar_exames_clinicos_todos($numero_paciente, "Enema Opaco"); 
+									if($enema->valor == 1){
+										$check = "checked";
+										$check2 = "";
+									}else {
+										$check = "";
+										$check2 = "checked";
+									}
+								?>
 								<div class="div_radio">
-									<input type="radio" name="enema" value="1">
+									<input type="radio" name="enema" value="1" <?php echo $check; ?> >
 									<p>(1) Normal</p>
 								</div>
 								<div class="div_radio">
-									<input type="radio" name="enema" value="2">
+									<input type="radio" name="enema" value="2" <?php echo $check2; ?> >
 									<p>(2) Dilatação</p>
 								</div>
 							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="enema_date_1" value="">
-								<input type="text" name="enema_valor_1" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="enema_date_2" value="">
-								<input type="text" name="enema_valor_2" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="enema_date_3" value="">
-								<input type="text" name="enema_valor_3" value="">
-							</div>
-							<div class="span1 primeiro col">
-								<input type="date" name="enema_date_4" value="">
-								<input type="text" name="enema_valor_4" value="">
-							</div>
+							<?php 
+								$i=1;
+								$j=count($rx_esofago_dados);
+								foreach ($rx_esofago_dados as $rx) {
+									echo "<div class='span1 primeiro col'>
+											<input type='date' name='enema_date_".$i."' value='".$rx->data."'>
+											<input type='text' name='enema_date_".$i."' value='".$rx->texto."'>
+										</div>";
+										$i++;
+								}
+								
+								if($j < 5){
+									for($k=count($rx_esofago_dados)+1; $k < 5; $k++){
+										echo "<div class='span1 primeiro col'>
+											<input type='date' name='enema_date_".$k."' value=''>
+											<input type='text' name='enema_date_".$k."' value=''>
+										</div>";
+									}
+								}
+							?>
+							
 							<div class="span5 primeiro col">
 								<h6>Observações</h6>
-								<input type="text" name="enema_obs" value="">
+								<input type="text" name="enema_obs" value="<?php echo $enema->obs; ?>">
 							</div>
 						</div>
 					</div>

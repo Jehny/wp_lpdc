@@ -165,9 +165,9 @@ function buscar_paciente_id($num_paciente){
 	return $tipo; 
 }
 
-function buscar_atendimento_id($num_paciente){
+function buscar_atendimento_id($num_paciente, $atendimento){
 	global $wpdb;
-	$tipo = $wpdb->get_results('SELECT * FROM atendimento_paciente WHERE num_paciente='. $num_paciente);
+	$tipo = $wpdb->get_results('SELECT * FROM atendimento_paciente WHERE num_paciente='. $num_paciente . " AND atendimento = " . $atendimento);
 	return $tipo; 
 }
 
@@ -201,9 +201,81 @@ function buscar_habitos_vida_id($num_paciente){
 	return $tipo; 
 }
 
-function buscar_hemograma_id($num_paciente){
+function buscar_hemograma_id($num_paciente, $tipo, $nome){
 	global $wpdb;
-	$tipo = $wpdb->get_results('SELECT * FROM hemograma WHERE num_paciente='. $num_paciente);
+	$tipo = $wpdb->get_row("SELECT * FROM hemograma WHERE num_paciente=". $num_paciente . " AND tipo = ". $tipo . " AND nome like '%".$nome."%'");
+	return $tipo; 
+}
+
+function buscar_hemograma_id_data($numero_paciente, $tipo){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM hemograma WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_hemograma_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM hemograma WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
+	return $tipo; 
+}
+
+function buscar_funcao_renal_id_data($numero_paciente, $tipo) {
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM funcao_renal WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_funcao_renal_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM funcao_renal WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
+	return $tipo; 
+}
+
+function buscar_funcao_hepatica_id_data($numero_paciente, $tipo) {
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM funcao_hepatica WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_funcao_hepatica_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM funcao_hepatica WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
+	return $tipo; 
+}
+
+function buscar_ex_bioq_id_data($numero_paciente, $tipo) {
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM outro_ex_bioq WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_ex_bioq_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM outro_ex_bioq WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
+	return $tipo; 
+}
+
+function buscar_teste_chagas_id_data($numero_paciente, $tipo) {
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM teste_chagas WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_teste_chagas_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM teste_chagas WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
+	return $tipo; 
+}
+
+function buscar_outros_param_id_data($numero_paciente, $tipo) {
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM outros_param WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo );
+	return $tipo; 
+}
+
+function buscar_outros_param_por_valor($numero_paciente, $tipo, $nome){
+	global $wpdb;
+	$tipo = $wpdb->get_row("SELECT * FROM outros_param WHERE num_paciente=". $numero_paciente . " AND tipo = ". $tipo . " AND nome like '%" .$nome. "%'");
 	return $tipo; 
 }
 
@@ -245,9 +317,28 @@ function buscar_residencia_id($num_paciente){
 
 function buscar_revisao_sistemas_id($num_paciente, $id_sistema){
 	global $wpdb;
-	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas_sintomas WHERE num_paciente='. $num_paciente . ' AND id_sistema = ' . $id_sistema );
+	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas_sintoma WHERE num_paciente='. $num_paciente . ' AND id_sistema = ' . $id_sistema);
 	return $tipo; 
 }
+
+function buscar_habitos_de_vida($num_paciente, $pratica){
+	global $wpdb;
+	$habitos = $wpdb->get_row("SELECT * FROM habitos_vida WHERE num_paciente=". $num_paciente . " AND pratica like '%" . $pratica . "%'");
+	return $habitos;
+}
+
+function buscar_exames_clinicos($num_paciente, $nome_exame){
+	global $wpdb;
+	$exames = $wpdb->get_row("SELECT * FROM exames_clinicos WHERE num_paciente=". $num_paciente . " AND nome_exame like '%" . $nome_exame . "%'");
+	return $exames;
+}
+
+function buscar_exames_clinicos_todos($num_paciente, $nome_exame){
+	global $wpdb;
+	$exames = $wpdb->get_results("SELECT * FROM exames_clinicos WHERE num_paciente=". $num_paciente . " AND nome_exame like '%" . $nome_exame . "%' ORDER BY data ASC");
+	return $exames;
+}
+
 
 function buscar_uso_medicamento_id($num_paciente){
 	global $wpdb;

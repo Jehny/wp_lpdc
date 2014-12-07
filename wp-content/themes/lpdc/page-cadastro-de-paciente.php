@@ -1437,7 +1437,7 @@ include "layout/header.php";
 					</div>
 
 					<div class="sessao row-fluid aspectos">
-						<h5>História Médica pregressiva</h5>
+						<h5>História Médica progressiva</h5>
 						
 						<textarea name="historia-medica" cols="80" rows="5"></textarea>
 
@@ -1525,7 +1525,7 @@ include "layout/header.php";
 
 					<div class="sessao row-fluid medicamentos">
 						<h5>Medicamentos utilizados a 15 dias atrás</h5>
-						<div class="span3 primeiro"><h6>Medicmentos</h6></div>
+						<div class="span3 primeiro"><h6>Medicamentos</h6></div>
 						<div class="span3"><h6>Indicação</h6></div>
 						<div class="span3"><h6>Respostas</h6></div>
 						<div class="span3"><h6>Período de uso</h6></div>
