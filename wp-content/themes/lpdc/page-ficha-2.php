@@ -1,7 +1,9 @@
 <?php 
-
-if(isset($_GET['cod'])){
+if($_GET['cod']){
 	$num_paciente = $_GET['cod'];
+	// $id_ficha = $_GET['ficha'];
+}else{
+	$num_paciente =  "";
 }
 
 if(isset($_POST['submit'])){
@@ -10,31 +12,37 @@ if(isset($_POST['submit'])){
 	
 	$data_paciente_ficha_2 = array(
 		'num_paciente'=> $_POST['num_paciente'],
-		'nome_paciente'=> $_POST['nom_paciente'],
+		'nom_paciente'=> $_POST['nom_paciente'],
 		'etapa'=> $_POST['etapa'],
-		'data'=> $_POST['data']
+		'data'=> $_POST['data'],
+		'porcentagem'=>$_POST['porcentagem']
 	);
 	$wpdb->insert( $paciente_ficha_2, $data_paciente_ficha_2, $format );
+	$id_ficha_2 = $wpdb->insert_id;
 
 	// Inserir dados na tabela de avaliacao_aderencias
 	$avaliacao_aderencia = 'avaliacao_aderencia';
-	foreach ($_POST['perg_aderencia_4'] as $key => $value) {
-		$porque = $value;
-		$porque .= ";";
-	}
 	for($i=1; $i < 7; $i++){
-		if($i == 4){
-			$resposta = $porque;
-		}else {
-			$resposta = $_POST['perg_aderencia_'.$i];
+		if($i != 4){
+			$data_avaliacao_aderencia = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'id_pergunta'=> $i,
+				'des_pergunta'=> $_POST['perg'.$i],
+				'resposta'=> $_POST['perg_aderencia_'.$i],
+				'id_ficha_2'=> $id_ficha_2
+			);
+			$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
 		}
-		$data_avaliacao_aderencia = array(
-			'num_paciente'=> $_POST['num_paciente'],
-			'id_pergunta'=> $_POST['nom_paciente'],
-			'des_pergunta'=> $_POST['perg'.$i],
-			'resposta'=> $resposta
+	}
+
+	$avaliacao_aderencia_porque = 'avaliacao_aderencia_porque';
+	foreach ($_POST['perg_aderencia_4'] as $key => $value) {
+		$data_avaliacao_aderencia_porque = array(
+			'num_paciente' => $_POST['num_paciente'], 
+			'item'=> $value,
+			'id_ficha_2'=> $id_ficha_2
 		);
-		$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
+		$wpdb->insert( $avaliacao_aderencia_porque, $data_avaliacao_aderencia_porque, $format );
 	}
 
 	$reacoes_indesejaveis = 'reacoes_indesejaveis';
@@ -42,22 +50,40 @@ if(isset($_POST['submit'])){
 	$data_reacoes_indesejaveis = array (
 		'num_paciente'=>$_POST['num_paciente'],
 		'pergunta'=> 'Você sentiu alguma reação indesejável durante a 1ª/2ª etapa do tratamento?',
-		'resposta'=>$_POST['reacao1']
+		'resposta'=>$_POST['reacao1'],
+		'id_ficha_2'=> $id_ficha_2
 		);
 	$wpdb->insert( $reacoes_indesejaveis, $data_reacoes_indesejaveis, $format );
 
 	if($_POST['reacao1'] == 'Sim'){
 		$reacoes_indesejaveis_ram = 'reacoes_indesejaveis_ram';
 		for($i=1; $i<8; $i++){
-			$data_reacoes_indesejaveis_ram = array (
-				'num_paciente'=>$_POST['num_paciente'],
-				'ram'=>$_POST['ram'.$i],
-				'qual_dia'=>$_POST['dia'.$i],
-				'continua'=>$_POST['continua'.$i],
-			);
+			if($_POST['ram'.$i] != ""){
+				$data_reacoes_indesejaveis_ram = array (
+					'num_paciente'=>$_POST['num_paciente'],
+					'ram'=>$_POST['ram'.$i],
+					'num_ram'=>$_POST['num_ram'.$i],
+					'qual_dia'=>$_POST['dia'.$i],
+					'continua'=>$_POST['continua'.$i],
+					'id_ficha_2'=> $id_ficha_2
+				);
+				$wpdb->insert( $reacoes_indesejaveis_ram, $data_reacoes_indesejaveis_ram, $format );
+			}
 		}
-
 	}
+
+	// Uso de medicamentos
+	$uso_medicamento = 'uso_medicamento';
+	$data_uso_medicamento = array (
+		'num_paciente'=>$_POST['num_paciente'],
+		'pergunta'=>$_POST['uso_medicamento_perg'],
+		'resposta'=>$_POST['medicamento_uso_continuo'],
+		'qual'=>$_POST['quais_medicamentos'],
+		'qnt_tempo'=>$_POST['tempo_medicamentos'],
+		'id_ficha_2'=> $id_ficha_2
+	);
+
+	$wpdb->insert( $uso_medicamento, $data_uso_medicamento, $format );
 
 }
 
@@ -106,7 +132,7 @@ include "layout/header.php";
 							</div>
 							<div class="span4">
 								<label>Nº Paciente:</label>
-								<input type="text" name="num_paciente" value="" class="numero" required>
+								<input type="text" name="num_paciente" value="<?php echo $num_paciente; ?>" class="numero" required>
 							</div>
 						</fieldset>
 						<fieldset>
@@ -157,25 +183,25 @@ include "layout/header.php";
 							<div class="span12 perguntas_aderencia">
 								<label>Por que?</label>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Não quis tomar">Não quis tomar
+									<input type="checkbox" name="perg_aderencia_4[]" value="Não quis tomar">Não quis tomar
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Para durar mais">Para durar mais
+									<input type="checkbox" name="perg_aderencia_4[]" value="Para durar mais">Para durar mais
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Dose alta">Dose alta
+									<input type="checkbox" name="perg_aderencia_4[]" value="Dose alta">Dose alta
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Reação desagradável">Reação desagradável
+									<input type="checkbox" name="perg_aderencia_4[]" value="Reação desagradável">Reação desagradável
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Não sabe tomar">Não sabe tomar
+									<input type="checkbox" name="perg_aderencia_4[]" value="Não sabe tomar">Não sabe tomar
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Sente-se bem">Sente-se bem
+									<input type="checkbox" name="perg_aderencia_4[]" value="Sente-se bem">Sente-se bem
 								</div>
 								<div class="checkbox">
-									<input type="checkbox" name="perg_aderencia_4" value="Esquecimento">Esquecimento
+									<input type="checkbox" name="perg_aderencia_4[]" value="Esquecimento">Esquecimento
 								</div>
 							</div>
 							<div class="span12 perguntas_aderencia">
@@ -215,6 +241,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 1: <input type="text" name="ram1" value="">
+								<input type="hidden" name="num_ram1" value="1">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -233,6 +260,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 2: <input type="text" name="ram2" value="">
+								<input type="hidden" name="num_ram2" value="2">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -252,6 +280,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 3: <input type="text" name="ram3" value="">
+								<input type="hidden" name="num_ram3" value="3">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -270,6 +299,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 4: <input type="text" name="ram4" value="">
+								<input type="hidden" name="num_ram4" value="4">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -289,6 +319,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 5: <input type="text" name="ram5" value="">
+								<input type="hidden" name="num_ram5" value="5">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -307,6 +338,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 6: <input type="text" name="ram6" value="">
+								<input type="hidden" name="num_ram6" value="6">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -326,6 +358,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span4">
 								RAM 7: <input type="text" name="ram7" value="">
+								<input type="hidden" name="num_ram7" value="7">
 							</div>
 							<div class="span4">
 								Qual dia?
@@ -347,6 +380,7 @@ include "layout/header.php";
 						<fieldset>
 							<div class="span8">
 								Durante a 1ª/2ª etapa do tratamento, o Sr.(a) utilizou algum medicamento além daqueles de uso contínuo?
+								<input type="hidden" name="uso_medicamento_perg" value="Durante a 1ª/2ª etapa do tratamento, o Sr.(a) utilizou algum medicamento além daqueles de uso contínuo?">
 							</div>
 							<div class="span4 resposta">
 								<div class="div_radio">
@@ -373,7 +407,6 @@ include "layout/header.php";
 								<input type="text" name="tempo_medicamentos" value="" class="input_media">
 							</div>
 						</fieldset>	
-						<input type="hidden" name="num_paciente" value="<?php echo $num_paciente; ?>">
 					</div>
 
 					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>

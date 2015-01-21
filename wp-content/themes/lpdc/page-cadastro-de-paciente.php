@@ -87,6 +87,73 @@ if(isset($_POST['submit'])){
 		}
 	}
 
+	if(isset($_POST['atendimento_2'])){
+		if(count($_POST['atendimento_2']) > 0){
+			foreach ($_POST['atendimento_2'] as $key => $value) { 
+				$data_atendimento = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'atendimento'=> '1',
+					'data'=> $_POST['data_atend2'],
+					'dados'=> $value
+				);
+				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			}
+		}
+	}
+	if(isset($_POST['atendimento_3'])){
+		if(count($_POST['atendimento_3']) > 0){
+			foreach ($_POST['atendimento_3'] as $key => $value) { 
+				$data_atendimento = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'atendimento'=> '1',
+					'data'=> $_POST['data_atend3'],
+					'dados'=> $value
+				);
+				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			}
+		}
+	}
+	if(isset($_POST['atendimento_4'])){
+		if(count($_POST['atendimento_4']) > 0){
+			foreach ($_POST['atendimento_4'] as $key => $value) { 
+				$data_atendimento = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'atendimento'=> '1',
+					'data'=> $_POST['data_atend4'],
+					'dados'=> $value
+				);
+				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			}
+		}
+	}
+	if(isset($_POST['atendimento_5'])){
+		if(count($_POST['atendimento_5']) > 0){
+			foreach ($_POST['atendimento_5'] as $key => $value) { 
+				$data_atendimento = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'atendimento'=> '1',
+					'data'=> $_POST['data_atend5'],
+					'dados'=> $value
+				);
+				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			}
+		}
+	}
+
+	if(isset($_POST['atendimento_6'])){
+		if(count($_POST['atendimento_6']) > 0){
+			foreach ($_POST['atendimento_6'] as $key => $value) { 
+				$data_atendimento = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'atendimento'=> '1',
+					'data'=> $_POST['data_atend6'],
+					'dados'=> $value
+				);
+				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			}
+		}
+	}
+
 	// Residencia
 	$table_residencia = 'residencia';
 
@@ -735,56 +802,71 @@ include "layout/header.php";
 								}
 
 							?>
+							<div class="span12 botao_adicionar bt1">
+								<p><a href="javascript:void(0);" class="mais_atend_2 btn btn-info">Adicionar atendimento</a></p>
+							</div>
 							</div>
 
 							<div class="divisao att2">
 							<?php 
 								$atendimento_2 = pegar_opcao_atendimento(2);
-								echo "<h6>2º Atendimento</h6>";
+								echo "<h6>2º Atendimento <input type='date' name='data_atend2' value=''></h6>";
 								foreach ($atendimento_2 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_2[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
 
 							?>
+							<div class="span12 botao_adicionar bt2">
+								<p><a href="javascript:void(0);" class="mais_atend_3 btn btn-info">Adicionar atendimento</a></p>
+							</div>
 							</div>
 
 							<div class="divisao att3">
 							<?php 
 								$atendimento_3 = pegar_opcao_atendimento(3);
-								echo "<h6>3º Atendimento</h6>";
+								echo "<h6>3º Atendimento <input type='date' name='data_atend3' value=''></h6>";
 								foreach ($atendimento_3 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_3[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
 
 							?>
+							<div class="span12 botao_adicionar bt3">
+								<p><a href="javascript:void(0);" class="mais_atend_4 btn btn-info">Adicionar atendimento</a></p>
+							</div>
 							</div>
 
 							<div class="divisao att4">
 							<?php 
 								$atendimento_4 = pegar_opcao_atendimento(4);
-								echo "<h6>4º Atendimento</h6>";
+								echo "<h6>4º Atendimento <input type='date' name='data_atend4' value=''></h6>";
 								foreach ($atendimento_4 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_4[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
 
 							?>
+							<div class="span12 botao_adicionar bt4">
+								<p><a href="javascript:void(0);" class="mais_atend_5 btn btn-info">Adicionar atendimento</a></p>
+							</div>
 							</div>
 
 							<div class="divisao att5">
 							<?php 
 								$atendimento_5 = pegar_opcao_atendimento(1);
-								echo "<h6>5º Atendimento</h6>";
+								echo "<h6>5º Atendimento <input type='date' name='data_atend5' value=''></h6>";
 								foreach ($atendimento_5 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_5[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
 
 							?>
+							<div class="span12 botao_adicionar bt5">
+								<p><a href="javascript:void(0);" class="mais_atend_6 btn btn-info">Adicionar atendimento</a></p>
+							</div>
 							</div>
 
 							<div class="divisao att6">
 							<?php 
 								$atendimento_6 = pegar_opcao_atendimento(1);
-								echo "<h6>6º Atendimento</h6>";
+								echo "<h6>6º Atendimento <input type='date' name='data_atend6' value=''></h6>";
 								foreach ($atendimento_6 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_6[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}

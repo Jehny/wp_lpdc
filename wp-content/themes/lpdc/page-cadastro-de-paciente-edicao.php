@@ -22,16 +22,17 @@ if(isset($_GET['cod'])){
 }
 
 if(isset($_POST['submit'])){
+	$numero_paciente = $_POST['paciente']
 	// Inserir dados na tabela Paciente
 	$table = 'paciente';
-	
+	$where = array('num_paciente'=> $numero_paciente);
 	// verifica se é série ou escolaridade
 	if($_POST['serie'] != ""){
 		$escolaridade = $_POST['escolaridade'];
 	}else {
 		$escolaridade = $_POST['serie'];
 	}
-	$data_paciente = array('num_paciente'=> $_POST['num_paciente'], 
+	$data_paciente = array( 
 		'pesquisador'=> $_POST['pesquisador'],
 		'data'=> $_POST['data'],
 		'nome'=> $_POST['nome'],
@@ -82,25 +83,17 @@ if(isset($_POST['submit'])){
 		'evolucao'=> $_POST['evolucao_paciente']
 	);
 
-	$wpdb->insert( $table, $data_paciente, $format );
+	$wpdb->update( $table, $data_paciente, $where, $format = null, $where_format = null ); 
 
 
-
-	// Inserir dados na tabela Atendimento
-	// Saber qual atendimento está sendo cadastrado
-	// chamar método que verifica o atendimento
-	$table_atendimento = 'atendimento_paciente';
-	
-	if(isset($_POST['atendimento_1'])){
+	// Atualizar tabela de atendimento_paciente
+	if(isset($_POST['atendimento_1']) && count($_POST['atendimento_1']) > 0){
+		$i=0;
 		foreach ($_POST['atendimento_1'] as $key => $value) { 
-			$data_atendimento = array(
-				'num_paciente'=> $_POST['num_paciente'],
-				'atendimento'=> '1',
-				'data'=> $_POST['data_atend'],
-				'dados'=> $value
-			);
-			$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			$array_valores = array($i=> $value);
+			$i++;
 		}
+		atualizar_atendimento(1, $numero_paciente, $count_array, $array_valores, $_POST['data_atend']);	
 	}
 
 	// Residencia
@@ -2943,7 +2936,7 @@ include "layout/header.php";
 						<h5>Evolução do Paciente:</h5>
 						<textarea name="evolucao_paciente" rows="10" cols="200"><?php echo $obj_paciente->evolucao; ?></textarea>
 					</div>
-
+					<input type="hidden" name="paciente" value="<?php echo $numero_paciente; ?>">
 					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
 					
 				</form>
