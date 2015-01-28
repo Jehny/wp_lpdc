@@ -173,6 +173,24 @@ $(function(){
 		$('.bt5').css('display', 'none');
 	});
 
+	// Percentual de Aderência FICHA 2
+	var qnt_ingeridos = Number($('#perg_aderencia_5').val());
+	var qnt_deveria_tomado = Number($('#perg_aderencia_6').val());
+	
+	$("#perg_aderencia_5").keyup(function() {
+		qnt_ingeridos = Number($('#perg_aderencia_5').val());
+		qnt_deveria_tomado = Number($('#perg_aderencia_6').val());
+	 	porcentagem = (qnt_ingeridos/qnt_deveria_tomado)*100;
+	 	$('#porcentagem').val(porcentagem+"%");
+
+	});
+	$("#perg_aderencia_6").keyup(function() {
+		qnt_ingeridos = Number($('#perg_aderencia_5').val());
+		qnt_deveria_tomado = Number($('#perg_aderencia_6').val());
+	 	porcentagem = (qnt_ingeridos/qnt_deveria_tomado)*100;
+	 	$('#porcentagem').val(porcentagem+"%");
+	});
+
 	// Pegar valores de Avaliação
 	// pegar valores para pergunta 3
 	var a = Number($('input:radio[name=grau_dificuldade_1]:checked').val());
@@ -338,7 +356,7 @@ $(function(){
 	  	$('#cap_func_2').val(cap_func);
 	});
 
-	// Avalição pergunta 4
+	// Avaliação pergunta 4
 	var a = Number($('input:radio[name=saude_fisica_1]:checked').val());
 	var b = Number($('input:radio[name=saude_fisica_2]:checked').val());
 	var c = Number($('input:radio[name=saude_fisica_3]:checked').val());
