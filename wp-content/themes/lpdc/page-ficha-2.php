@@ -208,13 +208,13 @@ include "layout/header.php";
 								<p><strong>Percentual de aderência (Calculado pelo farmacêutico):</strong></p>
 								<div>
 									<label>Quantos comprimidos no total o paciente tomou na 1ª/2ª etapa?</label>
-									<input type="text" name="perg_aderencia_5" value="">
+									<input type="text" name="perg_aderencia_5" id="perg_aderencia_5" value="">
 								</div>
 								<div>
 									<label>Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?</label>
-									<input type="text" name="perg_aderencia_6" value="">
+									<input type="text" name="perg_aderencia_6" id="perg_aderencia_6" value="">
 								</div>
-								<input type="text" name="porcentagem" id="porcentagem" value="" class="input_menor">
+								<input type="text" name="porcentagem" id="porcentagem" value="" class="input_menor" disabled="disabled">
 							</div>
 
 					</div>

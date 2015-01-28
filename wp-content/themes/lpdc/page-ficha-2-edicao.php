@@ -320,7 +320,7 @@ include "layout/header.php";
 									<label>Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?</label>
 									<input type="text" name="perg_aderencia_6" value="<?php echo $avaliacao_aderencia_pergunta_6->resposta; ?>">
 								</div>
-								<input type="text" name="porcentagem" id="porcentagem" value="" class="input_menor">
+								<input type="text" name="porcentagem" id="porcentagem" value="<?php echo $$obj_paciente->porcentagem; ?>" class="input_menor">
 							</div>
 
 					</div>
