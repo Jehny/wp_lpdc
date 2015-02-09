@@ -75,24 +75,24 @@ $(function(){
 	});
 
 	$('.medic_uso4').bind("click", function(){
-		$('.uso_linha5').css('display', 'block');
+		$('.uso_linha4').css('display', 'block');
 	});
 
 	$('.medic_uso5').bind("click", function(){
-		$('.uso_linha6').css('display', 'block');
+		$('.uso_linha5').css('display', 'block');
 	});
 
 	$('.medic_uso6').bind("click", function(){
-		$('.uso_linha7').css('display', 'block');
+		$('.uso_linha6').css('display', 'block');
 	});
 
 	$('.medic_uso7').bind("click", function(){
-		$('.uso_linha8').css('display', 'block');
+		$('.uso_linha7').css('display', 'block');
 	});
 
-	// $('.medic_uso8').bind("click", function(){
-	// 	$('.uso_linha8').css('display', 'block');
-	// });
+	$('.medic_uso8').bind("click", function(){
+		$('.uso_linha8').css('display', 'block');
+	});
 	
 	// ***
 	// limita a quantidade de caracteres apresentados para ...
