@@ -87,199 +87,312 @@ if(isset($_POST['submit'])){
 
 	// Atualizar tabela de atendimento_paciente
 	// loop para verificar se existe mais de de um atendimento e assim atualizar todos
-	for ($j=1; $j < 7 ; $j++) { 
+	// for ($j=1; $j < 7 ; $j++) { 
 		
-		if(isset($_POST['atendimento_'.$j]) && count($_POST['atendimento_'.$j]) > 0){
-			$i=0;
-			$array_valores = array();
-			foreach ($_POST['atendimento_'.$j] as $key => $value) { 
-				array_push($array_valores, $value);
-				$i++;
-			}
+	// 	if(isset($_POST['atendimento_'.$j]) && count($_POST['atendimento_'.$j]) > 0){
+	// 		$i=0;
+	// 		$array_valores = array();
+	// 		foreach ($_POST['atendimento_'.$j] as $key => $value) { 
+	// 			array_push($array_valores, $value);
+	// 			$i++;
+	// 		}
 
-			$count_array = count($array_valores);
+	// 		$count_array = count($array_valores);
 		
-			atualizar_atendimento($j, $numero_paciente, $count_array, $array_valores, $_POST['data_atend_'.$j]);	
-		}
-	}
+	// 		atualizar_atendimento($j, $numero_paciente, $count_array, $array_valores, $_POST['data_atend_'.$j]);	
+	// 	}
+	// }
 
 	// Residencia
 	// $table_residencia = 'residencia';
-
 	// if($_POST['residiu'] == 'Não'){
-	// 	for($i=1; $i < 5; $i++){
-	// 		$periodo = 'periodo'. $i;
+
+	// 	for($i=1; $i<5; $i++){
+	// 		$periodo = 'periodo_resid_'. $i;
+			
 	// 		if(isset($_POST[$periodo]) && $_POST[$periodo] != ''){
+
+	// 			$num_residencia = 'num_residencia'.$i;
+
+	// 			$where_residencia = array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=> $_POST[$num_residencia]);
 	// 			$area = 'area'.$i;
 	// 			$cobertura = 'cobertura'. $i;
 	// 			$casa = 'tipo-casa' .$i;
 	// 			$peridomicilio = 'predomicilio'. $i;
 	// 			$animais = 'animais' . $i;
 	// 			$qnt = 'qnt-familiares' . $i;
-
-	// 			$data_residencia = array(
-	// 				'num_paciente'=> $_POST['num_paciente'],
-	// 				'periodo'=> $_POST[$periodo],
-	// 				'area'=> $_POST[$area],
-	// 				'tipo_cobertura'=> $_POST[$cobertura],
+	// 			$data_residencia = array (
+	// 				'num_residencia'=>$_POST[$num_residencia],
+	// 				'periodo'=>$_POST[$periodo],
+	// 				'area'=>$_POST[$area],
+	// 				'tipo_cobertura'=>$_POST[$cobertura],
 	// 				'tipo_casa'=> $_POST[$casa],
-	// 				'peridomicilio'=> $_POST[$peridomicilio],
+	// 				'peridomicilio'=>  $_POST[$peridomicilio],
 	// 				'animais'=> $_POST[$animais],
 	// 				'qnt_familiares'=> $_POST[$qnt]
+					
 	// 			);
-
-	// 			$wpdb->insert( $table_residencia, $data_residencia, $format );
+	// 			// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+	// 			$result2 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_residencia='.$_POST[$num_residencia]);
+	// 			// Tenta fazer o update
+	// 			$result = $wpdb->update( $table_residencia, $data_residencia, $where_residencia, $format = null, $where_format = null ); 
+	// 			// Se a busca e o upadate falharem faz um inserte na tabela
+	// 			if(!$result && !$result2){
+	// 				$cobertura = 'cobertura'. $i;
+	// 				$casa = 'tipo-casa' .$i;
+	// 				$peridomicilio = 'predomicilio'. $i;
+	// 				$animais = 'animais' . $i;
+	// 				$qnt = 'qnt-familiares' . $i;
+	// 				$num_residencia = 'num_residencia'.$i;
+	// 				$data_residencia = array (
+	// 					'num_paciente'=>$_POST['num_paciente'],
+	// 					'num_residencia'=>$_POST[$num_residencia],
+	// 					'periodo'=>$_POST[$periodo],
+	// 					'area'=>$_POST[$area],
+	// 					'tipo_cobertura'=>$_POST[$cobertura],
+	// 					'tipo_casa'=> $_POST[$casa],
+	// 					'peridomicilio'=>  $_POST[$peridomicilio],
+	// 					'animais'=> $_POST[$animais],
+	// 					'qnt_familiares'=> $_POST[$qnt]
+	// 				);
+	// 				$wpdb->insert( $table_residencia, $data_residencia, $format );
+	// 			}
+	// 		} 
+	// 		else {
+	// 			$result3 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_residencia='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+	// 			// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+	// 			if($result3 && (trim($_POST['periodo_resid_'.$i] == "") || trim($_POST['area'.$i] == ""))){
+	// 				$where_residencia =  array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=>$i);
+	// 				$wpdb->delete( $table_residencia, $where_residencia, $where_format = null);
+	// 			}
 	// 		}
 	// 	}
 	// }
 
-	// // Problemas de saúde
+	// Problemas de saúde
 	// $table_problemas = 'problemas_saude';
-	// for ($i=1; $i < 7; $i++) { 
-	// 	$problema = 'problema'. $i;
-	// 	if(isset($_POST[$problema]) && $_POST[$problema] != ''){
-	// 		$problema_controlado = 'problema-controlado' . $i;
-	// 		$problema_data = 'problema-data' . $i;
 
-	// 		$data_problemas = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'problema'=> $_POST[$problema],
-	// 			'controlado'=> $_POST[$problema_controlado],
-	// 			'inicio'=> $_POST[$problema_data]
+	// for($i=1; $i<7; $i++){
+	// 	$where_problemas = array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=> $i);
+	// 	if(trim($_POST['problema'.$i] != "")){
+	// 		$data_problemas = array (
+	// 			'problema'=>$_POST['problema'. $i],
+	// 			'controlado'=>$_POST['problema-controlado' . $i],
+	// 			'inicio'=>$_POST['problema-data' . $i]
+				
 	// 		);
-
-	// 		$wpdb->insert( $table_problemas, $data_problemas, $format );
+	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_problema='.$i);
+	// 		// Tenta fazer o update
+	// 		$result = $wpdb->update( $table_problemas, $data_problemas, $where_problemas, $format = null, $where_format = null ); 
+	// 		// Se a busca e o upadate falharem faz um inserte na tabela
+	// 		if(!$result && !$result2){
+	// 			$data_problemas = array (
+	// 				'num_paciente'=>$_POST['num_paciente'],
+	// 				'num_problema'=>$i,
+	// 				'problema'=>$_POST['problema'. $i],
+	// 				'controlado'=>$_POST['problema-controlado' . $i],
+	// 				'inicio'=>$_POST['problema-data' . $i]
+	// 			);
+	// 			$wpdb->insert( $table_problemas, $data_problemas, $format );
+	// 		}
+	// 	} 
+	// 	else {
+	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_problema='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+	// 		if($result3 && (trim($_POST['problema'.$i] == "") || trim($_POST['problema-data'.$i] == ""))){
+	// 			$where =  array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=>$i);
+	// 			$wpdb->delete( $table_problemas, $where_problemas, $where_format = null);
+	// 		}
 	// 	}
 	// }
+	
 
-	// // Medicamentos Utilizados 
+	// Medicamentos Utilizados 
 	// $table_med_utilizados = 'med_utilizados';
-	// for ($i=1; $i < 5; $i++) { 
-	// 	$medicamento = 'medicamento'. $i;
-	// 	if(isset($_POST[$medicamento]) && $_POST[$medicamento] != ''){
+	// for($i=1; $i<5; $i++){
+	// 	$where_med_utilizados = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
+	// 	if(isset($_POST['medicamento'. $i]) && trim($_POST['medicamento'. $i] != "")){
+	// 		$medicamento = 'medicamento'. $i;
 	// 		$indicacao = 'indicacao' . $i;
-	// 		$resposta = 'resposta'. $i;
+	// 		$resposta = 'resposta_'. $i;
 	// 		$periodo = 'periodo' . $i;
 	// 		$data_med_utilizados = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
 	// 			'medicamento'=> $_POST[$medicamento],
 	// 			'indicacao'=> $_POST[$indicacao],
 	// 			'resposta'=> $_POST[$resposta],
 	// 			'periodo'=> $_POST[$periodo]
 	// 		);
-
-	// 		$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+				
+	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
+	// 		// Tenta fazer o update
+	// 		$result = $wpdb->update( $table_med_utilizados, $data_med_utilizados, $where_med_utilizados, $format = null, $where_format = null ); 
+	// 		// Se a busca e o upadate falharem faz um inserte na tabela
+	// 		if(!$result && !$result2){
+	// 			$medicamento = 'medicamento'. $i;
+	// 			$indicacao = 'indicacao' . $i;
+	// 			$resposta = 'resposta_'. $i;
+	// 			$periodo = 'periodo' . $i;
+	// 			$data_med_utilizados = array(
+	// 				'num_paciente'=> $_POST['num_paciente'],
+	// 				'num_med'=>$i,
+	// 				'medicamento'=> $_POST[$medicamento],
+	// 				'indicacao'=> $_POST[$indicacao],
+	// 				'resposta'=> $_POST[$resposta],
+	// 				'periodo'=> $_POST[$periodo]
+	// 			);
+	// 			$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+	// 		}
+	// 	} 
+	// 	else {
+	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+	// 		if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['indicacao' . $i] == "") || trim($_POST['resposta'. $i] == "") || trim($_POST['periodo' . $i] == ""))){
+	// 			$where_med_utilizados =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
+	// 			$wpdb->delete( $table_med_utilizados, $where_med_utilizados, $where_format = null);
+	// 		}
 	// 	}
 	// }
 
-	// // Medicamento que utiliza uso contínuo
 	// $table_med_que_utiliza = 'med_que_utiliza';
-	// for ($i=1; $i < 9; $i++) { 
-	// 	$medicamento = 'medicamento_uso'. $i;
-	// 	if(isset($_POST[$medicamento]) && $_POST[$medicamento] != ''){
+	// for($i=1; $i<9; $i++){
+	// 	$where_med_que_utiliza = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
+	// 	if(isset($_POST['medicamento_uso'. $i]) && trim($_POST['medicamento_uso'. $i] != "")){
+	// 		$medicamento = 'medicamento_uso'. $i;
+	// 		$num_med = 'num_med'.$i;
 	// 		$posologia = 'posologia' . $i;
-	// 		$indicado = 'indicado'. $i;
-	// 		$indicacao_uso = 'indicacao_uso' . $i;
-	// 		$modo_uso = 'modo_uso' . $i;
-	// 		$resposta = 'resposta' . $i;
-	// 		$efeito_uso = 'efeito_uso' . $i;
-	// 		$inicio_uso = 'inicio_uso' . $i;
-
-	// 		$data_med_utilizados = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
+	// 		$indicacao = 'indicado'. $i;
+	// 		$idicacao_uso = 'indicacao_uso' . $i;
+	// 		$modo_uso = 'modo_uso'.$i;
+	// 		$resposta = 'resposta'.$i;
+	// 		$efeito_uso = 'efeito_uso'.$i;
+	// 		$inicio_uso = 'inicio_uso'.$i;
+	// 		$data_med_que_utiliza = array(
 	// 			'medicamento'=> $_POST[$medicamento],
+	// 			'num_med'=> $_POST[$num_med],
 	// 			'posologia'=> $_POST[$posologia],
-	// 			'indicado_por'=> $_POST[$indicado],
-	// 			'ind_uso'=> $_POST[$indicacao_uso],
-	// 			'modo_uso'=> $_POST[$modo_uso],
-	// 			'resposta'=> $_POST[$resposta],
-	// 			'efeitos'=> $_POST[$efeito_uso],
-	// 			'inicio'=> $_POST[$inicio_uso]
+	// 			'indicado_por'=> $_POST[$indicacao],
+	// 			'ind_uso'=> $_POST[$idicacao_uso],
+	// 			'inicio'=> $_POST[$inicio_uso],
+	// 			'modo_uso' =>$_POST[$modo_uso],
+	// 			'resposta' =>$_POST[$resposta],
+	// 			'efeitos' =>$_POST[$efeito_uso]
 	// 		);
-
-	// 		$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+				
+	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
+	// 		// Tenta fazer o update
+	// 		$result = $wpdb->update( $table_med_que_utiliza, $data_med_que_utiliza, $where_med_que_utiliza, $format = null, $where_format = null ); 
+	// 		// Se a busca e o upadate falharem faz um inserte na tabela
+	// 		if(!$result && !$result2){
+	// 			$medicamento = 'medicamento_uso'. $i;
+	// 			$num_med = 'num_med'.$i;
+	// 			$posologia = 'posologia' . $i;
+	// 			$indicacao = 'indicado'. $i;
+	// 			$idicacao_uso = 'indicacao_uso' . $i;
+	// 			$modo_uso = 'modo_uso'.$i;
+	// 			$resposta = 'resposta'.$i;
+	// 			$efeito_uso = 'efeito_uso'.$i;
+	// 			$inicio_uso = 'inicio_uso'.$i;
+	// 			$data_med_que_utiliza = array(
+	// 				'num_paciente'=> $_POST['num_paciente'],
+	// 				'num_med'=> $_POST[$num_med],
+	// 				'medicamento'=> $_POST[$medicamento],
+	// 				'posologia'=> $_POST[$posologia],
+	// 				'indicado_por'=> $_POST[$indicacao],
+	// 				'ind_uso'=> $_POST[$idicacao_uso],
+	// 				'inicio'=> $_POST[$inicio_uso],
+	// 				'modo_uso' =>$_POST[$modo_uso],
+	// 				'resposta' =>$_POST[$resposta],
+	// 				'efeitos' =>$_POST[$efeito_uso]
+	// 			);
+	// 			$wpdb->insert( $table_med_que_utiliza, $data_med_que_utiliza, $format );
+	// 		}
+	// 	} 
+	// 	else {
+	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+	// 		if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['posologia' . $i] == "") || trim($_POST['indicado'. $i] == "") || trim($_POST['inicio_uso' . $i] == ""))){
+	// 			$where_med_que_utiliza =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
+	// 			$wpdb->delete( $table_med_que_utiliza, $where_med_que_utiliza, $where_format = null);
+	// 		}
 	// 	}
 	// }
 
-	// // REVISÃO DE SISTEMAS 
-	// $table_revisao_sistemas = 'revisao_sistemas';
-	// $total = total_sistemas();
-	// $sinais = "";
-	// for ($i=1; $i <= $total ; $i++) { 
-	// 	foreach ($_POST[$i] as $key => $value) {
-	// 		$sinais .= $value;
-	// 	}
-	// 	if($sinais != ""){
-	// 		$nome_sistema = revisao_de_sistemas_sistema($i);
-	// 		$data_sistemas = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'sistema_nome'=> $nome_sistema,
-	// 			'sintoma_nome'=> $sinais,
-	// 			'sistema_id'=> $i
-	// 		);
+	// REVISÃO DE SISTEMAS 
 
-	// 		$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
+	// Fazer um loop para passar por todos os sistemas
+	// for($i=1; $i < 14; $i++){
+	// 	$count_array_sistemas = count($_POST[$i]);
+	// 	$array_valores_sistemas = array();
+	// 	if($count_array_sistemas > 0){
+	// 		foreach ($_POST[$i] as $key => $value) {
+	// 			array_push($array_valores_sistemas, $value);
+	// 		}
 	// 	}
+		
+	// 	atualizar_revisao_sistema($i, $_POST['num_paciente'], $count_array_sistemas, $array_valores_sistemas);
 	// }
 
 	// // Hábitos de Vida
-	// // Fuma 
+	// Fuma 
 	// $table_habitos_vida = 'habitos_vida';
-	// if($_POST['fuma'] == 'Sim'){
-	// 	$pratica_fuma = "Sim";
+	// if($_POST['fuma'] == 'S'){
+	// 	$pratica_fuma = "S";
 	// }else {
-	// 	$pratica_fuma = "Não";
+	// 	$pratica_fuma = "N";
 	// }
+	// $where_fuma = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Fuma?');
 	// $data_habitos_vida_fuma = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Fuma?',
 	// 	'pratica_atual'=> $pratica_fuma,
 	// 	'frequencia'=> $_POST['frequencia_fuma'],
 	// 	'tempo_deixou'=> $_POST['qnt_tempo_fuma'],
 	// 	'motivo'=> $_POST['motivo_fuma']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_fuma, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_fuma, $where_fuma, $format = null, $where_format = null );
 	
 	// // Toma café
-	// if($_POST['cafe'] == 'Sim'){
-	// 	$pratica_cafe = "Sim";
+	// if($_POST['cafe'] == 'S'){
+	// 	$pratica_cafe = "S";
 	// }else {
-	// 	$pratica_cafe = "Não";
+	// 	$pratica_cafe = "N";
 	// }
+	// $where_cafe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Toma café?');
 	// $data_habitos_vida_cafe = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Toma café?',
 	// 	'pratica_atual'=> $pratica_cafe,
 	// 	'frequencia'=> $_POST['frequencia_cafe'],
 	// 	'tempo_deixou'=> $_POST['qnt_tempo_cafe'],
 	// 	'motivo'=> $_POST['motivo_cafe']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_cafe, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_cafe, $where_cafe, $format = null, $where_format = null );
 
 	// // Ingere bebidas alcoólicas?
-	// if($_POST['bebida'] == 'Sim'){
-	// 	$pratica_bebe = "Sim";
+	// if($_POST['bebida'] == 'S'){
+	// 	$pratica_bebe = "S";
 	// }else {
-	// 	$pratica_bebe = "Não";
+	// 	$pratica_bebe = "N";
 	// }
+	// $where_bebe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Ingere bebidas alcoólicas?');
 	// $data_habitos_vida_bebe = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Ingere bebidas alcoólicas?',
-	// 	'pratica_atual'=> $pratica_cafe,
+	// 	'pratica_atual'=> $pratica_bebe,
 	// 	'frequencia'=> $_POST['frequencia_bebe'],
 	// 	'tempo_deixou'=> $_POST['qnt_tempo_bebe'],
 	// 	'motivo'=> $_POST['motivo_bebe']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_bebe, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_bebe, $where_bebe, $format = null, $where_format = null );
 
 	// // Utiliza chás de plantas medicinais?
-	// if($_POST['cha'] == 'Sim'){
-	// 	$pratica_cha = "Sim";
+	// if($_POST['cha'] == 'S'){
+	// 	$pratica_cha = "S";
 	// }else {
-	// 	$pratica_cha = "Não";
+	// 	$pratica_cha = "N";
 	// }
+	// $where_cha = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Utiliza chás de plantas medicinais?');
 	// $data_habitos_vida_cha = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Utiliza chás de plantas medicinais?',
 	// 	'pratica_atual'=> $pratica_cha,
 	// 	'frequencia'=> $_POST['frequencia_cha'],
@@ -288,306 +401,473 @@ if(isset($_POST['submit'])){
 	// 	'tipo_planta'=> $_POST['cha_tipo_planta'],
 	// 	'indicacao_planta'=> $_POST['cha_indicacao']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_cha, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_cha, $where_cha, $format = null, $where_format = null );
 
 	// // Pratica atividade física?
-	// if($_POST['atividade_fisica'] == 'Sim'){
-	// 	$pratica_atividade = "Sim";
+	// if($_POST['atividade_fisica'] == 'S'){
+	// 	$pratica_atividade = "S";
 	// }else {
-	// 	$pratica_atividade = "Não";
+	// 	$pratica_atividade = "N";
 	// }
+	// $where_atividade = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Pratica atividade física?');
 	// $data_habitos_vida_atividade = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Pratica atividade física?',
 	// 	'pratica_atual'=> $pratica_atividade,
 	// 	'tipo_atividade'=> $_POST['tipo_ativiadade_fisica'],
 	// 	'frequencia'=> $_POST['ativ_fisica_freq']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_atividade, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_atividade, $where_atividade, $format = null, $where_format = null );
 	
 	// // Você considera sua alimentação saudável?
-	// if($_POST['alimentacao'] == 'Sim'){
-	// 	$pratica_alimentacao = "Sim";
+	// if($_POST['alimentacao'] == 'S'){
+	// 	$pratica_alimentacao = "S";
 	// }else {
-	// 	$pratica_alimentacao = "Não";
+	// 	$pratica_alimentacao = "N";
 	// }
+	// $alimentacao = "";
+	// foreach ($_POST['tipo_alimentacao_1'] as $key => $value) {
+	// 	$alimentacao .= $value;
+	// 	$alimentacao .= ";";
+	// }
+	// $where_alimentacao = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Você considera sua alimentação saudável?');
 	// $data_habitos_vida_alimentacao = array(
-	// 	'num_paciente'=> $_POST['num_paciente'],
 	// 	'pratica'=> 'Você considera sua alimentação saudável?',
 	// 	'pratica_atual'=> $pratica_alimentacao,
-	// 	'tipo_alimentacao'=> $_POST['tipo_alimentacao'],
+	// 	'tipo_alimentacao'=> $alimentacao,
 	// 	'outros'=> $_POST['outros_alimentacao']
 	// );
-	// $wpdb->insert( $table_habitos_vida, $data_habitos_vida_alimentacao, $format );
+	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_alimentacao, $where_alimentacao, $format = null, $where_format = null );
 
 
-	// //EVOLUÇÃO DE PARÂMETROS LABORATORIAIS E CLÍNICOS
-	// $table_hemograma = 'hemograma';
-	// $table_funcao_renal = 'funcao_renal';
-	// $table_funcao_hepatica = 'funcao_hepatica';
-	// $table_outro_ex_bioq = 'outro_ex_bioq';
-	// $table_teste_chagas = 'teste_chagas';
-	// $table_outros_param = 'outros_param';
+	//EVOLUÇÃO DE PARÂMETROS LABORATORIAIS E CLÍNICOS
+	$table_hemograma = 'hemograma';
+	$table_funcao_renal = 'funcao_renal';
+	$table_funcao_hepatica = 'funcao_hepatica';
+	$table_outro_ex_bioq = 'outro_ex_bioq';
+	$table_teste_chagas = 'teste_chagas';
+	$table_outros_param = 'outros_param';
 	
-	// $total_hemograma = total_exames(1);
-	// $total_funcao_renal = total_exames(2);
-	// $total_funcao_hepatica = total_exames(3);
-	// $total_outro_ex_bioq = total_exames(4);
-	// $total_teste_chagas = total_exames(5);
-	// $total_outros_param = total_exames(6);
+	$total_hemograma = total_exames(1);
+	$total_funcao_renal = total_exames(2);
+	$total_funcao_hepatica = total_exames(3);
+	$total_outro_ex_bioq = total_exames(4);
+	$total_teste_chagas = total_exames(5);
+	$total_outros_param = total_exames(6);
 
-	// // for para percorrer os exames
+	// for para percorrer os exames
 	// for($i = 1; $i <= 6; $i++){
 
 	// 	// pega a data da coleta, se tiver passa para os exames e insere no banco
 	// 	if(isset($_POST['coleta1_'.$i]) && $_POST['coleta1_'.$i] != '0000-00-00'){
-	// 		if($i < 4){
+	// 		if($i < 4 && $_POST['coleta'.$i.'_1'] != '0000-00-00' && $_POST['coleta'.$i.'_1'] != ''){
 	// 			// inserir na tabela de Hemograma
 	// 			$exames_hemograma = exames(1);
 	// 			foreach ($exames_hemograma as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_hemograma = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_1'],
 	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_hemograma, $data_hemograma, $format );
+					
+	// 				$result = $wpdb->update( $table_hemograma, $data_hemograma, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM hemograma WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					foreach ($exames_hemograma as $key) {
+	// 						$data_hemograma = array(
+	// 						'num_paciente'=> $_POST['num_paciente'],
+	// 						'nome'=> $key->nome,
+	// 						'coleta'=> $_POST['coleta'.$i.'_1'],
+	// 						'obs'=> $_POST[$key->id.'obs'],
+	// 						'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 						'tipo'=> $i
+	// 					);
+	// 						$wpdb->insert( $table_hemograma, $data_hemograma, $format );
+	// 					}
+	// 				}
 	// 			}
 
 	// 			// inserir na tabela de funcao Renal
 	// 			$exames_funcao_renal = exames(2);
 	// 			foreach ($exames_funcao_renal as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_funcao_renal = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_2'],
 	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+	// 				$result = $wpdb->update( $table_funcao_renal, $data_funcao_renal, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM funcao_renal WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					if($_POST['coleta'.$i.'_2']!= '0000-00-00' && $_POST['coleta'.$i.'_2'] != ''){
+	// 						foreach ($exames_funcao_renal as $key) {
+	// 							$data_funcao_renal = array(
+	// 								'num_paciente'=> $_POST['num_paciente'],
+	// 								'nome'=> $key->nome,
+	// 								'coleta'=> $_POST['coleta'.$i.'_2'],
+	// 								'obs'=> $_POST[$key->id.'obs'],
+	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 								'tipo'=> $i
+	// 							);
+	// 							$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+	// 						}
+	// 					}
+	// 				}
 	// 			}
 
 	// 			// inserir na tabela de funcao Renal
 	// 			$exames_funcao_hepatica = exames(3);
 	// 			foreach ($exames_funcao_hepatica as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_funcao_hepatica = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_3'],
 	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+					
+	// 				$result = $wpdb->update( $table_funcao_hepatica, $data_funcao_hepatica, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM funcao_hepatica WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					if($_POST['coleta'.$i.'_3']!= '0000-00-00' && $_POST['coleta'.$i.'_3'] != ''){
+	// 						foreach ($exames_funcao_hepatica as $key) {
+	// 							$data_funcao_hepatica = array(
+	// 								'num_paciente'=> $_POST['num_paciente'],
+	// 								'nome'=> $key->nome,
+	// 								'coleta'=> $_POST['coleta'.$i.'_3'],
+	// 								'obs'=> $_POST[$key->id.'obs'],
+	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 								'tipo'=> $i
+	// 							);
+	// 							$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+	// 						}
+	// 					}
+	// 				}
 	// 			}
 
 	// 			// inserir na tabela de Outros exames bioquimicos
 	// 			$exames_outro_ex_bioq = exames(4);
 	// 			foreach ($exames_outro_ex_bioq as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_outro_ex_bioq = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_4'],
 	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+	// 				$result = $wpdb->update( $table_outro_ex_bioq, $data_outro_ex_bioq, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM outro_ex_bioq WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					if($_POST['coleta'.$i.'_4']!= '0000-00-00' && $_POST['coleta'.$i.'_4'] != ''){
+	// 						foreach ($exames_outro_ex_bioq as $key) {
+	// 							$data_outro_ex_bioq = array(
+	// 								'num_paciente'=> $_POST['num_paciente'],
+	// 								'nome'=> $key->nome,
+	// 								'coleta'=> $_POST['coleta'.$i.'_4'],
+	// 								'obs'=> $_POST[$key->id.'obs'],
+	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 								'tipo'=> $i
+	// 							);
+	// 							$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+	// 						}
+	// 					}
+	// 				}
 	// 			}
 
 	// 			// inserir na tabela de Teste para Chagas
 	// 			$exames_teste_chagas = exames(5);
 	// 			foreach ($exames_teste_chagas as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_teste_chagas = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_5'],
 	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+	// 				$result = $wpdb->update( $table_teste_chagas, $data_teste_chagas, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM teste_chagas WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					if($_POST['coleta'.$i.'_5']!= '0000-00-00' && $_POST['coleta'.$i.'_5'] != ''){
+	// 						foreach ($exames_teste_chagas as $key) {
+	// 							$data_teste_chagas = array(
+	// 								'num_paciente'=> $_POST['num_paciente'],
+	// 								'nome'=> $key->nome,
+	// 								'coleta'=> $_POST['coleta'.$i.'_5'],
+	// 								'obs'=> $_POST[$key->id.'obs'],
+	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 								'tipo'=> $i
+	// 							);
+	// 							$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+	// 						}
+	// 					}
+	// 				}
+					
 	// 			}
 
 	// 			// inserir na tabela de Outros Parâmetros
 	// 			$exames_outros_param = exames(6);
 	// 			foreach ($exames_outros_param as $key) {
+	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
 	// 				$data_outros_param = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
 	// 					'nome'=> $key->nome,
 	// 					'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
+	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 					'tipo'=> $i
 	// 				);
-	// 				$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+	// 				$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
+	// 				$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 				if(!$result && !$result2){
+	// 					if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
+	// 						foreach ($exames_outros_param as $key) {
+	// 							$data_outros_param = array(
+	// 								'num_paciente'=> $_POST['num_paciente'],
+	// 								'nome'=> $key->nome,
+	// 								'coleta'=> $_POST['coleta'.$i.'_6'],
+	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 								'tipo'=> $i
+	// 							);
+	// 							$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+	// 						}
+	// 					}
+	// 				}
+					
 	// 			}
-	// 		}
+			
 
-	// 		if($i > 4){
-	// 			// inserir na tabela de Outros Parâmetros
-	// 			$exames_outros_param = exames(6);
-	// 			foreach ($exames_outros_param as $key) {
-	// 				$data_outros_param = array(
-	// 					'num_paciente'=> $_POST['num_paciente'],
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i]
-	// 				);
-	// 				$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+	// 			if($i > 4){
+	// 				// inserir na tabela de Outros Parâmetros
+	// 				$exames_outros_param = exames(6);
+	// 				foreach ($exames_outros_param as $key) {
+	// 					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+	// 					$data_outros_param = array(
+	// 						'nome'=> $key->nome,
+	// 						'coleta'=> $_POST['coleta'.$i.'_6'],
+	// 						'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 						'tipo'=> $i
+	// 					);
+	// 					$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
+	// 					$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+	// 					if(!$result && !$result2){
+	// 						if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
+	// 							foreach ($exames_outros_param as $key) {
+	// 								$data_outros_param = array(
+	// 									'num_paciente'=> $_POST['num_paciente'],
+	// 									'nome'=> $key->nome,
+	// 									'coleta'=> $_POST['coleta'.$i.'_6'],
+	// 									'valor'=> $_POST[$key->id.'coleta'.$i],
+	// 									'tipo'=> $i
+	// 								);
+	// 								$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+	// 							}
+	// 						}
+	// 					}
+						
+	// 				}
 	// 			}
 				
 	// 		}
 	// 	}
 	// }
 
-	// //Exames Clínicos
-	// $table_exames_clinicos = "exames_clinicos";
-	// // eletrocardiograma 
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'eletro_date_'.$i;
-	// 	$valor = 'eletro_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['eletro'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Anormal';
-	// 		}
+	//Exames Clínicos
+	$table_exames_clinicos = "exames_clinicos";
+	// eletrocardiograma 
+	for($i=1; $i < 5; $i++){
+		$date = 'eletro_date_'.$i;
+		$valor = 'eletro_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['eletro'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Anormal';
+			}
 
-	// 		$data_eletro = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'Eletrocardiograma',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['eletro_obs'],
-	// 			'valor'=> $_POST['eletro'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
+			$data_eletro = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'Eletrocardiograma',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['eletro_obs'],
+				'valor'=> $_POST['eletro'],
+				'texto' => $_POST[$valor]
+			);
 
-	// 		$wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
-	// 	}
-	// }
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Eletrocardiograma" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Eletrocardiograma', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_eletro, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
+			}
+			
+		}
+	}
 
-	// // Ecocardiograma 
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'eco_date_'.$i;
-	// 	$valor = 'eco_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['eco'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Anormal';
-	// 		}
+	// Ecocardiograma 
+	for($i=1; $i < 5; $i++){
+		$date = 'eco_date_'.$i;
+		$valor = 'eco_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['eco'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Anormal';
+			}
+			$data_eco = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'Ecocardiograma',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['eco_obs'],
+				'valor'=> $_POST['eco'],
+				'texto' => $_POST[$valor]
+			);
 
-	// 		$data_eco = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'Ecocardiograma',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['eco_obs'],
-	// 			'valor'=> $_POST['eco'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Ecocardiograma" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Ecocardiograma', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_eco, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
+			}
+		}
+	}
 
-	// 		$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
-	// 	}
-	// }
+	// Holter 
+	for($i=1; $i < 5; $i++){
+		$date = 'holter_date_'.$i;
+		$valor = 'holter_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['holter'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Anormal';
+			}
 
-	// // Holter 
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'holter_date_'.$i;
-	// 	$valor = 'holter_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['holter'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Anormal';
-	// 		}
+			$data_holter = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'Holter',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['holter_obs'],
+				'valor'=> $_POST['holter'],
+				'texto' => $_POST[$valor]
+			);
 
-	// 		$data_eco = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'Holter',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['holter_obs'],
-	// 			'valor'=> $_POST['holter'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Holter" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Holter', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_holter, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_holter, $format );
+			}
+			
+		}
+	}
 
-	// 		$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
-	// 	}
-	// }
+	// RX Coração 
+	for($i=1; $i < 5; $i++){
+		$date = 'rx_co_date_'.$i;
+		$valor = 'rx_co_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['rx_coracao'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Dilatação';
+			}
 
-	// // RX Coração 
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'rx_co_date_'.$i;
-	// 	$valor = 'rx_co_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['rx_coracao'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Dilatação';
-	// 		}
+			$data_rx_co = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'RX Coração',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['rx_co_obs'],
+				'valor'=> $_POST['rx_coracao'],
+				'texto' => $_POST[$valor]
+			);
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "RX Coração" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'RX Coração', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_rx_co, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
+			}
+		}
+	}
 
-	// 		$data_rx_co = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'RX Coração',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['rx_co_obs'],
-	// 			'valor'=> $_POST['rx_coracao'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
+	// RX Esôfago 
+	for($i=1; $i < 5; $i++){
+		$date = 'rx_eso_date_'.$i;
+		$valor = 'rx_eso_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['rx_esofago'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Dilatação';
+			}
 
-	// 		$wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
-	// 	}
-	// }
+			$data_rx_eso = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'RX Esôfago',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['rx_eso_obs'],
+				'valor'=> $_POST['rx_esofago'],
+				'texto' => $_POST[$valor]
+			);
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "RX Esôfago" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'RX Esôfago', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_rx_eso, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
+			}
+		}
+	}
 
-	// // RX Esôfago 
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'rx_eso_date_'.$i;
-	// 	$valor = 'rx_eso_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['rx_esofago'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Dilatação';
-	// 		}
+	// Enema Opaco
+	for($i=1; $i < 5; $i++){
+		$date = 'enema_date_'.$i;
+		$valor = 'enema_valor_'.$i;
+		if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00' && $_POST[$date] != ''){
+			if($_POST['enema'] == '1'){
+				$tipo = 'Normal';
+			}else{
+				$tipo = 'Dilatação';
+			}
 
-	// 		$data_rx_eso = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'RX Esôfago',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['rx_eso_obs'],
-	// 			'valor'=> $_POST['rx_esofago'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
-
-	// 		$wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
-	// 	}
-	// }
-
-	// // Enema Opaco
-	// for($i=1; $i < 5; $i++){
-	// 	$date = 'enema_date_'.$i;
-	// 	$valor = 'enema_valor_'.$i;
-	// 	if(isset($_POST[$date]) && $_POST[$date] != '0000-00-00'){
-	// 		if($_POST['enema'] == '1'){
-	// 			$tipo = 'Normal';
-	// 		}else{
-	// 			$tipo = 'Dilatação';
-	// 		}
-
-	// 		$data_enema = array(
-	// 			'num_paciente'=> $_POST['num_paciente'],
-	// 			'nome'=> $tipo,
-	// 			'nome_exame'=> 'Enema Opaco',
-	// 			'data'=> $_POST[$date],
-	// 			'obs'=> $_POST['enema_obs'],
-	// 			'valor'=> $_POST['enema'],
-	// 			'texto' => $_POST[$valor]
-	// 		);
-
-	// 		$wpdb->insert( $table_exames_clinicos, $data_enema, $format );
-	// 	}
-	// }	
+			$data_enema = array(
+				'num_paciente'=> $_POST['num_paciente'],
+				'nome'=> $tipo,
+				'nome_exame'=> 'Enema Opaco',
+				'data'=> $_POST[$date],
+				'coleta'=> $i,
+				'obs'=> $_POST['enema_obs'],
+				'valor'=> $_POST['enema'],
+				'texto' => $_POST[$valor]
+			);
+			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Enema Opaco" AND coleta = '.$i);
+			if($result){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Enema Opaco', 'coleta'=> $i);
+				$wpdb->update( $table_exames_clinicos, $data_enema, $where, $format = null, $where_format = null);
+			} else {
+				$wpdb->insert( $table_exames_clinicos, $data_enema, $format );
+			}
+			
+		}
+	}	
 
 }
 
@@ -1216,323 +1496,360 @@ include "layout/header.php";
 
 							</div>
 						</fieldset>
-						<div id="residencia1" class="residencia display_none">
-							<fieldset class="residencias">
-								<div class="div_full">
-									<h6>RESIDÊNCIA 1</h6>
-									<div>
+						<?php 
+						$qnt_residencia = count($obj_residencia);
+						$i=1;
+						$j=2;
+						if($obj_residencia){
+							foreach ($obj_residencia as $r) {
+						?>	
+							<div id="residencia<?php echo $i; ?>" class="residencia">
+								<fieldset class="residencias">
+									<div class="div_full">
+										<h6>RESIDÊNCIA <?php echo $r->num_residencia; ?></h6>
 										<div>
-											<label>PERÍODO:</label>	
-											<input type="text" name="periodo1" value="">
-										</div>							
+											<div>
+												<label>PERÍODO:</label>	
+												<input type="text" name="periodo_resid_<?php echo $i; ?>" value="<?php echo $r->periodo; ?>">
+												<input type="hidden" name="num_residencia<?php echo $i; ?>" value="<?php echo $i; ?>">
+											</div>							
+										</div>
+										<div class="religiao">
+											<label>Área:</label>
+											<?php if($r->area == "Urbana"){ ?>	
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Urbana" checked>Urbana
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Rural">Rural
+												</div>
+											<?php } else { ?>
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Urbana">Urbana
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Rural" checked>Rural
+												</div>
+											<?php } ?>
+										</div>
+										<div class="religiao">
+												<label>Tipo de Cobertura:</label>	
+												<?php if($r->tipo_cobertura == "Palha"){ ?>
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $i; ?>" value="Palha" checked>Palha
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $i; ?>" value="Telha">Telha
+													</div>
+												<?php } else { ?>
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $i; ?>" value="Palha">Palha
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $i; ?>" value="Telha" checked>Telha
+													</div>
+												<?php } ?>
+											</div>
 									</div>
-									
-									<div class="religiao">
-										<label>Área:</label>	
-										<div class="div_radio">
-											<input type="radio" name="area1" value="Urbana">Urbana
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="area1" value="Rural">Rural
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Tipo de Cobertura:</label>	
-										<div class="div_radio">
-											<input type="radio" name="cobertura1" value="Palha">Palha
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="cobertura1" value="Telha">Telha
-										</div>
-									</div>
-								</div>
-								<div class="div_full">
-									<div class="div_maior religiao">
-										<label>Tipo de casa:</label>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa1" value="Tijolo com reboco">Tijolo com reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa1" value="Tijolo sem reboco">Tijolo sem reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa1" value="Pau-à-pique e barro">Pau-à-pique e barro
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Peridomicílio:</label>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio1" value="Galinheiro">Galinheiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio1" value="Chiqueiro">Chiqueiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio" value="Currais">Currais
-										</div>
-									</div>
-								</div>
-							</fieldset>
+									<div class="div_full">
+										<div class="div_maior religiao">
+											<label>Tipo de casa:</label>
+											<?php if($r->tipo_casa == "Tijolo com reboco"){ ?>	
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo com reboco" checked>Tijolo com reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo sem reboco">Tijolo sem reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Pau-à-pique e barro">Pau-à-pique e barro
+												</div>
+											<?php } else if($r->tipo_casa == "Tijolo sem reboco"){ ?>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo com reboco">Tijolo com reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo sem reboco" checked>Tijolo sem reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Pau-à-pique e barro">Pau-à-pique e barro
+												</div>
+											<?php } else { ?>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo com reboco">Tijolo com reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo sem reboco">Tijolo sem reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Pau-à-pique e barro" checked>Pau-à-pique e barro
+												</div>
 
-							<fieldset>
-								<label>Animais domésticos:</label>
-								<div class="div_media religiao">
-									<div class="div_radio">
-										<input type="radio" name="animais1" value="Cães">Cães
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais1" value="Gatos">Gatos
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais1" value="Pássaros">Pássaros
-									</div>
-								</div>
-								<div class="div_media">
-									Quantidade de familiares:
-									<input type="text" name="qnt-familiares1" value="">
-								</div>
+											<?php } ?>
+										</div>
+										<div class="religiao">
+											<label>Peridomicílio:</label>
+											<?php if($r->peridomicilio == "Galinheiro"){ ?>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Galinheiro" checked>Galinheiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Chiqueiro">Chiqueiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Currais">Currais
+												</div>
+											<?php } else if($r->peridomicilio == "Chiqueiro"){ ?>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Galinheiro">Galinheiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Chiqueiro" checked>Chiqueiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Currais">Currais
+												</div>
+											<?php } else { ?>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Galinheiro">Galinheiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Chiqueiro">Chiqueiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Currais" checked>Currais
+												</div>
+											<?php } ?>
 
-							</fieldset>
-							<a href="javascript:void(0);" id="resid2" class="btn btn-warning">Mais</a>
-						</div>
+										</div>
+									</div>
+								</fieldset>
+								<fieldset>
+									<label>Animais domésticos:</label>
+									<div class="div_media religiao">
+									<?php if($r->animais == "Cães"){ ?>	
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Cães" checked>Cães
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Gatos">Gatos
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Pássaros">Pássaros
+											</div>
+									<?php }else if($r->animais == "Gatos"){ ?>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Cães">Cães
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Gatos" checked>Gatos
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Pássaros">Pássaros
+											</div>
+									<?php }else { ?>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Cães">Cães
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Gatos">Gatos
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Pássaros" checked>Pássaros
+											</div>
+									<?php } ?>
+									</div>
+									<div class="div_media">
+										Quantidade de familiares:
+										<input type="text" name="qnt-familiares<?php echo $i; ?>" value="<?php echo $r->qnt_familiares; ?>">
+									</div>
+								</fieldset>
+								<?php if($y<4){ ?>
+									<a href="javascript:void(0);" id="resid<?php echo $j; ?>" class="btn btn-warning">Mais</a>
+								<?php } ?>
+							</div>
+						<?php	
+							$i++;	
+							$j++;
+							}
+							if($qnt_residencia > 0 && $qnt_residencia < 5){ 
+								
+								for($k = $i++; $k < 5; $k++){
+							?>
+									<div id="residencia<?php echo $k; ?>" class="residencia display_none">
+										<fieldset class="residencias">
+											<div class="div_full">
+												<h6>RESIDÊNCIA <?php echo $k; ?></h6>
+												<div>
+													<div>
+														<label>PERÍODO:</label>	
+														<input type="text" name="periodo_resid_<?php echo $k; ?>" value="">
+														<input type="hidden" name="num_residencia<?php echo $k; ?>" value="<?php echo $k; ?>">
+													</div>							
+												</div>
+												
+												<div class="religiao">
+													<label>Área:</label>	
+													<div class="div_radio">
+														<input type="radio" name="area<?php echo $k; ?>" value="Urbana">Urbana
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="area<?php echo $k; ?>" value="Rural">Rural
+													</div>
+												</div>
+												<div class="religiao">
+													<label>Tipo de Cobertura:</label>	
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $k; ?>" value="Palha">Palha
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="cobertura<?php echo $k; ?>" value="Telha">Telha
+													</div>
+												</div>
+											</div>
+											<div class="div_full">
+												<div class="div_maior religiao">
+													<label>Tipo de casa:</label>
+													<div class="div_radio">
+														<input type="radio" name="tipo-casa<?php echo $k; ?>" value="Tijolo com reboco">Tijolo com reboco
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="tipo-casa<?php echo $k; ?>" value="Tijolo sem reboco">Tijolo sem reboco
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="tipo-casa<?php echo $k; ?>" value="Pau-à-pique e barro">Pau-à-pique e barro
+													</div>
+												</div>
+												<div class="religiao">
+													<label>Peridomicílio:</label>
+													<div class="div_radio">
+														<input type="radio" name="predomicilio<?php echo $k; ?>" value="Galinheiro">Galinheiro
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="predomicilio<?php echo $k; ?>" value="Chiqueiro">Chiqueiro
+													</div>
+													<div class="div_radio">
+														<input type="radio" name="predomicilio<?php echo $k; ?>" value="Currais">Currais
+													</div>
+												</div>
+											</div>
+										</fieldset>
 
-						<div id="residencia2" class="residencia display_none">
-							<fieldset class="residencias">
-								<div class="div_full">
-									<h6>RESIDÊNCIA 2</h6>
-									<div>
-										<div>
-											<label>PERÍODO:</label>	
-											<input type="text" name="periodo2" value="">
-										</div>							
+										<fieldset>
+											<label>Animais domésticos:</label>
+											<div class="div_media religiao">
+												<div class="div_radio">
+													<input type="radio" name="animais<?php echo $k; ?>" value="Cães">Cães
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="animais<?php echo $k; ?>" value="Gatos">Gatos
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="animais<?php echo $k; ?>" value="Pássaros">Pássaros
+												</div>
+											</div>
+											<div class="div_media">
+												Quantidade de familiares:
+												<input type="text" name="qnt-familiares<?php echo $k; ?>" value="">
+											</div>
+										</fieldset>
+										<?php $y=$k+1; 
+											if($k < 4) { ?>
+												<a href="javascript:void(0);" id="resid<?php echo $y; ?>" class="btn btn-warning">Mais</a>
+										<?php $y++;
+											} ?>
 									</div>
-									
-									<div class="religiao">
-										<label>Área:</label>	
-										<div class="div_radio">
-											<input type="radio" name="area2" value="Urbana">Urbana
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="area2" value="Rural">Rural
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Tipo de Cobertura:</label>	
-										<div class="div_radio">
-											<input type="radio" name="cobertura2" value="Palha">Palha
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="cobertura2" value="Telha">Telha
-										</div>
-									</div>
-								</div>
-								<div class="div_full">
-									<div class="div_maior religiao">
-										<label>Tipo de casa:</label>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa2" value="Tijolo com reboco">Tijolo com reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa2" value="Tijolo sem reboco">Tijolo sem reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa2" value="Pau-à-pique e barro">Pau-à-pique e barro
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Peridomicílio:</label>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio2" value="Galinheiro">Galinheiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio2" value="Chiqueiro">Chiqueiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio2" value="Currais">Currais
-										</div>
-									</div>
-								</div>
-							</fieldset>
-
-							<fieldset>
-								<label>Animais domésticos:</label>
-								<div class="div_media religiao">
-									<div class="div_radio">
-										<input type="radio" name="animais2" value="Cães">Cães
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais2" value="Gatos">Gatos
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais2" value="Pássaros">Pássaros
-									</div>
-								</div>
-								<div class="div_media">
-									Quantidade de familiares:
-									<input type="text" name="qnt-familiares2" value="">
-								</div>
-							</fieldset>
-							<a href="javascript:void(0);" id="resid3" class="btn btn-warning">Mais</a>
-						</div>
-
-						<div id="residencia3" class="residencia display_none">
-							<fieldset class="residencias">
-								<div class="div_full">
-									<h6>RESIDÊNCIA 3</h6>
-									<div>
-										<div>
-											<label>PERÍODO:</label>	
-											<input type="text" name="periodo3" value="">
-										</div>							
-									</div>
-									
-									<div class="religiao">
-										<label>Área:</label>	
-										<div class="div_radio">
-											<input type="radio" name="area3" value="Urbana">Urbana
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="area3" value="Rural">Rural
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Tipo de Cobertura:</label>	
-										<div class="div_radio">
-											<input type="radio" name="cobertura3" value="Palha">Palha
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="cobertura3" value="Telha">Telha
-										</div>
-									</div>
-								</div>
-								<div class="div_full">
-									<div class="div_maior religiao">
-										<label>Tipo de casa:</label>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa3" value="Tijolo com reboco">Tijolo com reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa3" value="Tijolo sem reboco">Tijolo sem reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa3" value="Pau-à-pique e barro">Pau-à-pique e barro
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Peridomicílio:</label>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio3" value="Galinheiro">Galinheiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio3" value="Chiqueiro">Chiqueiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio3" value="Currais">Currais
-										</div>
-									</div>
-								</div>
-							</fieldset>
-
-							<fieldset>
-								<label>Animais domésticos:</label>
-								<div class="div_media religiao">
-									<div class="div_radio">
-										<input type="radio" name="animais3" value="Cães">Cães
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais3" value="Gatos">Gatos
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais3" value="Pássaros">Pássaros
-									</div>
-								</div>
-								<div class="div_media">
-									Quantidade de familiares:
-									<input type="text" name="qnt-familiares3" value="">
-								</div>
-							</fieldset>
-							<a href="javascript:void(0);" id="resid4" class="btn btn-warning">Mais</a>
-						</div>
-
-						<div id="residencia4" class="residencia display_none">
-							<fieldset class="residencias">
-								<div class="div_full">
-									<h6>RESIDÊNCIA 4</h6>
-									<div>
-										<div>
-											<label>PERÍODO:</label>	
-											<input type="text" name="periodo4" value="">
-										</div>							
-									</div>
-									
-									<div class="religiao">
-										<label>Área:</label>	
-										<div class="div_radio">
-											<input type="radio" name="area4" value="Urbana">Urbana
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="area4" value="Rural">Rural
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Tipo de Cobertura:</label>	
-										<div class="div_radio">
-											<input type="radio" name="cobertura4" value="Palha">Palha
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="cobertura4" value="Telha">Telha
-										</div>
-									</div>
-								</div>
-								<div class="div_full">
-									<div class="div_maior religiao">
-										<label>Tipo de casa:</label>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa4" value="Tijolo com reboco">Tijolo com reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa4" value="Tijolo sem reboco">Tijolo sem reboco
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="tipo-casa4" value="Pau-à-pique e barro">Pau-à-pique e barro
-										</div>
-									</div>
-									<div class="religiao">
-										<label>Peridomicílio:</label>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio4" value="Galinheiro">Galinheiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio4" value="Chiqueiro">Chiqueiro
-										</div>
-										<div class="div_radio">
-											<input type="radio" name="predomicilio4" value="Currais">Currais
-										</div>
-									</div>
-								</div>
-							</fieldset>
-
-							<fieldset>
-								<label>Animais domésticos:</label>
-								<div class="div_media religiao">
-									<div class="div_radio">
-										<input type="radio" name="animais4" value="Cães">Cães
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais4" value="Gatos">Gatos
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="animais4" value="Pássaros">Pássaros
-									</div>
-								</div>
-								<div class="div_media">
-									Quantidade de familiares:
-									<input type="text" name="qnt-familiares4" value="">
-								</div>
-							</fieldset>
+					<?php  		}
+							}
+						} else { 
+							for ($i=1; $i < 5; $i++) { 
 							
-						</div>
-					</div>
+							?>
+								<div id="residencia<?php echo $i; ?>" class="residencia display_none">
+									<fieldset class="residencias">
+										<div class="div_full">
+											<h6>RESIDÊNCIA <?php echo $i; ?></h6>
+											<div>
+												<div>
+													<label>PERÍODO:</label>	
+													<input type="text" name="periodo_resid_<?php echo $i; ?>" value="">
+													<input type="hidden" name="num_residencia<?php echo $i; ?>" value="<?php echo $i; ?>">
+												</div>							
+											</div>
+											
+											<div class="religiao">
+												<label>Área:</label>	
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Urbana">Urbana
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="area<?php echo $i; ?>" value="Rural">Rural
+												</div>
+											</div>
+											<div class="religiao">
+												<label>Tipo de Cobertura:</label>	
+												<div class="div_radio">
+													<input type="radio" name="cobertura<?php echo $i; ?>" value="Palha">Palha
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="cobertura<?php echo $i; ?>" value="Telha">Telha
+												</div>
+											</div>
+										</div>
+										<div class="div_full">
+											<div class="div_maior religiao">
+												<label>Tipo de casa:</label>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo com reboco">Tijolo com reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Tijolo sem reboco">Tijolo sem reboco
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="tipo-casa<?php echo $i; ?>" value="Pau-à-pique e barro">Pau-à-pique e barro
+												</div>
+											</div>
+											<div class="religiao">
+												<label>Peridomicílio:</label>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Galinheiro">Galinheiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Chiqueiro">Chiqueiro
+												</div>
+												<div class="div_radio">
+													<input type="radio" name="predomicilio<?php echo $i; ?>" value="Currais">Currais
+												</div>
+											</div>
+										</div>
+									</fieldset>
+
+									<fieldset>
+										<label>Animais domésticos:</label>
+										<div class="div_media religiao">
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Cães">Cães
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Gatos">Gatos
+											</div>
+											<div class="div_radio">
+												<input type="radio" name="animais<?php echo $i; ?>" value="Pássaros">Pássaros
+											</div>
+										</div>
+										<div class="div_media">
+											Quantidade de familiares:
+											<input type="text" name="qnt-familiares<?php echo $i; ?>" value="">
+										</div>
+									</fieldset>
+									<?php $j=2; 
+										if($i < 4) { ?>
+											<a href="javascript:void(0);" id="resid<?php echo $j; ?>" class="btn btn-warning">Mais</a>
+									<?php $j++;
+										} ?>
+								</div>
+						<?php }
+						}	?>
 
 					<div class="sessao row-fluid">
 						<h5>Aspectos Relacionados à doença de chagas</h5>
@@ -1856,7 +2173,7 @@ include "layout/header.php";
 												<input type='text' name='indicacao".$i."' value='".$med->indicacao."'>
 											</div>
 											<div class='span3'>
-												<input type='text' name='resposta".$i."' value='".$med->resposta."'>
+												<input type='text' name='resposta_".$i."' value='".$med->resposta."'>
 											</div>
 											<div class='span3'>
 												<input type='text' name='periodo".$i."' value='".$med->periodo."' class='input_menor'>
@@ -1881,7 +2198,7 @@ include "layout/header.php";
 												<input type='text' name='indicacao".$i."' value=''>
 											</div>
 											<div class='span3'>
-												<input type='text' name='resposta".$i."' value=''>
+												<input type='text' name='resposta_".$i."' value=''>
 											</div>
 											<div class='span3'>
 												<input type='text' name='periodo".$i."' value='' class='input_menor'>
@@ -1899,7 +2216,7 @@ include "layout/header.php";
 													<input type='text' name='indicacao".$i."' value=''>
 												</div>
 												<div class='span3'>
-													<input type='text' name='resposta".$i."' value=''>
+													<input type='text' name='resposta_".$i."' value=''>
 												</div>
 												<div class='span3'>
 													<input type='text' name='periodo".$i."' value='' class='input_menor'>
@@ -1916,13 +2233,14 @@ include "layout/header.php";
 						<h5>Medicamentos que utiliza (uso contínuo)</h5>
 						<?php $qnt_q_utiliza = count($obj_med_que_utiliza); 
 						 	$i = 1;
+						 	$q = 2;
 							foreach ($obj_med_que_utiliza as $m) {
 								if($i < 8 && $med->medicamento !='' && $i != 7){
-									
 								echo "<div class='linha'>
 										<div class='span3 primeiro'>
 											<label>Medicamento</label>
 											<input type='text' name='medicamento_uso".$i."' value='".$m->medicamento."'>
+											<input type='hidden' name='num_med".$i."' value='".$i."'>
 										</div>
 										<div class='span3'>
 											<label>Posologia</label>
@@ -1951,24 +2269,25 @@ include "layout/header.php";
 											<div class='span3'>
 											<label>Início</label>
 											<input type='text' name='inicio_uso".$i."' value='".$m->inicio."' class='input_menor'>
-											<a href='javascript:void(0);' class='medic_uso".$i."' mais'><img src='";
+											<a href='javascript:void(0);' class='medic_uso".$q." mais'><img src='";
 											bloginfo('template_url'); 
 											echo "/img/mais.png'></a>
 										</div>
 									</div>";
 									$i++;
+									$q++;
 								}
 							}
 
-							if($qnt_q_utiliza < 8){
+							if($qnt_q_utiliza < 9){
 								$j = $qnt_q_utiliza +1;
 								for($i=$j; $i < 9; $i++){
-									$q = $i+1;
 									if($i != 8){
 										echo "<div class='linha uso_linha".$i."'>
 												<div class='span3 primeiro'>
 													<label>Medicamento</label>
 													<input type='text' name='medicamento_uso".$i."' value=''>
+													<input type='hidden' name='num_med".$i."' value='".$i."'>
 												</div>
 												<div class='span3'>
 													<label>Posologia</label>
@@ -1997,16 +2316,18 @@ include "layout/header.php";
 													<div class='span3'>
 													<label>Início</label>
 													<input type='text' name='inicio_uso".$i."' value='' class='input_menor'>
-													<a href='javascript:void(0);' class='medic_uso".$i."' mais'><img src='";
+													<a href='javascript:void(0);' class='medic_uso".$q." mais'><img src='";
 													bloginfo('template_url'); 
 													echo "/img/mais.png'></a>
 												</div>
 											</div>";
+											$q++;
 										}else {
 											echo "<div class='linha uso_linha".$i."'>
 												<div class='span3 primeiro'>
 													<label>Medicamento</label>
 													<input type='text' name='medicamento_uso".$i."' value=''>
+													<input type='hidden' name='num_med".$i."' value='".$i."'>
 												</div>
 												<div class='span3'>
 													<label>Posologia</label>
@@ -2039,7 +2360,6 @@ include "layout/header.php";
 											</div>";
 
 										}
-										$q++;
 									}
 								}
 						?>
@@ -2426,45 +2746,45 @@ include "layout/header.php";
 								<?php $tipo = explode(";", $alimentacao->tipo_alimentacao); ?>
 
 								<?php if(in_array("Rica em massas", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em massas" checked>Rica em massas
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em massas" checked>Rica em massas
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em massas">Rica em massas
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em massas">Rica em massas
 								<?php } ?>
 							</div>
 							<div class="div_check">
 								<?php if(in_array("Rica em frutas", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas" checked>Rica em frutas
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em frutas" checked>Rica em frutas
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em frutas">Rica em frutas
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em frutas">Rica em frutas
 								<?php } ?>
 							</div>
 							<div class="div_check">
 								<?php if(in_array("Rica em carne vermelha", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha" checked>Rica em carne vermelha
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne vermelha" checked>Rica em carne vermelha
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne vermelha">Rica em carne vermelha
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne vermelha">Rica em carne vermelha
 								<?php } ?>
 								
 							</div>
 							<div class="div_check">
 								<?php if(in_array("Rica em verdura", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura" checked>Rica em verdura
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em verdura" checked>Rica em verdura
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em verdura">Rica em verdura
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em verdura">Rica em verdura
 								<?php } ?>
 							</div>
 							<div class="div_check">
 								<?php if(in_array("Rica em carne branca", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca" checked>Rica em carne branca
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne branca" checked>Rica em carne branca
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em carne branca">Rica em carne branca
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em carne branca">Rica em carne branca
 								<?php } ?>
 							</div>
 							<div class="div_check">
 								<?php if(in_array("Rica em óleos e gorduras", $tipo)){ ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras" checked>Rica em óleos e gorduras
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em óleos e gorduras" checked>Rica em óleos e gorduras
 								<?php } else { ?>
-									<input type="checkbox" name="tipo_alimentacao" value="Rica em óleos e gorduras">Rica em óleos e gorduras
+									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em óleos e gorduras">Rica em óleos e gorduras
 								<?php } ?>
 							</div>
 							<div class="">
@@ -2725,7 +3045,7 @@ include "layout/header.php";
 								foreach ($eco_dados as $e) {
 									echo "<div class='span1 primeiro col'>
 											<input type='date' name='eco_date_".$i."' value='".$e->data."'>
-											<input type='text' name='eco_date_".$i."' value='".$e->texto."'>
+											<input type='text' name='eco_valor_".$i."' value='".$e->texto."'>
 										</div>";
 										$i++;
 								}
@@ -2734,7 +3054,7 @@ include "layout/header.php";
 									for($k=count($eco_dados)+1; $k < 5; $k++){
 										echo "<div class='span1 primeiro col'>
 											<input type='date' name='eco_date_".$k."' value=''>
-											<input type='text' name='eco_date_".$k."' value=''>
+											<input type='text' name='eco_valor_".$k."' value=''>
 										</div>";
 									}
 								}
@@ -2774,7 +3094,7 @@ include "layout/header.php";
 								foreach ($holter_dados as $h) {
 									echo "<div class='span1 primeiro col'>
 											<input type='date' name='holter_date_".$i."' value='".$h->data."'>
-											<input type='text' name='holter_date_".$i."' value='".$h->texto."'>
+											<input type='text' name='holter_valor_".$i."' value='".$h->texto."'>
 										</div>";
 										$i++;
 								}
@@ -2783,7 +3103,7 @@ include "layout/header.php";
 									for($k=count($holter_dados)+1; $k < 5; $k++){
 										echo "<div class='span1 primeiro col'>
 											<input type='date' name='holter_date_".$k."' value=''>
-											<input type='text' name='holter_date_".$k."' value=''>
+											<input type='text' name='holter_valor_".$k."' value=''>
 										</div>";
 									}
 								}
@@ -2823,8 +3143,8 @@ include "layout/header.php";
 								$j=count($rx_coracao_dados);
 								foreach ($rx_coracao_dados as $rx) {
 									echo "<div class='span1 primeiro col'>
-											<input type='date' name='holter_date_".$i."' value='".$rx->data."'>
-											<input type='text' name='holter_date_".$i."' value='".$rx->texto."'>
+											<input type='date' name='rx_co_date_".$i."' value='".$rx->data."'>
+											<input type='text' name='rx_co_valor_".$i."' value='".$rx->texto."'>
 										</div>";
 										$i++;
 								}
@@ -2832,8 +3152,8 @@ include "layout/header.php";
 								if($j < 5){
 									for($k=count($rx_coracao_dados)+1; $k < 5; $k++){
 										echo "<div class='span1 primeiro col'>
-											<input type='date' name='holter_date_".$k."' value=''>
-											<input type='text' name='holter_date_".$k."' value=''>
+											<input type='date' name='rx_co_date_".$k."' value=''>
+											<input type='text' name='rx_co_valor_".$k."' value=''>
 										</div>";
 									}
 								}
@@ -2873,7 +3193,7 @@ include "layout/header.php";
 								foreach ($rx_esofago_dados as $rx) {
 									echo "<div class='span1 primeiro col'>
 											<input type='date' name='rx_eso_date_".$i."' value='".$rx->data."'>
-											<input type='text' name='rx_eso_date_".$i."' value='".$rx->texto."'>
+											<input type='text' name='rx_eso_valor_".$i."' value='".$rx->texto."'>
 										</div>";
 										$i++;
 								}
@@ -2882,7 +3202,7 @@ include "layout/header.php";
 									for($k=count($rx_esofago_dados)+1; $k < 5; $k++){
 										echo "<div class='span1 primeiro col'>
 											<input type='date' name='rx_eso_date_".$k."' value=''>
-											<input type='text' name='rx_eso_date_".$k."' value=''>
+											<input type='text' name='rx_eso_valor_".$k."' value=''>
 										</div>";
 									}
 								}
@@ -2922,7 +3242,7 @@ include "layout/header.php";
 								foreach ($rx_esofago_dados as $rx) {
 									echo "<div class='span1 primeiro col'>
 											<input type='date' name='enema_date_".$i."' value='".$rx->data."'>
-											<input type='text' name='enema_date_".$i."' value='".$rx->texto."'>
+											<input type='text' name='enema_valor_".$i."' value='".$rx->texto."'>
 										</div>";
 										$i++;
 								}
@@ -2931,7 +3251,7 @@ include "layout/header.php";
 									for($k=count($rx_esofago_dados)+1; $k < 5; $k++){
 										echo "<div class='span1 primeiro col'>
 											<input type='date' name='enema_date_".$k."' value=''>
-											<input type='text' name='enema_date_".$k."' value=''>
+											<input type='text' name='enema_valor_".$k."' value=''>
 										</div>";
 									}
 								}
@@ -2960,9 +3280,7 @@ include "layout/header.php";
 					// }
 					?>
 			</div>
-
+		</div>
 			
-			
-			
-		</div> <!-- Fim da Div de Página -->
+	</div> <!-- Fim da Div de Página -->
 <?php include "layout/footer.php"; ?>

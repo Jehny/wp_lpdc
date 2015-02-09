@@ -167,9 +167,10 @@ if(isset($_POST['submit'])){
 				$peridomicilio = 'predomicilio'. $i;
 				$animais = 'animais' . $i;
 				$qnt = 'qnt-familiares' . $i;
-
+				$num_residencia = 'num_residencia'.$i;
 				$data_residencia = array(
 					'num_paciente'=> $_POST['num_paciente'],
+					'num_residencia'=>$_POST[$num_residencia],
 					'periodo'=> $_POST[$periodo],
 					'area'=> $_POST[$area],
 					'tipo_cobertura'=> $_POST[$cobertura],
@@ -194,6 +195,7 @@ if(isset($_POST['submit'])){
 
 			$data_problemas = array(
 				'num_paciente'=> $_POST['num_paciente'],
+				'num_problema'=> $i,
 				'problema'=> $_POST[$problema],
 				'controlado'=> $_POST[$problema_controlado],
 				'inicio'=> $_POST[$problema_data]
@@ -213,6 +215,7 @@ if(isset($_POST['submit'])){
 			$periodo = 'periodo' . $i;
 			$data_med_utilizados = array(
 				'num_paciente'=> $_POST['num_paciente'],
+				'num_med'=> $i,
 				'medicamento'=> $_POST[$medicamento],
 				'indicacao'=> $_POST[$indicacao],
 				'resposta'=> $_POST[$resposta],
@@ -239,6 +242,7 @@ if(isset($_POST['submit'])){
 			$data_med_utilizados = array(
 				'num_paciente'=> $_POST['num_paciente'],
 				'medicamento'=> $_POST[$medicamento],
+				'num_med'=> $i,
 				'posologia'=> $_POST[$posologia],
 				'indicado_por'=> $_POST[$indicado],
 				'ind_uso'=> $_POST[$indicacao_uso],
@@ -543,6 +547,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'Eletrocardiograma',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['eletro_obs'],
 				'valor'=> $_POST['eletro'],
 				'texto' => $_POST[$valor]
@@ -568,6 +573,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'Ecocardiograma',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['eco_obs'],
 				'valor'=> $_POST['eco'],
 				'texto' => $_POST[$valor]
@@ -593,6 +599,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'Holter',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['holter_obs'],
 				'valor'=> $_POST['holter'],
 				'texto' => $_POST[$valor]
@@ -618,6 +625,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'RX Coração',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['rx_co_obs'],
 				'valor'=> $_POST['rx_coracao'],
 				'texto' => $_POST[$valor]
@@ -643,6 +651,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'RX Esôfago',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['rx_eso_obs'],
 				'valor'=> $_POST['rx_esofago'],
 				'texto' => $_POST[$valor]
@@ -668,6 +677,7 @@ if(isset($_POST['submit'])){
 				'nome'=> $tipo,
 				'nome_exame'=> 'Enema Opaco',
 				'data'=> $_POST[$date],
+				'coleta'=> $i,
 				'obs'=> $_POST['enema_obs'],
 				'valor'=> $_POST['enema'],
 				'texto' => $_POST[$valor]

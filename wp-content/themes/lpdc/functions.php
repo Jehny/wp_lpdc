@@ -221,6 +221,100 @@ function atualizar_atendimento($num_atend, $num_paciente, $count_array, $array_v
 	}
 }
 
+function atualizar_revisao_sistema($num_sistema, $num_paciente, $count_array, $array_valores){
+	global $wpdb;
+
+	$table_sistema = 'revisao_sistemas';
+	$table_sistema_sintoma = 'revisao_sistemas_sintoma';
+	
+	//  Verifica se a quantidade do Array é menor, maior ou igual
+	$sistema_banco = buscar_revisao_sistemas_id($num_paciente, $num_sistema);
+	
+	$total_result_banco = count($sistema_banco);
+	$array_ids_banco = array();
+	
+	// pegar ids da consulta e colocar em um array
+	foreach ($sistema_banco as $key) {
+		array_push($array_ids_banco, $key->id);	
+	}
+
+	// verifica se a quantidade do banco é menor que a editada na tela
+	if($total_result_banco < $count_array){
+		$j = 1;
+		for($i=0; $i < $count_array; $i++){
+
+			// o if irá verificar se o contador é menor ou igual com a quantidade
+			// passada na tela para que seja possível fazer a atualização para os
+			// ids que já existem no banco
+			// Quando essa quantidade for maior será feita uma inserção
+			if($j<=$total_result_banco){
+				
+				$where = array('num_paciente'=> $num_paciente, 'id'=> $array_ids_banco[$i]); 
+				// $array de valores deve ser distribuido
+				$data_valores = array('sintoma'=>$array_valores[$i]);
+				$wpdb->update( $table_sistema_sintoma, $data_valores, $where, $format = null, $where_format = null );
+				
+			} 
+			else {
+				$array_dados = array(
+					'num_paciente'=> $num_paciente,
+					'id_sistema'=> $num_sistema,
+					'sintoma'=> $array_valores[$i]
+					);
+
+				// // Verificar se já existe uma linha referente ao sistema que deve ser cadastrado na tabela de revisão
+				// // de sistemas. Caso não haja a atualização irá inserir uma linha para o sistema indicado com o
+				// // número do paciente.
+				// $revisao_sistema = buscar_revisao_sistema($num_paciente, $num_sistema);
+				// if(!$revisao_sistema){
+				// 	$nome = nome_sistema($num_sistema);
+				// 	$array_dados_sistema = array(
+				// 	'num_paciente'=> $num_paciente,
+				// 	'sistema_nome'=> $nome,
+				// 	'sistema_id'=> $num_sistema
+				// 	);
+				// 	$wpdb->insert( $table_sistema, $array_dados_sistema, $format);
+				// }
+				$wpdb->insert( $table_sistema_sintoma, $array_dados, $format);
+			}
+				$j++;
+			
+		}
+	}
+	else if($total_result_banco > $count_array){
+
+		// verifica se a quantidade do banco é maior que a editada na tela
+		$j = 1;
+		for($i=0; $i < $total_result_banco; $i++){
+			// o if irá verificar se o contador é maior ou igual com a quantidade
+			// passada pelo banco para que seja possível fazer a atualização para os
+			// ids que já existem no banco
+			// Quando essa quantidade for maior será feita uma deleção
+			if($j<=$count_array){
+				$data_valores = array('sintoma'=>$array_valores[$i]);
+				$where = array('num_paciente'=> $num_paciente, 'id'=> $array_ids_banco[$i]); 
+				$wpdb->update( $table_sistema_sintoma, $data_valores, $where, $format = null, $where_format = null );
+			} else {
+				$where = array('id'=> $array_ids_banco[$i]);
+				$wpdb->delete( $table_sistema_sintoma, $where, $where_format = null);
+			}
+
+			$j++;
+		}
+	} 
+	else {
+
+		// se a quantidade do banco for igual a que é passada pela tela
+		// será feita apenas um update
+		for($i=0; $i < $total_result_banco; $i++){
+			$where = array('num_paciente'=> $num_paciente, 'id'=> $array_ids_banco[$i]); 
+			$data_valores = array('sintoma'=>$array_valores[$i]);
+			$wpdb->update( $table_sistema_sintoma, $data_valores, $where, $format = null, $where_format = null );
+		}
+	}
+}
+
+
 function buscar_paciente_id($num_paciente){
 	global $wpdb;
 	$tipo = $wpdb->get_row('SELECT * FROM paciente WHERE num_paciente='. $num_paciente);
@@ -383,6 +477,12 @@ function buscar_revisao_sistemas_id($num_paciente, $id_sistema){
 	return $tipo; 
 }
 
+function buscar_revisao_sistema($num_paciente, $id_sistema){
+	global $wpdb;
+	$tipo = $wpdb->get_results('SELECT * FROM revisao_sistemas WHERE num_paciente='. $num_paciente . ' AND sistema_id = ' . $id_sistema);
+	return $tipo; 
+}
+
 function buscar_habitos_de_vida($num_paciente, $pratica){
 	global $wpdb;
 	$habitos = $wpdb->get_row("SELECT * FROM habitos_vida WHERE num_paciente=". $num_paciente . " AND pratica like '%" . $pratica . "%'");
@@ -400,6 +500,7 @@ function buscar_exames_clinicos_todos($num_paciente, $nome_exame){
 	$exames = $wpdb->get_results("SELECT * FROM exames_clinicos WHERE num_paciente=". $num_paciente . " AND nome_exame like '%" . $nome_exame . "%' ORDER BY data ASC");
 	return $exames;
 }
+
 
 // Metodos Ficha 3
 include 'opcoes_ficha_2.php';
