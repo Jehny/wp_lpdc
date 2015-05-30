@@ -182,13 +182,14 @@ $(function(){
 		qnt_deveria_tomado = Number($('#perg_aderencia_6').val());
 	 	porcentagem = (qnt_ingeridos/qnt_deveria_tomado)*100;
 	 	$('#porcentagem').val(porcentagem+"%");
-
+	 	$('#percent').html("<input type='hidden' name='porcentagem' value='"+porcentagem+"%'>");
 	});
 	$("#perg_aderencia_6").keyup(function() {
 		qnt_ingeridos = Number($('#perg_aderencia_5').val());
 		qnt_deveria_tomado = Number($('#perg_aderencia_6').val());
 	 	porcentagem = (qnt_ingeridos/qnt_deveria_tomado)*100;
 	 	$('#porcentagem').val(porcentagem+"%");
+	 	$('#percent').html("<input type='hidden' name='porcentagem' value='"+porcentagem+"%'>");
 	});
 
 	// Pegar valores de Avaliação
@@ -525,14 +526,14 @@ $(function(){
 	var perg_6_10= perg_6 + perg_10;
 	$('input:radio[name=resposta_6]').bind("click", function(ev) {
 		perg_6 = Number($('input:radio[name=resposta_6]:checked').val());
-		g_10 = Number($('input:radio[name=resposta_10]:checked').val());
+		perg_10 = Number($('input:radio[name=resposta_10]:checked').val());
 		perg_6_10 = perg_6 + perg_10;
 		$('#aspectos_sociais').html(perg_6_10);
 		$('#aspectos_sociais_2').val(perg_6_10);
 	});
 	$('input:radio[name=resposta_10]').bind("click", function(ev) {
 		perg_6 = Number($('input:radio[name=resposta_6]:checked').val());
-		g_10 = Number($('input:radio[name=resposta_10]:checked').val());
+		perg_10 = Number($('input:radio[name=resposta_10]:checked').val());
 		perg_6_10 = perg_6 + perg_10;
 		$('#aspectos_sociais').html(perg_6_10);
 		$('#aspectos_sociais_2').val(perg_6_10);
