@@ -31,412 +31,412 @@ if(isset($_POST['submit'])){
 	}else {
 		$escolaridade = $_POST['serie'];
 	}
-	// $data_paciente = array( 
-	// 	'pesquisador'=> $_POST['pesquisador'],
-	// 	'data'=> $_POST['data'],
-	// 	'nome'=> $_POST['nome'],
-	// 	'num_prontuario'=> $_POST['prontuario'], 
-	// 	'nome_mae'=> $_POST['mae'],
-	// 	'endereco'=> $_POST['endereco'],
-	// 	'telefones'=> $_POST['telefone'],
-	// 	'procedencia'=> $_POST['procedencia'],
-	// 	'qual'=> $_POST['nome_interior'],
-	// 	'estado'=> $_POST['estado'],
-	// 	'idoso'=> $_POST['idoso'],
-	// 	'cuidador'=> $_POST['cuidador'],
-	// 	'dt_nascimento'=> $_POST['dt_nascimento'],
-	// 	'local_nascimento'=> $_POST['local_nascimento'],
-	// 	'sexo'=> $_POST['sexo'],
-	// 	'trabalha'=> $_POST['trabalha'],
-	// 	'ocupacao'=> $_POST['ocupacao'],
-	// 	'escolaridade'=> $escolaridade,
-	// 	'renda'=> $_POST['renda-familiar'],
-	// 	'estado_civil'=> $_POST['estado-civil'],
-	// 	'peso'=> $_POST['peso'],
-	// 	'altura'=> $_POST['altura'],
-	// 	'imc'=> $_POST['imc'],
-	// 	'cor'=> $_POST['cor'],
-	// 	'religiao'=> $_POST['religiao'],
-	// 	'pratica'=> $_POST['religiao-pratica'],
-	// 	'plano_saude'=> $_POST['plano-saude'],
-	// 	'adquire_med'=> $_POST['adquire-medicamento'],
-	// 	'residiu'=> $_POST['residiu'],
-	// 	'tempo_doenca'=> $_POST['tempo-doenca'],
-	// 	'descoberta_doenca'=> $_POST['descoberta-doenca'],
-	// 	'sintomas_doenca'=> $_POST['sintomas-doenca'],
-	// 	'estagio_doenca'=> $_POST['estagio-doenca'],
-	// 	'historico'=> $_POST['historia-medica'],
-	// 	'possui_historico'=> $_POST['hist-fam-1'],
-	// 	'historico_morte'=> $_POST['hist-fam-2'],
-	// 	'historico_card'=> $_POST['hist-fam-3'],
-	// 	'ale_hist_ram'=> $_POST['alergia'],
-	// 	'ale_med_causador'=> $_POST['med_causador'],
-	// 	'ale_esp_ram'=> $_POST['RAM'],
-	// 	'ale_alimento'=> $_POST['alergia_alimento'],
-	// 	'ale_espec_alimento'=> $_POST['ale_alimento'],
-	// 	'ale_outros'=> $_POST['outros'],
-	// 	'qnt_comp_presc'=> $_POST['descoberta-doenca'],
-	// 	'dose_diaria'=> $_POST['descoberta-doenca'],
-	// 	'posologia'=> $_POST['descoberta-doenca'],
-	// 	'dose_total'=> $_POST['descoberta-doenca'],
-	// 	'evolucao'=> $_POST['evolucao_paciente']
-	// );
+	$data_paciente = array( 
+		'pesquisador'=> $_POST['pesquisador'],
+		'data'=> $_POST['data'],
+		'nome'=> $_POST['nome'],
+		'num_prontuario'=> $_POST['prontuario'], 
+		'nome_mae'=> $_POST['mae'],
+		'endereco'=> $_POST['endereco'],
+		'telefones'=> $_POST['telefone'],
+		'procedencia'=> $_POST['procedencia'],
+		'qual'=> $_POST['nome_interior'],
+		'estado'=> $_POST['estado'],
+		'idoso'=> $_POST['idoso'],
+		'cuidador'=> $_POST['cuidador'],
+		'dt_nascimento'=> $_POST['dt_nascimento'],
+		'local_nascimento'=> $_POST['local_nascimento'],
+		'sexo'=> $_POST['sexo'],
+		'trabalha'=> $_POST['trabalha'],
+		'ocupacao'=> $_POST['ocupacao'],
+		'escolaridade'=> $escolaridade,
+		'renda'=> $_POST['renda-familiar'],
+		'estado_civil'=> $_POST['estado-civil'],
+		'peso'=> $_POST['peso'],
+		'altura'=> $_POST['altura'],
+		'imc'=> $_POST['imc'],
+		'cor'=> $_POST['cor'],
+		'religiao'=> $_POST['religiao'],
+		'pratica'=> $_POST['religiao-pratica'],
+		'plano_saude'=> $_POST['plano-saude'],
+		'adquire_med'=> $_POST['adquire-medicamento'],
+		'residiu'=> $_POST['residiu'],
+		'tempo_doenca'=> $_POST['tempo-doenca'],
+		'descoberta_doenca'=> $_POST['descoberta-doenca'],
+		'sintomas_doenca'=> $_POST['sintomas-doenca'],
+		'estagio_doenca'=> $_POST['estagio-doenca'],
+		'historico'=> $_POST['historia-medica'],
+		'possui_historico'=> $_POST['hist-fam-1'],
+		'historico_morte'=> $_POST['hist-fam-2'],
+		'historico_card'=> $_POST['hist-fam-3'],
+		'ale_hist_ram'=> $_POST['alergia'],
+		'ale_med_causador'=> $_POST['med_causador'],
+		'ale_esp_ram'=> $_POST['RAM'],
+		'ale_alimento'=> $_POST['alergia_alimento'],
+		'ale_espec_alimento'=> $_POST['ale_alimento'],
+		'ale_outros'=> $_POST['outros'],
+		'qnt_comp_presc'=> $_POST['descoberta-doenca'],
+		'dose_diaria'=> $_POST['descoberta-doenca'],
+		'posologia'=> $_POST['descoberta-doenca'],
+		'dose_total'=> $_POST['descoberta-doenca'],
+		'evolucao'=> $_POST['evolucao_paciente']
+	);
 
-	// $wpdb->update( $table, $data_paciente, $where, $format = null, $where_format = null ); 
+	$redirect = $wpdb->update( $table, $data_paciente, $where, $format = null, $where_format = null ); 
 
 
 	// Atualizar tabela de atendimento_paciente
 	// loop para verificar se existe mais de de um atendimento e assim atualizar todos
-	// for ($j=1; $j < 7 ; $j++) { 
+	for ($j=1; $j < 7 ; $j++) { 
 		
-	// 	if(isset($_POST['atendimento_'.$j]) && count($_POST['atendimento_'.$j]) > 0){
-	// 		$i=0;
-	// 		$array_valores = array();
-	// 		foreach ($_POST['atendimento_'.$j] as $key => $value) { 
-	// 			array_push($array_valores, $value);
-	// 			$i++;
-	// 		}
+		if(isset($_POST['atendimento_'.$j]) && count($_POST['atendimento_'.$j]) > 0){
+			$i=0;
+			$array_valores = array();
+			foreach ($_POST['atendimento_'.$j] as $key => $value) { 
+				array_push($array_valores, $value);
+				$i++;
+			}
 
-	// 		$count_array = count($array_valores);
+			$count_array = count($array_valores);
 		
-	// 		atualizar_atendimento($j, $numero_paciente, $count_array, $array_valores, $_POST['data_atend_'.$j]);	
-	// 	}
-	// }
+			$redirect = atualizar_atendimento($j, $numero_paciente, $count_array, $array_valores, $_POST['data_atend_'.$j]);	
+		}
+	}
 
 	// Residencia
-	// $table_residencia = 'residencia';
-	// if($_POST['residiu'] == 'Não'){
+	$table_residencia = 'residencia';
+	if($_POST['residiu'] == 'Não'){
 
-	// 	for($i=1; $i<5; $i++){
-	// 		$periodo = 'periodo_resid_'. $i;
+		for($i=1; $i<5; $i++){
+			$periodo = 'periodo_resid_'. $i;
 			
-	// 		if(isset($_POST[$periodo]) && $_POST[$periodo] != ''){
+			if(isset($_POST[$periodo]) && $_POST[$periodo] != ''){
 
-	// 			$num_residencia = 'num_residencia'.$i;
+				$num_residencia = 'num_residencia'.$i;
 
-	// 			$where_residencia = array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=> $_POST[$num_residencia]);
-	// 			$area = 'area'.$i;
-	// 			$cobertura = 'cobertura'. $i;
-	// 			$casa = 'tipo-casa' .$i;
-	// 			$peridomicilio = 'predomicilio'. $i;
-	// 			$animais = 'animais' . $i;
-	// 			$qnt = 'qnt-familiares' . $i;
-	// 			$data_residencia = array (
-	// 				'num_residencia'=>$_POST[$num_residencia],
-	// 				'periodo'=>$_POST[$periodo],
-	// 				'area'=>$_POST[$area],
-	// 				'tipo_cobertura'=>$_POST[$cobertura],
-	// 				'tipo_casa'=> $_POST[$casa],
-	// 				'peridomicilio'=>  $_POST[$peridomicilio],
-	// 				'animais'=> $_POST[$animais],
-	// 				'qnt_familiares'=> $_POST[$qnt]
+				$where_residencia = array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=> $_POST[$num_residencia]);
+				$area = 'area'.$i;
+				$cobertura = 'cobertura'. $i;
+				$casa = 'tipo-casa' .$i;
+				$peridomicilio = 'predomicilio'. $i;
+				$animais = 'animais' . $i;
+				$qnt = 'qnt-familiares' . $i;
+				$data_residencia = array (
+					'num_residencia'=>$_POST[$num_residencia],
+					'periodo'=>$_POST[$periodo],
+					'area'=>$_POST[$area],
+					'tipo_cobertura'=>$_POST[$cobertura],
+					'tipo_casa'=> $_POST[$casa],
+					'peridomicilio'=>  $_POST[$peridomicilio],
+					'animais'=> $_POST[$animais],
+					'qnt_familiares'=> $_POST[$qnt]
 					
-	// 			);
-	// 			// Pesquisa se tem algum dado com o item que deseja fazer a atualização
-	// 			$result2 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_residencia='.$_POST[$num_residencia]);
-	// 			// Tenta fazer o update
-	// 			$result = $wpdb->update( $table_residencia, $data_residencia, $where_residencia, $format = null, $where_format = null ); 
-	// 			// Se a busca e o upadate falharem faz um inserte na tabela
-	// 			if(!$result && !$result2){
-	// 				$cobertura = 'cobertura'. $i;
-	// 				$casa = 'tipo-casa' .$i;
-	// 				$peridomicilio = 'predomicilio'. $i;
-	// 				$animais = 'animais' . $i;
-	// 				$qnt = 'qnt-familiares' . $i;
-	// 				$num_residencia = 'num_residencia'.$i;
-	// 				$data_residencia = array (
-	// 					'num_paciente'=>$_POST['num_paciente'],
-	// 					'num_residencia'=>$_POST[$num_residencia],
-	// 					'periodo'=>$_POST[$periodo],
-	// 					'area'=>$_POST[$area],
-	// 					'tipo_cobertura'=>$_POST[$cobertura],
-	// 					'tipo_casa'=> $_POST[$casa],
-	// 					'peridomicilio'=>  $_POST[$peridomicilio],
-	// 					'animais'=> $_POST[$animais],
-	// 					'qnt_familiares'=> $_POST[$qnt]
-	// 				);
-	// 				$wpdb->insert( $table_residencia, $data_residencia, $format );
-	// 			}
-	// 		} 
-	// 		else {
-	// 			$result3 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_residencia='. $i . ' AND num_paciente='.$_POST['num_paciente']);
-	// 			// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
-	// 			if($result3 && (trim($_POST['periodo_resid_'.$i] == "") || trim($_POST['area'.$i] == ""))){
-	// 				$where_residencia =  array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=>$i);
-	// 				$wpdb->delete( $table_residencia, $where_residencia, $where_format = null);
-	// 			}
-	// 		}
-	// 	}
-	// }
+				);
+				// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+				$result2 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_residencia='.$_POST[$num_residencia]);
+				// Tenta fazer o update
+				$result = $wpdb->update( $table_residencia, $data_residencia, $where_residencia, $format = null, $where_format = null ); 
+				// Se a busca e o upadate falharem faz um inserte na tabela
+				if(!$result && !$result2){
+					$cobertura = 'cobertura'. $i;
+					$casa = 'tipo-casa' .$i;
+					$peridomicilio = 'predomicilio'. $i;
+					$animais = 'animais' . $i;
+					$qnt = 'qnt-familiares' . $i;
+					$num_residencia = 'num_residencia'.$i;
+					$data_residencia = array (
+						'num_paciente'=>$_POST['num_paciente'],
+						'num_residencia'=>$_POST[$num_residencia],
+						'periodo'=>$_POST[$periodo],
+						'area'=>$_POST[$area],
+						'tipo_cobertura'=>$_POST[$cobertura],
+						'tipo_casa'=> $_POST[$casa],
+						'peridomicilio'=>  $_POST[$peridomicilio],
+						'animais'=> $_POST[$animais],
+						'qnt_familiares'=> $_POST[$qnt]
+					);
+					$redirect = $wpdb->insert( $table_residencia, $data_residencia, $format );
+				}
+			} 
+			else {
+				$result3 = $wpdb->get_row('SELECT * FROM ' . $table_residencia . ' WHERE num_residencia='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+				// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+				if($result3 && (trim($_POST['periodo_resid_'.$i] == "") || trim($_POST['area'.$i] == ""))){
+					$where_residencia =  array('num_paciente'=> $_POST['num_paciente'], 'num_residencia'=>$i);
+					$redirect = $wpdb->delete( $table_residencia, $where_residencia, $where_format = null);
+				}
+			}
+		}
+	}
 
 	// Problemas de saúde
-	// $table_problemas = 'problemas_saude';
+	$table_problemas = 'problemas_saude';
 
-	// for($i=1; $i<7; $i++){
-	// 	$where_problemas = array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=> $i);
-	// 	if(trim($_POST['problema'.$i] != "")){
-	// 		$data_problemas = array (
-	// 			'problema'=>$_POST['problema'. $i],
-	// 			'controlado'=>$_POST['problema-controlado' . $i],
-	// 			'inicio'=>$_POST['problema-data' . $i]
+	for($i=1; $i<7; $i++){
+		$where_problemas = array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=> $i);
+		if(trim($_POST['problema'.$i] != "")){
+			$data_problemas = array (
+				'problema'=>$_POST['problema'. $i],
+				'controlado'=>$_POST['problema-controlado' . $i],
+				'inicio'=>$_POST['problema-data' . $i]
 				
-	// 		);
-	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
-	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_problema='.$i);
-	// 		// Tenta fazer o update
-	// 		$result = $wpdb->update( $table_problemas, $data_problemas, $where_problemas, $format = null, $where_format = null ); 
-	// 		// Se a busca e o upadate falharem faz um inserte na tabela
-	// 		if(!$result && !$result2){
-	// 			$data_problemas = array (
-	// 				'num_paciente'=>$_POST['num_paciente'],
-	// 				'num_problema'=>$i,
-	// 				'problema'=>$_POST['problema'. $i],
-	// 				'controlado'=>$_POST['problema-controlado' . $i],
-	// 				'inicio'=>$_POST['problema-data' . $i]
-	// 			);
-	// 			$wpdb->insert( $table_problemas, $data_problemas, $format );
-	// 		}
-	// 	} 
-	// 	else {
-	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_problema='. $i . ' AND num_paciente='.$_POST['num_paciente']);
-	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
-	// 		if($result3 && (trim($_POST['problema'.$i] == "") || trim($_POST['problema-data'.$i] == ""))){
-	// 			$where =  array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=>$i);
-	// 			$wpdb->delete( $table_problemas, $where_problemas, $where_format = null);
-	// 		}
-	// 	}
-	// }
+			);
+			// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+			$result2 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_problema='.$i);
+			// Tenta fazer o update
+			$result = $wpdb->update( $table_problemas, $data_problemas, $where_problemas, $format = null, $where_format = null ); 
+			// Se a busca e o upadate falharem faz um inserte na tabela
+			if(!$result && !$result2){
+				$data_problemas = array (
+					'num_paciente'=>$_POST['num_paciente'],
+					'num_problema'=>$i,
+					'problema'=>$_POST['problema'. $i],
+					'controlado'=>$_POST['problema-controlado' . $i],
+					'inicio'=>$_POST['problema-data' . $i]
+				);
+				$redirect = $wpdb->insert( $table_problemas, $data_problemas, $format );
+			}
+		} 
+		else {
+			$result3 = $wpdb->get_row('SELECT * FROM ' . $table_problemas . ' WHERE num_problema='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+			// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+			if($result3 && (trim($_POST['problema'.$i] == "") || trim($_POST['problema-data'.$i] == ""))){
+				$where =  array('num_paciente'=> $_POST['num_paciente'], 'num_problema'=>$i);
+				$redirect = $wpdb->delete( $table_problemas, $where_problemas, $where_format = null);
+			}
+		}
+	}
 	
 
 	// Medicamentos Utilizados 
-	// $table_med_utilizados = 'med_utilizados';
-	// for($i=1; $i<5; $i++){
-	// 	$where_med_utilizados = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
-	// 	if(isset($_POST['medicamento'. $i]) && trim($_POST['medicamento'. $i] != "")){
-	// 		$medicamento = 'medicamento'. $i;
-	// 		$indicacao = 'indicacao' . $i;
-	// 		$resposta = 'resposta_'. $i;
-	// 		$periodo = 'periodo' . $i;
-	// 		$data_med_utilizados = array(
-	// 			'medicamento'=> $_POST[$medicamento],
-	// 			'indicacao'=> $_POST[$indicacao],
-	// 			'resposta'=> $_POST[$resposta],
-	// 			'periodo'=> $_POST[$periodo]
-	// 		);
+	$table_med_utilizados = 'med_utilizados';
+	for($i=1; $i<5; $i++){
+		$where_med_utilizados = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
+		if(isset($_POST['medicamento'. $i]) && trim($_POST['medicamento'. $i] != "")){
+			$medicamento = 'medicamento'. $i;
+			$indicacao = 'indicacao' . $i;
+			$resposta = 'resposta_'. $i;
+			$periodo = 'periodo' . $i;
+			$data_med_utilizados = array(
+				'medicamento'=> $_POST[$medicamento],
+				'indicacao'=> $_POST[$indicacao],
+				'resposta'=> $_POST[$resposta],
+				'periodo'=> $_POST[$periodo]
+			);
 				
-	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
-	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
-	// 		// Tenta fazer o update
-	// 		$result = $wpdb->update( $table_med_utilizados, $data_med_utilizados, $where_med_utilizados, $format = null, $where_format = null ); 
-	// 		// Se a busca e o upadate falharem faz um inserte na tabela
-	// 		if(!$result && !$result2){
-	// 			$medicamento = 'medicamento'. $i;
-	// 			$indicacao = 'indicacao' . $i;
-	// 			$resposta = 'resposta_'. $i;
-	// 			$periodo = 'periodo' . $i;
-	// 			$data_med_utilizados = array(
-	// 				'num_paciente'=> $_POST['num_paciente'],
-	// 				'num_med'=>$i,
-	// 				'medicamento'=> $_POST[$medicamento],
-	// 				'indicacao'=> $_POST[$indicacao],
-	// 				'resposta'=> $_POST[$resposta],
-	// 				'periodo'=> $_POST[$periodo]
-	// 			);
-	// 			$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
-	// 		}
-	// 	} 
-	// 	else {
-	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
-	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
-	// 		if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['indicacao' . $i] == "") || trim($_POST['resposta'. $i] == "") || trim($_POST['periodo' . $i] == ""))){
-	// 			$where_med_utilizados =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
-	// 			$wpdb->delete( $table_med_utilizados, $where_med_utilizados, $where_format = null);
-	// 		}
-	// 	}
-	// }
+			// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+			$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
+			// Tenta fazer o update
+			$result = $wpdb->update( $table_med_utilizados, $data_med_utilizados, $where_med_utilizados, $format = null, $where_format = null ); 
+			// Se a busca e o upadate falharem faz um inserte na tabela
+			if(!$result && !$result2){
+				$medicamento = 'medicamento'. $i;
+				$indicacao = 'indicacao' . $i;
+				$resposta = 'resposta_'. $i;
+				$periodo = 'periodo' . $i;
+				$data_med_utilizados = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'num_med'=>$i,
+					'medicamento'=> $_POST[$medicamento],
+					'indicacao'=> $_POST[$indicacao],
+					'resposta'=> $_POST[$resposta],
+					'periodo'=> $_POST[$periodo]
+				);
+				$redirect = $wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+			}
+		} 
+		else {
+			$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_utilizados . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+			// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+			if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['indicacao' . $i] == "") || trim($_POST['resposta'. $i] == "") || trim($_POST['periodo' . $i] == ""))){
+				$where_med_utilizados =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
+				$redirect = $wpdb->delete( $table_med_utilizados, $where_med_utilizados, $where_format = null);
+			}
+		}
+	}
 
-	// $table_med_que_utiliza = 'med_que_utiliza';
-	// for($i=1; $i<9; $i++){
-	// 	$where_med_que_utiliza = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
-	// 	if(isset($_POST['medicamento_uso'. $i]) && trim($_POST['medicamento_uso'. $i] != "")){
-	// 		$medicamento = 'medicamento_uso'. $i;
-	// 		$num_med = 'num_med'.$i;
-	// 		$posologia = 'posologia' . $i;
-	// 		$indicacao = 'indicado'. $i;
-	// 		$idicacao_uso = 'indicacao_uso' . $i;
-	// 		$modo_uso = 'modo_uso'.$i;
-	// 		$resposta = 'resposta'.$i;
-	// 		$efeito_uso = 'efeito_uso'.$i;
-	// 		$inicio_uso = 'inicio_uso'.$i;
-	// 		$data_med_que_utiliza = array(
-	// 			'medicamento'=> $_POST[$medicamento],
-	// 			'num_med'=> $_POST[$num_med],
-	// 			'posologia'=> $_POST[$posologia],
-	// 			'indicado_por'=> $_POST[$indicacao],
-	// 			'ind_uso'=> $_POST[$idicacao_uso],
-	// 			'inicio'=> $_POST[$inicio_uso],
-	// 			'modo_uso' =>$_POST[$modo_uso],
-	// 			'resposta' =>$_POST[$resposta],
-	// 			'efeitos' =>$_POST[$efeito_uso]
-	// 		);
+	$table_med_que_utiliza = 'med_que_utiliza';
+	for($i=1; $i<9; $i++){
+		$where_med_que_utiliza = array('num_paciente'=> $_POST['num_paciente'], 'num_med'=> $i);
+		if(isset($_POST['medicamento_uso'. $i]) && trim($_POST['medicamento_uso'. $i] != "")){
+			$medicamento = 'medicamento_uso'. $i;
+			$num_med = 'num_med'.$i;
+			$posologia = 'posologia' . $i;
+			$indicacao = 'indicado'. $i;
+			$idicacao_uso = 'indicacao_uso' . $i;
+			$modo_uso = 'modo_uso'.$i;
+			$resposta = 'resposta'.$i;
+			$efeito_uso = 'efeito_uso'.$i;
+			$inicio_uso = 'inicio_uso'.$i;
+			$data_med_que_utiliza = array(
+				'medicamento'=> $_POST[$medicamento],
+				'num_med'=> $_POST[$num_med],
+				'posologia'=> $_POST[$posologia],
+				'indicado_por'=> $_POST[$indicacao],
+				'ind_uso'=> $_POST[$idicacao_uso],
+				'inicio'=> $_POST[$inicio_uso],
+				'modo_uso' =>$_POST[$modo_uso],
+				'resposta' =>$_POST[$resposta],
+				'efeitos' =>$_POST[$efeito_uso]
+			);
 				
-	// 		// Pesquisa se tem algum dado com o item que deseja fazer a atualização
-	// 		$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
-	// 		// Tenta fazer o update
-	// 		$result = $wpdb->update( $table_med_que_utiliza, $data_med_que_utiliza, $where_med_que_utiliza, $format = null, $where_format = null ); 
-	// 		// Se a busca e o upadate falharem faz um inserte na tabela
-	// 		if(!$result && !$result2){
-	// 			$medicamento = 'medicamento_uso'. $i;
-	// 			$num_med = 'num_med'.$i;
-	// 			$posologia = 'posologia' . $i;
-	// 			$indicacao = 'indicado'. $i;
-	// 			$idicacao_uso = 'indicacao_uso' . $i;
-	// 			$modo_uso = 'modo_uso'.$i;
-	// 			$resposta = 'resposta'.$i;
-	// 			$efeito_uso = 'efeito_uso'.$i;
-	// 			$inicio_uso = 'inicio_uso'.$i;
-	// 			$data_med_que_utiliza = array(
-	// 				'num_paciente'=> $_POST['num_paciente'],
-	// 				'num_med'=> $_POST[$num_med],
-	// 				'medicamento'=> $_POST[$medicamento],
-	// 				'posologia'=> $_POST[$posologia],
-	// 				'indicado_por'=> $_POST[$indicacao],
-	// 				'ind_uso'=> $_POST[$idicacao_uso],
-	// 				'inicio'=> $_POST[$inicio_uso],
-	// 				'modo_uso' =>$_POST[$modo_uso],
-	// 				'resposta' =>$_POST[$resposta],
-	// 				'efeitos' =>$_POST[$efeito_uso]
-	// 			);
-	// 			$wpdb->insert( $table_med_que_utiliza, $data_med_que_utiliza, $format );
-	// 		}
-	// 	} 
-	// 	else {
-	// 		$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
-	// 		// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
-	// 		if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['posologia' . $i] == "") || trim($_POST['indicado'. $i] == "") || trim($_POST['inicio_uso' . $i] == ""))){
-	// 			$where_med_que_utiliza =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
-	// 			$wpdb->delete( $table_med_que_utiliza, $where_med_que_utiliza, $where_format = null);
-	// 		}
-	// 	}
-	// }
+			// Pesquisa se tem algum dado com o item que deseja fazer a atualização
+			$result2 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_paciente='. $_POST['num_paciente'] . ' AND num_med='.$i);
+			// Tenta fazer o update
+			$result = $wpdb->update( $table_med_que_utiliza, $data_med_que_utiliza, $where_med_que_utiliza, $format = null, $where_format = null ); 
+			// Se a busca e o upadate falharem faz um inserte na tabela
+			if(!$result && !$result2){
+				$medicamento = 'medicamento_uso'. $i;
+				$num_med = 'num_med'.$i;
+				$posologia = 'posologia' . $i;
+				$indicacao = 'indicado'. $i;
+				$idicacao_uso = 'indicacao_uso' . $i;
+				$modo_uso = 'modo_uso'.$i;
+				$resposta = 'resposta'.$i;
+				$efeito_uso = 'efeito_uso'.$i;
+				$inicio_uso = 'inicio_uso'.$i;
+				$data_med_que_utiliza = array(
+					'num_paciente'=> $_POST['num_paciente'],
+					'num_med'=> $_POST[$num_med],
+					'medicamento'=> $_POST[$medicamento],
+					'posologia'=> $_POST[$posologia],
+					'indicado_por'=> $_POST[$indicacao],
+					'ind_uso'=> $_POST[$idicacao_uso],
+					'inicio'=> $_POST[$inicio_uso],
+					'modo_uso' =>$_POST[$modo_uso],
+					'resposta' =>$_POST[$resposta],
+					'efeitos' =>$_POST[$efeito_uso]
+				);
+				$redirect = $wpdb->insert( $table_med_que_utiliza, $data_med_que_utiliza, $format );
+			}
+		} 
+		else {
+			$result3 = $wpdb->get_row('SELECT * FROM ' . $table_med_que_utiliza . ' WHERE num_med='. $i . ' AND num_paciente='.$_POST['num_paciente']);
+			// Se a busca retornar resultado mas os campos estiverem em branco exclui uma linha do banco
+			if($result3 && (trim($_POST['medicamento' . $i] == "") || trim($_POST['posologia' . $i] == "") || trim($_POST['indicado'. $i] == "") || trim($_POST['inicio_uso' . $i] == ""))){
+				$where_med_que_utiliza =  array('num_paciente'=> $_POST['num_paciente'], 'num_med'=>$i);
+				$wpdb->delete( $table_med_que_utiliza, $where_med_que_utiliza, $where_format = null);
+			}
+		}
+	}
 
 	// REVISÃO DE SISTEMAS 
 
 	// Fazer um loop para passar por todos os sistemas
-	// for($i=1; $i < 14; $i++){
-	// 	$count_array_sistemas = count($_POST[$i]);
-	// 	$array_valores_sistemas = array();
-	// 	if($count_array_sistemas > 0){
-	// 		foreach ($_POST[$i] as $key => $value) {
-	// 			array_push($array_valores_sistemas, $value);
-	// 		}
-	// 	}
+	for($i=1; $i < 14; $i++){
+		$count_array_sistemas = count($_POST[$i]);
+		$array_valores_sistemas = array();
+		if($count_array_sistemas > 0){
+			foreach ($_POST[$i] as $key => $value) {
+				array_push($array_valores_sistemas, $value);
+			}
+		}
 		
-	// 	atualizar_revisao_sistema($i, $_POST['num_paciente'], $count_array_sistemas, $array_valores_sistemas);
-	// }
+		$redirect = atualizar_revisao_sistema($i, $_POST['num_paciente'], $count_array_sistemas, $array_valores_sistemas);
+	}
 
-	// // Hábitos de Vida
+	// Hábitos de Vida
 	// Fuma 
-	// $table_habitos_vida = 'habitos_vida';
-	// if($_POST['fuma'] == 'S'){
-	// 	$pratica_fuma = "S";
-	// }else {
-	// 	$pratica_fuma = "N";
-	// }
-	// $where_fuma = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Fuma?');
-	// $data_habitos_vida_fuma = array(
-	// 	'pratica'=> 'Fuma?',
-	// 	'pratica_atual'=> $pratica_fuma,
-	// 	'frequencia'=> $_POST['frequencia_fuma'],
-	// 	'tempo_deixou'=> $_POST['qnt_tempo_fuma'],
-	// 	'motivo'=> $_POST['motivo_fuma']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_fuma, $where_fuma, $format = null, $where_format = null );
+	$table_habitos_vida = 'habitos_vida';
+	if($_POST['fuma'] == 'S'){
+		$pratica_fuma = "S";
+	}else {
+		$pratica_fuma = "N";
+	}
+	$where_fuma = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Fuma?');
+	$data_habitos_vida_fuma = array(
+		'pratica'=> 'Fuma?',
+		'pratica_atual'=> $pratica_fuma,
+		'frequencia'=> $_POST['frequencia_fuma'],
+		'tempo_deixou'=> $_POST['qnt_tempo_fuma'],
+		'motivo'=> $_POST['motivo_fuma']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_fuma, $where_fuma, $format = null, $where_format = null );
 	
-	// // Toma café
-	// if($_POST['cafe'] == 'S'){
-	// 	$pratica_cafe = "S";
-	// }else {
-	// 	$pratica_cafe = "N";
-	// }
-	// $where_cafe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Toma café?');
-	// $data_habitos_vida_cafe = array(
-	// 	'pratica'=> 'Toma café?',
-	// 	'pratica_atual'=> $pratica_cafe,
-	// 	'frequencia'=> $_POST['frequencia_cafe'],
-	// 	'tempo_deixou'=> $_POST['qnt_tempo_cafe'],
-	// 	'motivo'=> $_POST['motivo_cafe']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_cafe, $where_cafe, $format = null, $where_format = null );
+	// Toma café
+	if($_POST['cafe'] == 'S'){
+		$pratica_cafe = "S";
+	}else {
+		$pratica_cafe = "N";
+	}
+	$where_cafe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Toma café?');
+	$data_habitos_vida_cafe = array(
+		'pratica'=> 'Toma café?',
+		'pratica_atual'=> $pratica_cafe,
+		'frequencia'=> $_POST['frequencia_cafe'],
+		'tempo_deixou'=> $_POST['qnt_tempo_cafe'],
+		'motivo'=> $_POST['motivo_cafe']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_cafe, $where_cafe, $format = null, $where_format = null );
 
-	// // Ingere bebidas alcoólicas?
-	// if($_POST['bebida'] == 'S'){
-	// 	$pratica_bebe = "S";
-	// }else {
-	// 	$pratica_bebe = "N";
-	// }
-	// $where_bebe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Ingere bebidas alcoólicas?');
-	// $data_habitos_vida_bebe = array(
-	// 	'pratica'=> 'Ingere bebidas alcoólicas?',
-	// 	'pratica_atual'=> $pratica_bebe,
-	// 	'frequencia'=> $_POST['frequencia_bebe'],
-	// 	'tempo_deixou'=> $_POST['qnt_tempo_bebe'],
-	// 	'motivo'=> $_POST['motivo_bebe']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_bebe, $where_bebe, $format = null, $where_format = null );
+	// Ingere bebidas alcoólicas?
+	if($_POST['bebida'] == 'S'){
+		$pratica_bebe = "S";
+	}else {
+		$pratica_bebe = "N";
+	}
+	$where_bebe = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Ingere bebidas alcoólicas?');
+	$data_habitos_vida_bebe = array(
+		'pratica'=> 'Ingere bebidas alcoólicas?',
+		'pratica_atual'=> $pratica_bebe,
+		'frequencia'=> $_POST['frequencia_bebe'],
+		'tempo_deixou'=> $_POST['qnt_tempo_bebe'],
+		'motivo'=> $_POST['motivo_bebe']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_bebe, $where_bebe, $format = null, $where_format = null );
 
-	// // Utiliza chás de plantas medicinais?
-	// if($_POST['cha'] == 'S'){
-	// 	$pratica_cha = "S";
-	// }else {
-	// 	$pratica_cha = "N";
-	// }
-	// $where_cha = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Utiliza chás de plantas medicinais?');
-	// $data_habitos_vida_cha = array(
-	// 	'pratica'=> 'Utiliza chás de plantas medicinais?',
-	// 	'pratica_atual'=> $pratica_cha,
-	// 	'frequencia'=> $_POST['frequencia_cha'],
-	// 	'tempo_deixou'=> $_POST['qnt_tempo_cha'],
-	// 	'motivo'=> $_POST['motivo_cha'],
-	// 	'tipo_planta'=> $_POST['cha_tipo_planta'],
-	// 	'indicacao_planta'=> $_POST['cha_indicacao']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_cha, $where_cha, $format = null, $where_format = null );
+	// Utiliza chás de plantas medicinais?
+	if($_POST['cha'] == 'S'){
+		$pratica_cha = "S";
+	}else {
+		$pratica_cha = "N";
+	}
+	$where_cha = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Utiliza chás de plantas medicinais?');
+	$data_habitos_vida_cha = array(
+		'pratica'=> 'Utiliza chás de plantas medicinais?',
+		'pratica_atual'=> $pratica_cha,
+		'frequencia'=> $_POST['frequencia_cha'],
+		'tempo_deixou'=> $_POST['qnt_tempo_cha'],
+		'motivo'=> $_POST['motivo_cha'],
+		'tipo_planta'=> $_POST['cha_tipo_planta'],
+		'indicacao_planta'=> $_POST['cha_indicacao']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_cha, $where_cha, $format = null, $where_format = null );
 
-	// // Pratica atividade física?
-	// if($_POST['atividade_fisica'] == 'S'){
-	// 	$pratica_atividade = "S";
-	// }else {
-	// 	$pratica_atividade = "N";
-	// }
-	// $where_atividade = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Pratica atividade física?');
-	// $data_habitos_vida_atividade = array(
-	// 	'pratica'=> 'Pratica atividade física?',
-	// 	'pratica_atual'=> $pratica_atividade,
-	// 	'tipo_atividade'=> $_POST['tipo_ativiadade_fisica'],
-	// 	'frequencia'=> $_POST['ativ_fisica_freq']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_atividade, $where_atividade, $format = null, $where_format = null );
+	// Pratica atividade física?
+	if($_POST['atividade_fisica'] == 'S'){
+		$pratica_atividade = "S";
+	}else {
+		$pratica_atividade = "N";
+	}
+	$where_atividade = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Pratica atividade física?');
+	$data_habitos_vida_atividade = array(
+		'pratica'=> 'Pratica atividade física?',
+		'pratica_atual'=> $pratica_atividade,
+		'tipo_atividade'=> $_POST['tipo_ativiadade_fisica'],
+		'frequencia'=> $_POST['ativ_fisica_freq']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_atividade, $where_atividade, $format = null, $where_format = null );
 	
-	// // Você considera sua alimentação saudável?
-	// if($_POST['alimentacao'] == 'S'){
-	// 	$pratica_alimentacao = "S";
-	// }else {
-	// 	$pratica_alimentacao = "N";
-	// }
-	// $alimentacao = "";
-	// foreach ($_POST['tipo_alimentacao_1'] as $key => $value) {
-	// 	$alimentacao .= $value;
-	// 	$alimentacao .= ";";
-	// }
-	// $where_alimentacao = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Você considera sua alimentação saudável?');
-	// $data_habitos_vida_alimentacao = array(
-	// 	'pratica'=> 'Você considera sua alimentação saudável?',
-	// 	'pratica_atual'=> $pratica_alimentacao,
-	// 	'tipo_alimentacao'=> $alimentacao,
-	// 	'outros'=> $_POST['outros_alimentacao']
-	// );
-	// $wpdb->update( $table_habitos_vida, $data_habitos_vida_alimentacao, $where_alimentacao, $format = null, $where_format = null );
+	// Você considera sua alimentação saudável?
+	if($_POST['alimentacao'] == 'S'){
+		$pratica_alimentacao = "S";
+	}else {
+		$pratica_alimentacao = "N";
+	}
+	$alimentacao = "";
+	foreach ($_POST['tipo_alimentacao_1'] as $key => $value) {
+		$alimentacao .= $value;
+		$alimentacao .= ";";
+	}
+	$where_alimentacao = array('num_paciente'=>$_POST['num_paciente'], 'pratica'=> 'Você considera sua alimentação saudável?');
+	$data_habitos_vida_alimentacao = array(
+		'pratica'=> 'Você considera sua alimentação saudável?',
+		'pratica_atual'=> $pratica_alimentacao,
+		'tipo_alimentacao'=> $alimentacao,
+		'outros'=> $_POST['outros_alimentacao']
+	);
+	$redirect = $wpdb->update( $table_habitos_vida, $data_habitos_vida_alimentacao, $where_alimentacao, $format = null, $where_format = null );
 
 
 	//EVOLUÇÃO DE PARÂMETROS LABORATORIAIS E CLÍNICOS
@@ -455,226 +455,226 @@ if(isset($_POST['submit'])){
 	$total_outros_param = total_exames(6);
 
 	// for para percorrer os exames
-	// for($i = 1; $i <= 6; $i++){
+	for($i = 1; $i <= 6; $i++){
 
-	// 	// pega a data da coleta, se tiver passa para os exames e insere no banco
-	// 	if(isset($_POST['coleta1_'.$i]) && $_POST['coleta1_'.$i] != '0000-00-00'){
-	// 		if($i < 4 && $_POST['coleta'.$i.'_1'] != '0000-00-00' && $_POST['coleta'.$i.'_1'] != ''){
-	// 			// inserir na tabela de Hemograma
-	// 			$exames_hemograma = exames(1);
-	// 			foreach ($exames_hemograma as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_hemograma = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_1'],
-	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
+		// pega a data da coleta, se tiver passa para os exames e insere no banco
+		if(isset($_POST['coleta1_'.$i]) && $_POST['coleta1_'.$i] != '0000-00-00'){
+			if($i < 4 && $_POST['coleta'.$i.'_1'] != '0000-00-00' && $_POST['coleta'.$i.'_1'] != ''){
+				// inserir na tabela de Hemograma
+				$exames_hemograma = exames(1);
+				foreach ($exames_hemograma as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_hemograma = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_1'],
+						'obs'=> $_POST[$key->id.'obs'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
 					
-	// 				$result = $wpdb->update( $table_hemograma, $data_hemograma, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM hemograma WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					foreach ($exames_hemograma as $key) {
-	// 						$data_hemograma = array(
-	// 						'num_paciente'=> $_POST['num_paciente'],
-	// 						'nome'=> $key->nome,
-	// 						'coleta'=> $_POST['coleta'.$i.'_1'],
-	// 						'obs'=> $_POST[$key->id.'obs'],
-	// 						'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 						'tipo'=> $i
-	// 					);
-	// 						$wpdb->insert( $table_hemograma, $data_hemograma, $format );
-	// 					}
-	// 				}
-	// 			}
+					$result = $wpdb->update( $table_hemograma, $data_hemograma, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM hemograma WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						foreach ($exames_hemograma as $key) {
+							$data_hemograma = array(
+							'num_paciente'=> $_POST['num_paciente'],
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_1'],
+							'obs'=> $_POST[$key->id.'obs'],
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
+						);
+							$redirect = $wpdb->insert( $table_hemograma, $data_hemograma, $format );
+						}
+					}
+				}
 
-	// 			// inserir na tabela de funcao Renal
-	// 			$exames_funcao_renal = exames(2);
-	// 			foreach ($exames_funcao_renal as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_funcao_renal = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_2'],
-	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
-	// 				$result = $wpdb->update( $table_funcao_renal, $data_funcao_renal, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM funcao_renal WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					if($_POST['coleta'.$i.'_2']!= '0000-00-00' && $_POST['coleta'.$i.'_2'] != ''){
-	// 						foreach ($exames_funcao_renal as $key) {
-	// 							$data_funcao_renal = array(
-	// 								'num_paciente'=> $_POST['num_paciente'],
-	// 								'nome'=> $key->nome,
-	// 								'coleta'=> $_POST['coleta'.$i.'_2'],
-	// 								'obs'=> $_POST[$key->id.'obs'],
-	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 								'tipo'=> $i
-	// 							);
-	// 							$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
-	// 						}
-	// 					}
-	// 				}
-	// 			}
+				// inserir na tabela de funcao Renal
+				$exames_funcao_renal = exames(2);
+				foreach ($exames_funcao_renal as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_funcao_renal = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_2'],
+						'obs'=> $_POST[$key->id.'obs'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
+					$result = $wpdb->update( $table_funcao_renal, $data_funcao_renal, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM funcao_renal WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						if($_POST['coleta'.$i.'_2']!= '0000-00-00' && $_POST['coleta'.$i.'_2'] != ''){
+							foreach ($exames_funcao_renal as $key) {
+								$data_funcao_renal = array(
+									'num_paciente'=> $_POST['num_paciente'],
+									'nome'=> $key->nome,
+									'coleta'=> $_POST['coleta'.$i.'_2'],
+									'obs'=> $_POST[$key->id.'obs'],
+									'valor'=> $_POST[$key->id.'coleta'.$i],
+									'tipo'=> $i
+								);
+								$redirect = $wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+							}
+						}
+					}
+				}
 
-	// 			// inserir na tabela de funcao Renal
-	// 			$exames_funcao_hepatica = exames(3);
-	// 			foreach ($exames_funcao_hepatica as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_funcao_hepatica = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_3'],
-	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
+				// inserir na tabela de funcao Renal
+				$exames_funcao_hepatica = exames(3);
+				foreach ($exames_funcao_hepatica as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_funcao_hepatica = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_3'],
+						'obs'=> $_POST[$key->id.'obs'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
 					
-	// 				$result = $wpdb->update( $table_funcao_hepatica, $data_funcao_hepatica, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM funcao_hepatica WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					if($_POST['coleta'.$i.'_3']!= '0000-00-00' && $_POST['coleta'.$i.'_3'] != ''){
-	// 						foreach ($exames_funcao_hepatica as $key) {
-	// 							$data_funcao_hepatica = array(
-	// 								'num_paciente'=> $_POST['num_paciente'],
-	// 								'nome'=> $key->nome,
-	// 								'coleta'=> $_POST['coleta'.$i.'_3'],
-	// 								'obs'=> $_POST[$key->id.'obs'],
-	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 								'tipo'=> $i
-	// 							);
-	// 							$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
-	// 						}
-	// 					}
-	// 				}
-	// 			}
+					$result = $wpdb->update( $table_funcao_hepatica, $data_funcao_hepatica, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM funcao_hepatica WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						if($_POST['coleta'.$i.'_3']!= '0000-00-00' && $_POST['coleta'.$i.'_3'] != ''){
+							foreach ($exames_funcao_hepatica as $key) {
+								$data_funcao_hepatica = array(
+									'num_paciente'=> $_POST['num_paciente'],
+									'nome'=> $key->nome,
+									'coleta'=> $_POST['coleta'.$i.'_3'],
+									'obs'=> $_POST[$key->id.'obs'],
+									'valor'=> $_POST[$key->id.'coleta'.$i],
+									'tipo'=> $i
+								);
+								$redirect = $wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+							}
+						}
+					}
+				}
 
-	// 			// inserir na tabela de Outros exames bioquimicos
-	// 			$exames_outro_ex_bioq = exames(4);
-	// 			foreach ($exames_outro_ex_bioq as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_outro_ex_bioq = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_4'],
-	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
-	// 				$result = $wpdb->update( $table_outro_ex_bioq, $data_outro_ex_bioq, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM outro_ex_bioq WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					if($_POST['coleta'.$i.'_4']!= '0000-00-00' && $_POST['coleta'.$i.'_4'] != ''){
-	// 						foreach ($exames_outro_ex_bioq as $key) {
-	// 							$data_outro_ex_bioq = array(
-	// 								'num_paciente'=> $_POST['num_paciente'],
-	// 								'nome'=> $key->nome,
-	// 								'coleta'=> $_POST['coleta'.$i.'_4'],
-	// 								'obs'=> $_POST[$key->id.'obs'],
-	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 								'tipo'=> $i
-	// 							);
-	// 							$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
-	// 						}
-	// 					}
-	// 				}
-	// 			}
+				// inserir na tabela de Outros exames bioquimicos
+				$exames_outro_ex_bioq = exames(4);
+				foreach ($exames_outro_ex_bioq as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_outro_ex_bioq = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_4'],
+						'obs'=> $_POST[$key->id.'obs'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
+					$result = $wpdb->update( $table_outro_ex_bioq, $data_outro_ex_bioq, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM outro_ex_bioq WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						if($_POST['coleta'.$i.'_4']!= '0000-00-00' && $_POST['coleta'.$i.'_4'] != ''){
+							foreach ($exames_outro_ex_bioq as $key) {
+								$data_outro_ex_bioq = array(
+									'num_paciente'=> $_POST['num_paciente'],
+									'nome'=> $key->nome,
+									'coleta'=> $_POST['coleta'.$i.'_4'],
+									'obs'=> $_POST[$key->id.'obs'],
+									'valor'=> $_POST[$key->id.'coleta'.$i],
+									'tipo'=> $i
+								);
+								$redirect = $wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+							}
+						}
+					}
+				}
 
-	// 			// inserir na tabela de Teste para Chagas
-	// 			$exames_teste_chagas = exames(5);
-	// 			foreach ($exames_teste_chagas as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_teste_chagas = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_5'],
-	// 					'obs'=> $_POST[$key->id.'obs'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
-	// 				$result = $wpdb->update( $table_teste_chagas, $data_teste_chagas, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM teste_chagas WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					if($_POST['coleta'.$i.'_5']!= '0000-00-00' && $_POST['coleta'.$i.'_5'] != ''){
-	// 						foreach ($exames_teste_chagas as $key) {
-	// 							$data_teste_chagas = array(
-	// 								'num_paciente'=> $_POST['num_paciente'],
-	// 								'nome'=> $key->nome,
-	// 								'coleta'=> $_POST['coleta'.$i.'_5'],
-	// 								'obs'=> $_POST[$key->id.'obs'],
-	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 								'tipo'=> $i
-	// 							);
-	// 							$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
-	// 						}
-	// 					}
-	// 				}
+				// inserir na tabela de Teste para Chagas
+				$exames_teste_chagas = exames(5);
+				foreach ($exames_teste_chagas as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_teste_chagas = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_5'],
+						'obs'=> $_POST[$key->id.'obs'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
+					$result = $wpdb->update( $table_teste_chagas, $data_teste_chagas, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM teste_chagas WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						if($_POST['coleta'.$i.'_5']!= '0000-00-00' && $_POST['coleta'.$i.'_5'] != ''){
+							foreach ($exames_teste_chagas as $key) {
+								$data_teste_chagas = array(
+									'num_paciente'=> $_POST['num_paciente'],
+									'nome'=> $key->nome,
+									'coleta'=> $_POST['coleta'.$i.'_5'],
+									'obs'=> $_POST[$key->id.'obs'],
+									'valor'=> $_POST[$key->id.'coleta'.$i],
+									'tipo'=> $i
+								);
+								$redirect = $wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+							}
+						}
+					}
 					
-	// 			}
+				}
 
-	// 			// inserir na tabela de Outros Parâmetros
-	// 			$exames_outros_param = exames(6);
-	// 			foreach ($exames_outros_param as $key) {
-	// 				$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 				$data_outros_param = array(
-	// 					'nome'=> $key->nome,
-	// 					'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 					'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 					'tipo'=> $i
-	// 				);
-	// 				$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
-	// 				$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 				if(!$result && !$result2){
-	// 					if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
-	// 						foreach ($exames_outros_param as $key) {
-	// 							$data_outros_param = array(
-	// 								'num_paciente'=> $_POST['num_paciente'],
-	// 								'nome'=> $key->nome,
-	// 								'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 								'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 								'tipo'=> $i
-	// 							);
-	// 							$wpdb->insert( $table_outros_param, $data_outros_param, $format );
-	// 						}
-	// 					}
-	// 				}
+				// inserir na tabela de Outros Parâmetros
+				$exames_outros_param = exames(6);
+				foreach ($exames_outros_param as $key) {
+					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+					$data_outros_param = array(
+						'nome'=> $key->nome,
+						'coleta'=> $_POST['coleta'.$i.'_6'],
+						'valor'=> $_POST[$key->id.'coleta'.$i],
+						'tipo'=> $i
+					);
+					$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
+					$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+					if(!$result && !$result2){
+						if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
+							foreach ($exames_outros_param as $key) {
+								$data_outros_param = array(
+									'num_paciente'=> $_POST['num_paciente'],
+									'nome'=> $key->nome,
+									'coleta'=> $_POST['coleta'.$i.'_6'],
+									'valor'=> $_POST[$key->id.'coleta'.$i],
+									'tipo'=> $i
+								);
+								$redirect = $wpdb->insert( $table_outros_param, $data_outros_param, $format );
+							}
+						}
+					}
 					
-	// 			}
+				}
 			
 
-	// 			if($i > 4){
-	// 				// inserir na tabela de Outros Parâmetros
-	// 				$exames_outros_param = exames(6);
-	// 				foreach ($exames_outros_param as $key) {
-	// 					$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
-	// 					$data_outros_param = array(
-	// 						'nome'=> $key->nome,
-	// 						'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 						'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 						'tipo'=> $i
-	// 					);
-	// 					$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
-	// 					$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
-	// 					if(!$result && !$result2){
-	// 						if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
-	// 							foreach ($exames_outros_param as $key) {
-	// 								$data_outros_param = array(
-	// 									'num_paciente'=> $_POST['num_paciente'],
-	// 									'nome'=> $key->nome,
-	// 									'coleta'=> $_POST['coleta'.$i.'_6'],
-	// 									'valor'=> $_POST[$key->id.'coleta'.$i],
-	// 									'tipo'=> $i
-	// 								);
-	// 								$wpdb->insert( $table_outros_param, $data_outros_param, $format );
-	// 							}
-	// 						}
-	// 					}
+				if($i > 4){
+					// inserir na tabela de Outros Parâmetros
+					$exames_outros_param = exames(6);
+					foreach ($exames_outros_param as $key) {
+						$where = array('num_paciente'=>$_POST['num_paciente'], 'nome'=> $key->nome, 'tipo'=> $i);
+						$data_outros_param = array(
+							'nome'=> $key->nome,
+							'coleta'=> $_POST['coleta'.$i.'_6'],
+							'valor'=> $_POST[$key->id.'coleta'.$i],
+							'tipo'=> $i
+						);
+						$result = $wpdb->update( $table_outros_param, $data_outros_param, $where, $format = null, $where_format = null );
+						$result2 = $wpdb->get_results('SELECT * FROM outros_param WHERE tipo = '.$i . ' AND num_paciente = '.$_POST['num_paciente']);
+						if(!$result && !$result2){
+							if($_POST['coleta'.$i.'_6']!= '0000-00-00' && $_POST['coleta'.$i.'_6'] != ''){
+								foreach ($exames_outros_param as $key) {
+									$data_outros_param = array(
+										'num_paciente'=> $_POST['num_paciente'],
+										'nome'=> $key->nome,
+										'coleta'=> $_POST['coleta'.$i.'_6'],
+										'valor'=> $_POST[$key->id.'coleta'.$i],
+										'tipo'=> $i
+									);
+									$redirect = $wpdb->insert( $table_outros_param, $data_outros_param, $format );
+								}
+							}
+						}
 						
-	// 				}
-	// 			}
+					}
+				}
 				
-	// 		}
-	// 	}
-	// }
+			}
+		}
+	}
 
 	//Exames Clínicos
 	$table_exames_clinicos = "exames_clinicos";
@@ -703,9 +703,9 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Eletrocardiograma" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Eletrocardiograma', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_eletro, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_eletro, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
 			}
 			
 		}
@@ -735,9 +735,9 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Ecocardiograma" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Ecocardiograma', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_eco, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_eco, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_eco, $format );
 			}
 		}
 	}
@@ -767,9 +767,9 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Holter" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Holter', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_holter, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_holter, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_holter, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_holter, $format );
 			}
 			
 		}
@@ -799,9 +799,9 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "RX Coração" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'RX Coração', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_rx_co, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_rx_co, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
 			}
 		}
 	}
@@ -830,9 +830,9 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "RX Esôfago" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'RX Esôfago', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_rx_eso, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_rx_eso, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
 			}
 		}
 	}
@@ -861,14 +861,14 @@ if(isset($_POST['submit'])){
 			$result = $wpdb->get_row('SELECT * FROM exames_clinicos WHERE num_paciente ='.$_POST['num_paciente']. ' AND nome_exame = "Enema Opaco" AND coleta = '.$i);
 			if($result){
 				$where =  array('num_paciente'=> $_POST['num_paciente'], 'nome_exame'=> 'Enema Opaco', 'coleta'=> $i);
-				$wpdb->update( $table_exames_clinicos, $data_enema, $where, $format = null, $where_format = null);
+				$redirect = $wpdb->update( $table_exames_clinicos, $data_enema, $where, $format = null, $where_format = null);
 			} else {
-				$wpdb->insert( $table_exames_clinicos, $data_enema, $format );
+				$redirect = $wpdb->insert( $table_exames_clinicos, $data_enema, $format );
 			}
 			
 		}
-	}	
-
+	}
+	
 }
 
 include "layout/header.php"; 
@@ -3269,7 +3269,7 @@ include "layout/header.php";
 						<textarea name="evolucao_paciente" rows="10" cols="200"><?php echo $obj_paciente->evolucao; ?></textarea>
 					</div>
 					<input type="hidden" name="paciente" value="<?php echo $numero_paciente; ?>">
-					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
 					
 				</form>
 

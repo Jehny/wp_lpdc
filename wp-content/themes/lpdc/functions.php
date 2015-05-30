@@ -502,6 +502,32 @@ function buscar_exames_clinicos_todos($num_paciente, $nome_exame){
 }
 
 
+// Redirecionamento de páginas
+function redirect_to( $location = NULL ) {
+	if($location != NUll) {
+		header("Location: {$location}");
+		exit;
+	}
+}
+
+// contagem de fichas 2
+function buscar_quantidade_ficha_2($n_paciente=""){
+	global $wpdb;
+	return $wpdb->get_results("SELECT * FROM paciente_ficha_2 WHERE num_paciente=". $n_paciente);
+}
+
+// contagem de fichas 3
+function buscar_quantidade_ficha_3($n_paciente=""){
+	global $wpdb;
+	return $wpdb->get_results("SELECT * FROM paciente_ficha_3 WHERE num_paciente=". $n_paciente);
+}
+
+// contagem de fichas 4
+function buscar_quantidade_ficha_4($n_paciente=""){
+	global $wpdb;
+	return $wpdb->get_results("SELECT * FROM paciente_ficha_4 WHERE num_paciente=". $n_paciente);
+}
+
 // Metodos Ficha 3
 include 'opcoes_ficha_2.php';
 

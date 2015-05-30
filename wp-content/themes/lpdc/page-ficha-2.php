@@ -6,7 +6,7 @@ if($_GET['cod']){
 	$num_paciente =  "";
 }
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) || isset($_POST['submitMesmo'])){
 	// inserir dados na ficha 2
 	$paciente_ficha_2 = 'paciente_ficha_2';
 	
@@ -17,7 +17,8 @@ if(isset($_POST['submit'])){
 		'data'=> $_POST['data'],
 		'porcentagem'=>$_POST['porcentagem']
 	);
-	$wpdb->insert( $paciente_ficha_2, $data_paciente_ficha_2, $format );
+
+	$redirect = $wpdb->insert( $paciente_ficha_2, $data_paciente_ficha_2, $format );
 	$id_ficha_2 = $wpdb->insert_id;
 
 	// Inserir dados na tabela de avaliacao_aderencias
@@ -31,7 +32,7 @@ if(isset($_POST['submit'])){
 				'resposta'=> $_POST['perg_aderencia_'.$i],
 				'id_ficha_2'=> $id_ficha_2
 			);
-			$wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
+			$redirect = $wpdb->insert( $avaliacao_aderencia, $data_avaliacao_aderencia, $format );
 		}
 	}
 
@@ -42,7 +43,7 @@ if(isset($_POST['submit'])){
 			'item'=> $value,
 			'id_ficha_2'=> $id_ficha_2
 		);
-		$wpdb->insert( $avaliacao_aderencia_porque, $data_avaliacao_aderencia_porque, $format );
+		$redirect = $wpdb->insert( $avaliacao_aderencia_porque, $data_avaliacao_aderencia_porque, $format );
 	}
 
 	$reacoes_indesejaveis = 'reacoes_indesejaveis';
@@ -53,7 +54,7 @@ if(isset($_POST['submit'])){
 		'resposta'=>$_POST['reacao1'],
 		'id_ficha_2'=> $id_ficha_2
 		);
-	$wpdb->insert( $reacoes_indesejaveis, $data_reacoes_indesejaveis, $format );
+	$redirect = $wpdb->insert( $reacoes_indesejaveis, $data_reacoes_indesejaveis, $format );
 
 	if($_POST['reacao1'] == 'Sim'){
 		$reacoes_indesejaveis_ram = 'reacoes_indesejaveis_ram';
@@ -67,7 +68,7 @@ if(isset($_POST['submit'])){
 					'continua'=>$_POST['continua'.$i],
 					'id_ficha_2'=> $id_ficha_2
 				);
-				$wpdb->insert( $reacoes_indesejaveis_ram, $data_reacoes_indesejaveis_ram, $format );
+				$redirect = $wpdb->insert( $reacoes_indesejaveis_ram, $data_reacoes_indesejaveis_ram, $format );
 			}
 		}
 	}
@@ -83,7 +84,15 @@ if(isset($_POST['submit'])){
 		'id_ficha_2'=> $id_ficha_2
 	);
 
-	$wpdb->insert( $uso_medicamento, $data_uso_medicamento, $format );
+	$redirect = $wpdb->insert( $uso_medicamento, $data_uso_medicamento, $format );
+
+	if($redirect){
+		if(isset($_POST['submitMesmo'])){
+			redirect_to("../ficha-2?cod=".$_POST['num_paciente']);
+		}else {
+			redirect_to("../ficha-3?cod=".$_POST['num_paciente']. "&ficha=".$id_ficha_2);
+		}
+	}
 
 }
 
@@ -214,7 +223,11 @@ include "layout/header.php";
 									<label>Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?</label>
 									<input type="text" name="perg_aderencia_6" id="perg_aderencia_6" value="">
 								</div>
-								<input type="text" name="porcentagem" id="porcentagem" value="" class="input_menor" disabled="disabled">
+								<div id="percent">
+									
+								</div>
+								<input type="text" id="porcentagem" value="" class="input_menor" disabled="disabled">
+								
 							</div>
 
 					</div>
@@ -408,8 +421,23 @@ include "layout/header.php";
 							</div>
 						</fieldset>	
 					</div>
+					<div class="botoesSumbit">
+						<div class="span5">
+							<button type="submit" name="submitMesmo" class="btn btn-primary enviar">Salvar e Adicionar +</button>	
+						</div>
+						
+						<div class="span5 text_align_right">
+							<button type="submit" name="submit" class="btn btn-primary enviar">Salvar e Ficha 3</button>	
+						</div>	
+						
+					</div>
 
-					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+					<!-- <div class="botoesSumbit">
+						<div class="span12 text_align_right">
+							<a href="../ficha-3?cod=<?php echo $num_paciente; ?>" class="btn btn-warning">Ficha 3</a>
+						</div>
+					</div> -->
+					
 					
 				</form>
 
@@ -423,6 +451,6 @@ include "layout/header.php";
 
 			
 			
-			
-		</div> <!-- Fim da Div de Página -->
+	</div> <!-- Fim da Div de Página -->
+		
 <?php include "layout/footer.php"; ?>

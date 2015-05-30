@@ -66,8 +66,7 @@ if(isset($_POST['submit'])){
 		'evolucao'=> $_POST['evolucao_paciente']
 	);
 
-	$wpdb->insert( $table, $data_paciente, $format );
-
+	$redirect = $wpdb->insert( $table, $data_paciente, $format );
 
 
 	// Inserir dados na tabela Atendimento
@@ -83,7 +82,7 @@ if(isset($_POST['submit'])){
 				'data'=> $_POST['data_atend'],
 				'dados'=> $value
 			);
-			$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+			$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 		}
 	}
 
@@ -96,7 +95,7 @@ if(isset($_POST['submit'])){
 					'data'=> $_POST['data_atend2'],
 					'dados'=> $value
 				);
-				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+				$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 			}
 		}
 	}
@@ -109,7 +108,7 @@ if(isset($_POST['submit'])){
 					'data'=> $_POST['data_atend3'],
 					'dados'=> $value
 				);
-				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+				$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 			}
 		}
 	}
@@ -122,7 +121,7 @@ if(isset($_POST['submit'])){
 					'data'=> $_POST['data_atend4'],
 					'dados'=> $value
 				);
-				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+				$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 			}
 		}
 	}
@@ -135,7 +134,7 @@ if(isset($_POST['submit'])){
 					'data'=> $_POST['data_atend5'],
 					'dados'=> $value
 				);
-				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+				$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 			}
 		}
 	}
@@ -149,7 +148,7 @@ if(isset($_POST['submit'])){
 					'data'=> $_POST['data_atend6'],
 					'dados'=> $value
 				);
-				$wpdb->insert( $table_atendimento, $data_atendimento, $format );
+				$redirect = $wpdb->insert( $table_atendimento, $data_atendimento, $format );
 			}
 		}
 	}
@@ -180,7 +179,7 @@ if(isset($_POST['submit'])){
 					'qnt_familiares'=> $_POST[$qnt]
 				);
 
-				$wpdb->insert( $table_residencia, $data_residencia, $format );
+				$redirect = $wpdb->insert( $table_residencia, $data_residencia, $format );
 			}
 		}
 	}
@@ -201,7 +200,7 @@ if(isset($_POST['submit'])){
 				'inicio'=> $_POST[$problema_data]
 			);
 
-			$wpdb->insert( $table_problemas, $data_problemas, $format );
+			$redirect = $wpdb->insert( $table_problemas, $data_problemas, $format );
 		}
 	}
 
@@ -222,7 +221,7 @@ if(isset($_POST['submit'])){
 				'periodo'=> $_POST[$periodo]
 			);
 
-			$wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
+			$redirect = $wpdb->insert( $table_med_utilizados, $data_med_utilizados, $format );
 		}
 	}
 
@@ -252,7 +251,7 @@ if(isset($_POST['submit'])){
 				'inicio'=> $_POST[$inicio_uso]
 			);
 
-			$wpdb->insert( $table_med_que_utiliza, $data_med_utilizados, $format );
+			$redirect = $wpdb->insert( $table_med_que_utiliza, $data_med_utilizados, $format );
 		}
 	}
 
@@ -271,7 +270,7 @@ if(isset($_POST['submit'])){
 					'sintoma'=> $value
 				);
 
-				$wpdb->insert( $tabel_sintomas, $data_sintomas, $format );
+				$redirect = $wpdb->insert( $tabel_sintomas, $data_sintomas, $format );
 			}
 			if($sinais){
 				$nome = nome_sistema($sinais);
@@ -281,7 +280,7 @@ if(isset($_POST['submit'])){
 					'sistema_id'=> $i
 				);
 
-				$wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
+				$redirect = $wpdb->insert( $table_revisao_sistemas, $data_sistemas, $format );
 			}
 		}
 	}
@@ -302,7 +301,7 @@ if(isset($_POST['submit'])){
 		'tempo_deixou'=> $_POST['qnt_tempo_fuma'],
 		'motivo'=> $_POST['motivo_fuma']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_fuma, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_fuma, $format );
 	
 	// Toma café
 	if($_POST['cafe'] == 'S'){
@@ -318,7 +317,7 @@ if(isset($_POST['submit'])){
 		'tempo_deixou'=> $_POST['qnt_tempo_cafe'],
 		'motivo'=> $_POST['motivo_cafe']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_cafe, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_cafe, $format );
 
 	// Ingere bebidas alcoólicas?
 	if($_POST['bebida'] == 'S'){
@@ -334,7 +333,7 @@ if(isset($_POST['submit'])){
 		'tempo_deixou'=> $_POST['qnt_tempo_bebe'],
 		'motivo'=> $_POST['motivo_bebe']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_bebe, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_bebe, $format );
 
 	// Utiliza chás de plantas medicinais?
 	if($_POST['cha'] == 'S'){
@@ -352,7 +351,7 @@ if(isset($_POST['submit'])){
 		'tipo_planta'=> $_POST['cha_tipo_planta'],
 		'indicacao_planta'=> $_POST['cha_indicacao']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_cha, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_cha, $format );
 
 	// Pratica atividade física?
 	if($_POST['atividade_fisica'] == 'S'){
@@ -367,7 +366,7 @@ if(isset($_POST['submit'])){
 		'tipo_atividade'=> $_POST['tipo_ativiadade_fisica'],
 		'frequencia'=> $_POST['ativ_fisica_freq']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_atividade, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_atividade, $format );
 	
 	// Você considera sua alimentação saudável?
 	if($_POST['alimentacao'] == 'S'){
@@ -389,7 +388,7 @@ if(isset($_POST['submit'])){
 		'tipo_alimentacao'=> $alimentacao,
 		'outros'=> $_POST['outros_alimentacao']
 	);
-	$wpdb->insert( $table_habitos_vida, $data_habitos_vida_alimentacao, $format );
+	$redirect = $wpdb->insert( $table_habitos_vida, $data_habitos_vida_alimentacao, $format );
 
 
 	//EVOLUÇÃO DE PARÂ[]METROS LABORATORIAIS E CLÍNICOS
@@ -425,7 +424,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_hemograma, $data_hemograma, $format );
+						$redirect = $wpdb->insert( $table_hemograma, $data_hemograma, $format );
 					}
 				}
 
@@ -441,7 +440,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
+						$redirect = $wpdb->insert( $table_funcao_renal, $data_funcao_renal, $format );
 					}
 				}
 
@@ -457,7 +456,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
+						$redirect = $wpdb->insert( $table_funcao_hepatica, $data_funcao_hepatica, $format );
 					}
 				}
 
@@ -473,7 +472,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
+						$redirect = $wpdb->insert( $table_outro_ex_bioq, $data_outro_ex_bioq, $format );
 					}
 				}
 
@@ -489,7 +488,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
+						$redirect = $wpdb->insert( $table_teste_chagas, $data_teste_chagas, $format );
 					}
 				}
 
@@ -504,7 +503,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+						$redirect = $wpdb->insert( $table_outros_param, $data_outros_param, $format );
 					}
 				}
 			}
@@ -521,7 +520,7 @@ if(isset($_POST['submit'])){
 							'valor'=> $_POST[$key->id.'coleta'.$i],
 							'tipo'=> $i
 						);
-						$wpdb->insert( $table_outros_param, $data_outros_param, $format );
+						$redirect = $wpdb->insert( $table_outros_param, $data_outros_param, $format );
 					}
 				}
 				
@@ -553,7 +552,7 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
+			$redirect = $wpdb->insert( $table_exames_clinicos, $data_eletro, $format );
 		}
 	}
 
@@ -579,7 +578,7 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
+			$redirect = $wpdb->insert( $table_exames_clinicos, $data_eco, $format );
 		}
 	}
 
@@ -605,7 +604,7 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_eco, $format );
+			$redirect = $wpdb->insert( $table_exames_clinicos, $data_eco, $format );
 		}
 	}
 
@@ -631,7 +630,7 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
+			$redirect = $wpdb->insert( $table_exames_clinicos, $data_rx_co, $format );
 		}
 	}
 
@@ -657,7 +656,7 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
+			$redirect = $redirect = $wpdb->insert( $table_exames_clinicos, $data_rx_eso, $format );
 		}
 	}
 
@@ -683,8 +682,12 @@ if(isset($_POST['submit'])){
 				'texto' => $_POST[$valor]
 			);
 
-			$wpdb->insert( $table_exames_clinicos, $data_enema, $format );
+			$redirect = $wpdb->insert( $table_exames_clinicos, $data_enema, $format );
 		}
+	}
+
+	if($redirect){
+		redirect_to("../ficha-2?cod=".$_POST['num_paciente']);
 	}	
 
 }

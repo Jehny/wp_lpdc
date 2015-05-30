@@ -7,21 +7,21 @@ if($_GET['cod']){
 	$num_paciente =  "";
 }
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) || isset($_POST['submitMesmo'])){
 	// inserir dados na ficha 3
 	
 	$paciente_ficha_3 = 'paciente_ficha_3';
 	
 	$data_paciente_ficha_3 = array(
 		'num_paciente'=> $_POST['num_paciente'],
-		'nome_paciente'=> $_POST['nom_paciente'],
+		'nom_paciente'=> $_POST['nom_paciente'],
 		'pesquisador'=> $_POST['pesquisador'],
 		'data'=> $_POST['data'],
 		'retorno'=>$_POST['data_retorno'],
 		'num_protocolo'=>$_POST['num_protocolo'],
 		'num_atendimento'=>$_POST['num_atendimento']
 	);
-	$wpdb->insert( $paciente_ficha_3, $data_paciente_ficha_3, $format );
+	$redirect = $wpdb->insert( $paciente_ficha_3, $data_paciente_ficha_3, $format );
 	$id_ficha_3 = $wpdb->insert_id;
 
 	// Tabela de perguntas para a ficha 3
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
 				'valor'=>$valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-			$wpdb->insert( $ficha_3_perguntas, $data_ficha_3_perguntas, $format );
+			$redirect = $wpdb->insert( $ficha_3_perguntas, $data_ficha_3_perguntas, $format );
 		}
 	}
 
@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 				'valor'=> $valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-		$wpdb->insert( $ficha_3_atividades, $data_ficha_3_atividades, $format );
+		$redirect = $wpdb->insert( $ficha_3_atividades, $data_ficha_3_atividades, $format );
 	}
 
 	// Tabela de saúde física
@@ -67,7 +67,7 @@ if(isset($_POST['submit'])){
 				'valor'=> $valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-		$wpdb->insert( $ficha_3_saude_fisica, $data_ficha_3_saude_fisica, $format );
+		$redirect = $wpdb->insert( $ficha_3_saude_fisica, $data_ficha_3_saude_fisica, $format );
 	}
 
 	// Tabela de saúde diária
@@ -81,7 +81,7 @@ if(isset($_POST['submit'])){
 				'valor'=> $valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-		$wpdb->insert( $ficha_3_saude_fisica, $data_ficha_3_saude_fisica, $format );
+		$redirect = $wpdb->insert( $ficha_3_saude_fisica, $data_ficha_3_saude_fisica, $format );
 	}
 
 	// Tabela de Pergunta 9
@@ -95,7 +95,7 @@ if(isset($_POST['submit'])){
 				'valor'=> $valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-		$wpdb->insert( $ficha_3_pergunta_9, $data_ficha_3_pergunta_9, $format );
+		$redirect = $wpdb->insert( $ficha_3_pergunta_9, $data_ficha_3_pergunta_9, $format );
 	}
 
 	// Tabela de Pergunta 11
@@ -109,7 +109,7 @@ if(isset($_POST['submit'])){
 				'valor'=> $valor,
 				'id_ficha_3'=> $id_ficha_3
 			);
-		$wpdb->insert( $ficha_3_pergunta_11, $data_ficha_3_pergunta_11, $format );
+		$redirect = $wpdb->insert( $ficha_3_pergunta_11, $data_ficha_3_pergunta_11, $format );
 	}
 
 	// Tabela de Avaliação
@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['cap_func_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_cap_func, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_cap_func, $format );
 
 	// Aspectos Físicos (4: a+b+c+d) =
 	$data_aspectos_fisicos = array(
@@ -131,7 +131,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['aspectos_fisicos_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_aspectos_fisicos, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_aspectos_fisicos, $format );
 
 	// Dor (7+8) =
 	$data_dor = array(
@@ -140,7 +140,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['dor_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_dor, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_dor, $format );
 
 	// Estado Geral de saúde (1+11) =
 	$data_estado_geral = array(
@@ -149,7 +149,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['estado_geral_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_estado_geral, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_estado_geral, $format );
 
 	// Vitalidade (9: a+e+g+i) =
 	$data_vitalidade = array(
@@ -158,7 +158,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['vitalidade_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_vitalidade, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_vitalidade, $format );
 
 	// Aspectos Sociais (6+10) =
 	$data_aspectos_sociais = array(
@@ -167,7 +167,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['aspectos_sociais_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_aspectos_sociais, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_aspectos_sociais, $format );
 
 	// Aspecto Emocional (5: a+b+c) =
 	$data_aspecto_emo = array(
@@ -176,7 +176,7 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['aspecto_emo_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_aspecto_emo, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_aspecto_emo, $format );
 
 	// Saúde Mental (9: b+c+d+f+h) =
 	$data_saude_mental = array(
@@ -185,7 +185,15 @@ if(isset($_POST['submit'])){
 			'valor'=> $_POST['saude_mental_2'],
 			'id_ficha_3'=> $id_ficha_3
 		);
-	$wpdb->insert( $ficha_3_avaliacao, $data_saude_mental, $format );
+	$redirect = $wpdb->insert( $ficha_3_avaliacao, $data_saude_mental, $format );
+
+	if($redirect){
+		if(isset($_POST['submitMesmo'])){
+			redirect_to("../ficha-4?cod=".$_POST['num_paciente']);
+		}else {
+			redirect_to("../ficha-4?cod=".$_POST['num_paciente']. "&ficha=".$id_ficha_3);
+		}
+	}
 
 }
 
@@ -399,7 +407,7 @@ include "layout/header.php";
 						</td>
 					</tr>
 					<tr>
-						<td>Subir um ance de escada.</td>
+						<td>Subir um lance de escada.</td>
 						<input type="hidden" name="atividade_5" value="Subir um ance de escada.">
 						<td>
 							<div class="radio-div">
@@ -539,8 +547,8 @@ include "layout/header.php";
 					</tr>
 					<tr>
 						<td>
-							Realizou menos tarefasdo que gostaria?
-							<input type="hidden" name="saude_fisica_item_2" value="Realizou menos tarefasdo que gostaria?">
+							Realizou menos tarefas do que gostaria?
+							<input type="hidden" name="saude_fisica_item_2" value="Realizou menos tarefas do que gostaria?">
 						</td>
 						<td>
 							<div class="radio-div">
@@ -1238,7 +1246,16 @@ include "layout/header.php";
 				<p>Saúde Mental (9: b+c+d+f+h) = <strong><span id="saude_mental"></span></strong></p>
 				<input type="hidden" name="saude_mental_2" id="saude_mental_2" value="">
 			</div>
-			<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+			<div class="botoesSumbit">
+				<div class="span5">
+					<button type="submit" name="submitMesmo" class="btn btn-primary enviar">Salvar e Adicionar +</button>	
+				</div>
+				
+				<div class="span5 text_align_right">
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar e Ficha 4</button>	
+				</div>	
+				
+			</div>
 		</form>
 
 	</div>

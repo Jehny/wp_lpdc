@@ -452,7 +452,7 @@ include "layout/header.php";
 						</fieldset>	
 					</div>
 
-					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
 					
 				</form>
 

@@ -5,7 +5,7 @@ if($_GET['cod']){
 	$num_paciente =  "";
 }
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) || isset($_POST['submitMesmo'])){
 
 
 	$paciente_ficha_4 = 'paciente_ficha_4';
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
 			'pontos'=> $_POST['total_pontos_val'],
 			'classificacao'=> $_POST['classificacao_val']
 		);
-	$wpdb->insert( $paciente_ficha_4, $data_paciente_ficha_4, $format );
+	$redirect = $wpdb->insert( $paciente_ficha_4, $data_paciente_ficha_4, $format );
 	$id_ficha_4 = $wpdb->insert_id;
 
 	// Perguntas
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_1'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_1, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_1, $format );
 
 	// Pergunta 2
 	$valor_2 = $_POST['pergunta_2'];
@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_2'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_2, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_2, $format );
 
 	// Pergunta 3
 	$valor_3 = $_POST['pergunta_3'];
@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_3'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_3, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_3, $format );
 
 	// Pergunta 4
 	$valor_4 = $_POST['pergunta_4'];
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_4'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_4, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_4, $format );
 
 	// Pergunta 5
 	$valor_5 = $_POST['pergunta_5'];
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_5'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_5, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_5, $format );
 
 	// Pergunta 6
 	$valor_6 = $_POST['pergunta_6'];
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_6'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_6, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_6, $format );
 
 	// Pergunta 7
 	$valor_7 = $_POST['pergunta_7'];
@@ -114,9 +114,21 @@ if(isset($_POST['submit'])){
 			'obs'=>$_POST['obs_7'],
 			'id_ficha_4'=>$id_ficha_4
 		);
-	$wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_7, $format );
+	$redirect = $wpdb->insert( $ficha_4_perguntas, $data_ficha_4_pergunta_7, $format );
+
+	if($redirect){
+
+		if(isset($_POST['submitMesmo'])){
+			redirect_to("../ficha-4?cod=".$_POST['num_paciente']);
+		}else {
+			redirect_to("../cadastro-de-paciente");
+		}
+		
+		
+	}
 
 }
+
 include "layout/header.php"; 
 ?>
 
@@ -306,7 +318,16 @@ include "layout/header.php";
 				</p>
 			</div>
 
-			<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+			<div class="botoesSumbit">
+				<div class="span5">
+					<button type="submit" name="submitMesmo" class="btn btn-primary enviar">Salvar e Adicionar +</button>	
+				</div>
+				
+				<div class="span5 text_align_right">
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar e Finalizar</button>	
+				</div>	
+				
+			</div>
 		</form>
 
 	</div>

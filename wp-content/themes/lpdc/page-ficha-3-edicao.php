@@ -691,7 +691,7 @@ include "layout/header.php";
 				<input type="hidden" name="saude_mental_2" id="saude_mental_2" value="<?php echo $saude_mental->valor; ?>">
 			</div>
 			<input type="hidden" name="ficha" value="<?php echo $id_ficha; ?>">
-			<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+			<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
 		</form>
 
 	</div>
