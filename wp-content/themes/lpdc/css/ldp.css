@@ -1294,7 +1294,7 @@ Página de contato
 
 
 .perguntas_aderencia .input_menor {
-	width:  5% !important;
+	width:  16% !important;
 }
 
 .perguntas_aderencia .resposta {
@@ -1407,6 +1407,19 @@ Página de contato
 }
 
 /*Classes auxiliares*/
+
+.botoesSumbit {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.botoesSumbit .span5 {
+	width: 47.5%;
+}
+
+.botoesSumbit .span12 {
+	width: 96.5%;
+}
 
 .text_align_right {
 	margin: auto;
