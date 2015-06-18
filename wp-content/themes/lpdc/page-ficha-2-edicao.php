@@ -172,7 +172,7 @@ include "layout/header.php";
 						</fieldset>
 						<fieldset>
 							<div class="span8">
-							<label>Avaliação do tratamento:</label>
+								<label>Avaliação do tratamento:</label>
 								<?php if($obj_paciente->etapa == '1º Etapa') { ?>
 									<div class="radio-div">
 										<input type="radio" name="etapa" value="1º Etapa" id="cidade" checked><span class="radio-label">1º Etapa</span>
@@ -196,8 +196,8 @@ include "layout/header.php";
 							</div>
 						</fieldset>
 					</div>
-					<div class="sessao row-fluid">
-						<h5>Avaliação de Aderência</h5>
+						<div class="sessao row-fluid">
+							<h5>Avaliação de Aderência</h5>
 							<div class="span12 perguntas_aderencia">
 								<label>Durante a 1ª/2ª etapa do tratamento, o Sr. (a) deixou de tomar o Benzonidazol alguma vez ou tomou menos comprimidos receitados pelo médico?</label>
 								<?php if($avaliacao_aderencia_pergunta_1->resposta == 'Sim') { ?>
@@ -232,7 +232,7 @@ include "layout/header.php";
 							<input type="hidden" name="perg4" value="Por que?">
 							<input type="hidden" name="perg5" value="Quantos comprimidos no total o paciente tomou na 1ª/2ª etapa?">
 							<input type="hidden" name="perg6" value="Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?">
-
+							
 							<div class="span12 perguntas_aderencia">
 								<label>Por que?</label>
 								<?php 
@@ -241,7 +241,6 @@ include "layout/header.php";
 								for($i=0; $i<$total_check; $i++){
 									array_push($array_porque, $avaliacao_aderencia_porque[$i]->item);
 								}
-
 								if(in_array("Não quis tomar", $array_porque)) { ?>
 									<div class="checkbox">
 										<input type="checkbox" name="perg_aderencia_4[]" value="Não quis tomar" checked=checked>Não quis tomar
@@ -309,7 +308,8 @@ include "layout/header.php";
 										<input type="checkbox" name="perg_aderencia_4[]" value="Esquecimento">Esquecimento
 									</div>
 								<?php } ?>
-							</div>
+							</div>		
+					
 							<div class="span12 perguntas_aderencia">
 								<p><strong>Percentual de aderência (Calculado pelo farmacêutico):</strong></p>
 								<div>
@@ -320,40 +320,39 @@ include "layout/header.php";
 									<label>Quantos comprimidos deveria ter tomado na 1ª/2ª etapa?</label>
 									<input type="text" name="perg_aderencia_6" value="<?php echo $avaliacao_aderencia_pergunta_6->resposta; ?>">
 								</div>
-								<input type="text" name="porcentagem" id="porcentagem" value="<?php echo $$obj_paciente->porcentagem; ?>" class="input_menor">
+								<input type="text" name="porcentagem" id="porcentagem" value="<?php echo $obj_paciente->porcentagem; ?>" class="input_menor">
 							</div>
 
-					</div>
-
-					<div class="sessao row-fluid perguntas_aderencia">
-						<h5>Reações Indesejáveis</h5>
-						<fieldset>
-							<div class="span8">
-								Você sentiu alguma reação indesejável durante a 1ª/2ª etapa do tratamento?
-							</div>
-							<div class="span4 resposta">
-							<?php if($reacao_indesejavel->resposta == "Sim"){ ?>
-									<div class="div_radio">
-										<input type="radio" name="reacao1" value="Sim" checked>Sim
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="reacao1" value="Não">Não
-									</div>
-							<?php } else { ?>
-									<div class="div_radio">
-										<input type="radio" name="reacao1" value="Sim">Sim
-									</div>
-									<div class="div_radio">
-										<input type="radio" name="reacao1" value="Não" checked>Não
-									</div>
-							<?php } ?>
-							</div>
-						</fieldset>	
-						<fieldset>
-							<div class="div_full">
-								Se sim, quais foram as reações?
-						</fieldset>	
-						<?php for ($i=0; $i<7; $i++) { 
+						</div>
+						<div class="sessao row-fluid perguntas_aderencia">
+							<h5>Reações Indesejáveis</h5>
+							<fieldset>
+								<div class="span8">
+									Você sentiu alguma reação indesejável durante a 1ª/2ª etapa do tratamento?
+								</div>
+								<div class="span4 resposta">
+								<?php if($reacao_indesejavel->resposta == "Sim"){ ?>
+										<div class="div_radio">
+											<input type="radio" name="reacao1" value="Sim" checked>Sim
+										</div>
+										<div class="div_radio">
+											<input type="radio" name="reacao1" value="Não">Não
+										</div>
+								<?php } else { ?>
+										<div class="div_radio">
+											<input type="radio" name="reacao1" value="Sim">Sim
+										</div>
+										<div class="div_radio">
+											<input type="radio" name="reacao1" value="Não" checked>Não
+										</div>
+								<?php } ?>
+								</div>
+							</fieldset>	
+							<fieldset>
+								<div class="div_full">
+									Se sim, quais foram as reações?
+							</fieldset>	
+							<?php for ($i=0; $i<7; $i++) { 
 								$j = $i + 1;
 								if(isset($reacao_ram[$i])) {
 							?>
@@ -408,8 +407,8 @@ include "layout/header.php";
 								</fieldset>	
 							<?php }
 							} ?>
-					</div>
-					<div class="sessao row-fluid">
+						</div>
+					<div class="sessao row-fluid medicamento_ficha_2">
 						<h5>Uso de medicamentos</h5>
 						<fieldset>
 							<div class="span8">
@@ -462,10 +461,8 @@ include "layout/header.php";
 					//     echo 'Voce nao esta logado!';
 					// }
 					?>
-			</div>
-
-			
-			
-			
-		</div> <!-- Fim da Div de Página -->
+			</div>	<!-- Div do formulário -->	
+		
+		</div> <!-- Div da página -->	
+	
 <?php include "layout/footer.php"; ?>
