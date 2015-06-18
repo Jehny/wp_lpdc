@@ -2553,7 +2553,7 @@ include "layout/header.php";
 						<textarea name="evolucao_paciente" rows="10" cols="200"></textarea>
 					</div>
 
-					<button type="submit" name="submit" class="btn btn-large btn-primary enviar">Salvar</button>
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
 					
 				</form>
 

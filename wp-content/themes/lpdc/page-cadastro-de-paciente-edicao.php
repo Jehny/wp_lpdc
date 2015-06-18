@@ -956,7 +956,7 @@ include "layout/header.php";
 								<input type="text" name="telefone" value="<?php echo $obj_paciente->telefones; ?>" class="input_media">
 							</div>
 
-							<div class="div_media">
+							<div class="div_media print_procedencia">
 								<label>Procedência:</label>
 								<div class="radio-div">
 									<?php if($obj_paciente->procedencia == "cidade"){
