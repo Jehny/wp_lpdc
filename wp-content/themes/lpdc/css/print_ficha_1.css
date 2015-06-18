@@ -1,0 +1,211 @@
+@CHARSET "UTF-8";
+
+#pagina2 {
+	margin-bottom: 0px;
+	margin-top: 30px;
+	width: 90%;
+	font-size: 12pt;
+}
+
+.cadastro-paciente form .radio-div, .cadastro-paciente form .radio-idoso {
+	font-size: 11pt;
+}
+
+
+.header_cadastro-paciente, .beforeHeader, #menu, .mais_medic2 .mais, .mais_medic3, 
+.mais_medic4, .medic_uso2, .medic_uso3, .medic_uso3,.medic_uso5, .medic_uso6, .medic_uso7, 
+.medic_uso8, .mais_medic2, .mais_medic3, .mais_medic4 {
+	display: none;
+}
+
+.cadastro-paciente .title h4 {
+	font-size: 15px;
+}
+
+.cadastro-paciente form [name="data"] {
+	width: 150px;
+}
+
+.cadastro-paciente form input {
+ 	border: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	box-shadow: inset none;
+  	-webkit-transition: none;
+  	-moz-transition: none;
+  	-o-transition: none;
+  	transition: none;
+}
+
+.cadastro-paciente form .interior {
+  	width: 50%;
+   	text-align: right;
+   	font-size: 11pt;
+}
+
+.atendimento h6 {
+  background: rgb(233, 252, 255);
+}
+
+.atendimento .opcao_check, .cadastro-paciente .div_radio {
+	font-size: 11pt;
+}
+
+button.btn, input[type="submit"].btn {
+	display: none;
+}
+
+.cadastro-paciente form .sessao h5 {
+	margin-bottom: 2%; 
+	margin-top: 1%;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+.formulario, .cadastro-paciente form {
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+.mais_atend_2, .mais_atend_3, .mais_atend_4, #resid2, #resid3, #resid4 {
+	display: none;
+}
+
+.print_procedencia {
+	
+}
+.print_procedencia .interior {
+	width: 40%;
+}
+.obs {
+	font-size: 9pt;
+}
+
+.revisao_sistemas .span2 {
+	width: 20%;
+	font-size: 9pt;
+}
+.revisao_sistemas .span10 {
+	width: 79%;
+}
+
+.revisao_sistemas .check {
+	width: 25%;
+}
+
+.revisao_sistemas div {
+	  height: 75px;
+}
+
+.habitos .div_radio {
+	  width: 30%;
+	  font-size: 11pt;
+}
+
+.habitos .div_text_obs, .habitos .div_2, .habitos .div_radio_obs, .habitos .habitos_print, .habitos .div_radio_obs2, .habitos .div_check,
+.habitos input[name="tipo_ativiadade_fisica"] {
+	font-size: 9pt;
+}
+
+.habitos input[name="tipo_ativiadade_fisica"] {
+	  width: 60%
+}
+
+.habitos input[name="cha_tipo_planta"] {
+	  width: 22%;
+	  height: 19px;
+}
+
+.habitos .div_2 input {
+	width: 22%;
+}
+
+.habitos .div_2 .input_menor {
+	width: 20%;
+}
+
+.tam_pergunta_1 {
+	width: 33% !important;
+}
+
+.tam_radio_1 {
+	width: 20% !important;
+}
+
+.tam_radio_2 {
+	width: 22% !important;
+}
+
+.tam_radio_3 {
+	width: 29% !important;
+	height: 22px;
+}
+
+.altura_radio {
+	height: 22px;
+}
+
+.habitos .primeiro {
+	height: 82px;
+}
+
+.exames_clinicos2 .div_radio{
+	font-size: 10pt;
+}
+
+.exames_clinicos2 .div_radio p {
+	  width: 80%;
+}
+
+.exames_clinicos2 .span1 input[type="date"] {
+	width: 90%;
+ 	height: 18px;
+ 	font-size: 9pt;
+}
+
+.exames_clinicos .span1 input[type="date"] {
+	width: 90%;
+	font-size: 9pt;
+}
+
+.exames_clinicos2 .span3 {
+	text-align: left;
+	width: 14%;
+}
+
+.exames_clinicos2 .div_radio input {
+	margin-left: 0%;
+}
+
+input[type=date]::-webkit-clear-button {
+  font-size: 10px;
+  height: 30px;
+  position: relative;
+  right: 2px;
+  margin-right: 2px;
+}
+input[type=date]::-webkit-inner-spin-button {
+  height: 20px;
+  display: none;
+}
+input[type=date]::-webkit-calendar-picker-indicator {
+  font-size: 12px;
+  width: 6px;
+}
+
+.exames_clinicos2 .span1 {
+	width: 14.5%;
+	height: 86px;
+}
+
+.exames_clinicos2 .span5 {
+	height: 86px;
+}
+
+input {
+	color: 
+}
+
+footer {
+	display: none;
+}

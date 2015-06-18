@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+
+#pagina2 {
+	margin-bottom: 0px;
+	margin-top: 30px;
+	width: 90%;
+	font-size: 12pt;
+}
+
+
+.header_cadastro-paciente, .beforeHeader, #menu {
+	display: none;
+}
+
+.cadastro-paciente .title h4 {
+	font-size: 15px;
+}
+
+.cadastro-paciente form [name="data"] {
+	width: 150px;
+}
+
+.cadastro-paciente form .sessao h5 {
+	  background: #D6DDF5 !important;
+}
+.cadastro-paciente form input {
+	height: 20px;
+	background-color: #E0F0FF !important;
+ 	border: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	box-shadow: inset none;
+  	-webkit-transition: none;
+  	-moz-transition: none;
+  	-o-transition: none;
+  	transition: none;
+}
+
+
+button.btn, input[type="submit"].btn {
+	display: none;
+}
+
+.perguntas_aderencia fieldset .span4 input[type="text"]{
+	width: 180px;
+}
+
+.sessao h5 {
+	margin-bottom: 0%; 
+	margin-top: 0%;
+}
+
+.medicamento_ficha_2 .span2 {
+	width: 22% !important;
+}
+
+.medicamento_ficha_2 .span10 {
+	width: 75% !important;
+}
+
+.medicamento_ficha_2 .span10 .input_media {
+	width: 80% !important;
+}
+
+.continua {
+	margin-left: 3%;
+}
+
+.formulario, .cadastro-paciente form {
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+footer {
+	display: none;
+}
