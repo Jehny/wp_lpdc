@@ -14,11 +14,13 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="<?php bloginfo('template_url'); ?>/css/bootstrap.css" rel="stylesheet" media="all">
 	<title> LPDC - <?php echo get_the_title(); ?></title>
-	<link href="<?php bloginfo('template_url'); ?>/css/ldp.css" rel="stylesheet" media="screen">
-	<link href="<?php bloginfo('template_url'); ?>/css/fontes.css" rel="stylesheet" media="screen">
-	<link href="<?php bloginfo('template_url'); ?>/css/icons.css" rel="stylesheet" media="screen">
+	<link href="<?php bloginfo('template_url'); ?>/css/ldp.css" rel="stylesheet" media="all">
+	<link href="<?php bloginfo('template_url'); ?>/css/fontes.css" rel="stylesheet" media="all">
+	<link href="<?php bloginfo('template_url'); ?>/css/icons.css" rel="stylesheet" media="all">
+	<link href="<?php bloginfo('template_url'); ?>/css/print_ficha_1.css" rel="stylesheet" media="print">
+	<link href="<?php bloginfo('template_url'); ?>/css/print_ficha_2.css" rel="stylesheet" media="print">
 	<script src="<?php bloginfo('template_url'); ?>/js/jquery-2.0.3.min.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/js/ldp.js"></script>
