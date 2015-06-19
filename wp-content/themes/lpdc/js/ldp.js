@@ -802,5 +802,9 @@ $(function(){
 		}
 	});
 
+	$('.icon-imprimir').bind("click", function(e){
+		window.print();
+	});
+
 
 });

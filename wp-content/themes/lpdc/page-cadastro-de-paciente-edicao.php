@@ -3269,7 +3269,15 @@ include "layout/header.php";
 						<textarea name="evolucao_paciente" rows="10" cols="200"><?php echo $obj_paciente->evolucao; ?></textarea>
 					</div>
 					<input type="hidden" name="paciente" value="<?php echo $numero_paciente; ?>">
-					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+
+					<div class="botoesSumbit">		
+						<div class="span5">
+							<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+						</div>
+						<div class="span5 text_align_right">
+							<a href="javascript:void(0);"><i class="icon-imprimir edit_lista"></i></a>	
+						</div>
+					</div>
 					
 				</form>
 

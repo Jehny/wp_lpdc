@@ -457,13 +457,13 @@ function buscar_pergunta_ficha_3_por_item($num_paciente="", $id_ficha="", $tabel
 function listar_opcoes_ficha_3_pergunta_4($value, $grau){
 	if($value == 1){
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_4_label_print_f3'>
 					<input type='radio' name='saude_fisica_".$grau."' value='1' checked><span class='radio-label'>SIM</span>
 				</div>
 			</td>";
 	} else {
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_4_label_print_f3'>
 					<input type='radio' name='saude_fisica_".$grau."' value='1'><span class='radio-label'>SIM</span>
 				</div>
 			</td>";
@@ -471,14 +471,14 @@ function listar_opcoes_ficha_3_pergunta_4($value, $grau){
 
 	if($value == 2){
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_4_label_print_f3'>
 					<input type='radio' name='saude_fisica_".$grau."' value='2' checked><span class='radio-label'>NÃO</span>
 					
 				</div>
 			</td>";
 	} else {
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_4_label_print_f3'>
 					<input type='radio' name='saude_fisica_".$grau."' value='2'><span class='radio-label'>NÃO</span>
 				</div>
 			</td>";
@@ -634,13 +634,13 @@ function listar_opcoes_ficha_3_pergunta_11($value, $grau){
 
 	if($value == 3){
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_11_print_f3'>
 					<input type='radio' name='pergunta_11_".$grau."' value='3' checked><span class='radio-label'>3</span>
 				</div>
 			</td>";
 	} else {
 		echo "<td>
-				<div class='radio-div'>
+				<div class='radio-div perg_11_print_f3'>
 					<input type='radio' name='pergunta_11_".$grau."' value='3'><span class='radio-label'>3</span>
 				</div>
 			</td>";
