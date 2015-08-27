@@ -382,8 +382,14 @@ include "layout/header.php";
 					<input type="hidden" value="<?php echo $obj_paciente->classificacao; ?>" id="classificacao_val" name="classificacao_val">
 				</p>
 			</div>
-
-			<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+			<div class="botoesSumbit">		
+				<div class="span5">
+					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+				</div>
+				<div class="span5 text_align_right">
+					<a href="javascript:void(0);"><i class="icon-imprimir edit_lista"></i></a>	
+				</div>
+			</div>
 		</form>
 
 	</div>

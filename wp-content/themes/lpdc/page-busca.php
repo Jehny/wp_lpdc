@@ -156,7 +156,7 @@ include "layout/header.php";
 										<div class="span1 label1_1 text_align_right">Data:</div>
 										<div class="span1 result"><?php echo $key->data; ?></div>
 										<div class="span1">
-											<a href="<?php echo '../cadastro-de-paciente-edicao?cod='. $key->num_paciente . '&ficha='.$key->id; ?>"><i class="icon-editar edit_lista"></i></a>
+											<a href="<?php echo '../ficha-3-edicao?cod='. $key->num_paciente . '&ficha='.$key->id; ?>"><i class="icon-editar edit_lista"></i></a>
 											<a href=""><i class="icon-olho edit_lista"></i></a>
 										</div>
 

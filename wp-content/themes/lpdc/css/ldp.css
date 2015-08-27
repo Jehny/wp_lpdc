@@ -1411,6 +1411,7 @@ Página de contato
 .botoesSumbit {
 	margin-bottom: 10px;
 	overflow: hidden;
+	height: 42px;
 }
 
 .botoesSumbit .span5 {
@@ -1419,6 +1420,11 @@ Página de contato
 
 .botoesSumbit .span12 {
 	width: 96.5%;
+}
+
+.botoesSumbit .edit_lista {
+	font-size: 3.5em;
+  	vertical-align: top;
 }
 
 .text_align_right {

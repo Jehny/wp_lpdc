@@ -450,9 +450,15 @@ include "layout/header.php";
 							</div>
 						</fieldset>	
 					</div>
-
-					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
 					
+					<div class="botoesSumbit">		
+						<div class="span5">
+							<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+						</div>
+						<div class="span5 text_align_right">
+							<a href="javascript:void(0);"><i class="icon-imprimir edit_lista"></i></a>	
+						</div>
+					</div>
 				</form>
 
 				<?php	

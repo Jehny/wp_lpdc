@@ -2468,22 +2468,22 @@ include "layout/header.php";
 						<?php } ?>
 						</div>
 						<div class="span8 primeiro">
-							<div class="div_text_obs">Se fuma: Qual a frequência?</div>
-							<div class="div_radio_obs">
+							<div class="div_text_obs primeira_frase">Se fuma: Qual a frequência?</div>
+							<div class="div_radio_obs tam_radio_1">
 							<?php if($fuma->frequencia == '0-10 cigarros/dia'){ ?>
 								<input type="radio" name="frequencia_fuma" value="0-10 cigarros/dia" checked>0-10 cigarros/dia
 							<?php } else { ?>
 								<input type="radio" name="frequencia_fuma" value="0-10 cigarros/dia">0-10 cigarros/dia
 							<?php } ?>
 							</div>
-							<div class="div_radio_obs">
+							<div class="div_radio_obs tam_radio_2">
 							<?php if($fuma->frequencia == '10-20 cigarros/dia'){ ?>
 								<input type="radio" name="frequencia_fuma" value="10-20 cigarros/dia" checked>10-20 cigarros/dia
 							<?php } else { ?>
 								<input type="radio" name="frequencia_fuma" value="10-20 cigarros/dia">10-20 cigarros/dia
 							<?php } ?>
 							</div>
-							<div class="div_radio_obs">
+							<div class="div_radio_obs tam_radio_3">
 							<?php if($fuma->frequencia == 'Acima de 20cigarros/dia'){ ?>
 								<input type="radio" name="frequencia_fuma" value="Acima de 20cigarros/dia"checked>Acima de 20 cigarros/dia
 							<?php } else { ?>
@@ -2522,22 +2522,22 @@ include "layout/header.php";
 						<?php } ?>
 						</div>
 						<div class="span8 primeiro">
-							<div class="div_text_obs">Se toma café: Qual a frequência?</div>
-							<div class="div_radio_obs">
+							<div class="div_text_obs primeira_frase tam_pergunta_1">Se toma café: Qual a frequência?</div>
+							<div class="div_radio_obs tam_radio_1">
 								<?php if($cafe->frequencia == '1 xícara/dia'){ ?>
 									<input type="radio" name="frequencia_cafe" value="1 xícara/dia" checked>1 xícara/dia
 								<?php } else { ?>
 									<input type="radio" name="frequencia_cafe" value="1 xícara/dia">1 xícara/dia
 								<?php } ?>
 							</div>
-							<div class="div_radio_obs">
+							<div class="div_radio_obs tam_radio_2">
 								<?php if($cafe->frequencia == '2-3 xícaras/dia'){ ?>
 									<input type="radio" name="frequencia_cafe" value="2-3 xícaras/dia" checked>2-3 xícaras/dia
 								<?php } else { ?>
 									<input type="radio" name="frequencia_cafe" value="2-3 xícaras/dia">2-3 xícaras/dia
 								<?php } ?>
 							</div>
-							<div class="div_radio_obs">
+							<div class="div_radio_obs altura_radio">
 								<?php if($cafe->frequencia == 'Acima de 6/dia'){ ?>
 									<input type="radio" name="frequencia_cafe" value="Acima de 6/dia" checked>Acima de 6/dia
 								<?php } else { ?>
@@ -2577,7 +2577,7 @@ include "layout/header.php";
 							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
-							<div class="">Se bebe: analisar possibilidade do paciente ser alcoólatra. Em média consome:</div>
+							<div class="habitos_print primeira_frase">Se bebe: analisar possibilidade do paciente ser alcoólatra. Em média consome:</div>
 							<div class="div_radio_obs">
 							<?php if($bebida->frequencia == '1 copo/semana'){ ?>
 								<input type="radio" name="frequencia_bebe" value="1 copo/semana" checked>1 copo/semana
@@ -2601,7 +2601,7 @@ include "layout/header.php";
 								
 							</div>
 							<br />
-							<div class="div_2">
+							<div class="div_2 altura_radio">
 								Se bebia: Há quanto tempo deixou de beber?
 								<input type="text" name="qnt_tempo_bebe" value="<?php echo $bebida->tempo_deixou; ?>" class="input_menor">
 								Motivo? <input type="text" name="motivo_bebe" value="<?php echo $bebida->motivo; ?>" class="input_menor">
@@ -2631,7 +2631,7 @@ include "layout/header.php";
 							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
-							<div class="div_text_obs">Se sim qual a frequência?</div>
+							<div class="div_text_obs primeira_frase">Se sim qual a frequência?</div>
 							<div class="div_radio_obs2">
 							<?php if($plantas->frequencia == '1 xícara/dia'){ ?>
 								<input type="radio" name="frequencia_cha" value="1 xícara/dia" checked>1 xícara/dia
@@ -2741,7 +2741,7 @@ include "layout/header.php";
 							<?php } ?>
 						</div>
 						<div class="span8 primeiro">
-							<div class="">Tipo de alimentação:</div>
+							<div class="habitos_print">Tipo de alimentação:</div>
 							<div class="div_check">
 								<?php $tipo = explode(";", $alimentacao->tipo_alimentacao); ?>
 
@@ -2787,7 +2787,7 @@ include "layout/header.php";
 									<input type="checkbox" name="tipo_alimentacao_1[]" value="Rica em óleos e gorduras">Rica em óleos e gorduras
 								<?php } ?>
 							</div>
-							<div class="">
+							<div class="habitos_print">
 								Outros. Epecificar: <input type="text" name="outros_alimentacao" value="<?php echo $alimentacao->outros; ?>">
 							</div>
 						</div>
@@ -3269,7 +3269,15 @@ include "layout/header.php";
 						<textarea name="evolucao_paciente" rows="10" cols="200"><?php echo $obj_paciente->evolucao; ?></textarea>
 					</div>
 					<input type="hidden" name="paciente" value="<?php echo $numero_paciente; ?>">
-					<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+
+					<div class="botoesSumbit">		
+						<div class="span5">
+							<button type="submit" name="submit" class="btn btn-primary enviar">Salvar</button>
+						</div>
+						<div class="span5 text_align_right">
+							<a href="javascript:void(0);"><i class="icon-imprimir edit_lista"></i></a>	
+						</div>
+					</div>
 					
 				</form>
 
