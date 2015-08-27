@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+#pagina2 {
+	margin-bottom: 0px;
+	margin-top: 30px;
+	width: 90%;
+	font-size: 12pt;
+}
+
+
+.header_cadastro-paciente, .beforeHeader, #menu {
+	display: none;
+}
+
+.cadastro-paciente .title h4 {
+	font-size: 15px;
+}
+
+.cadastro-paciente form [name="data"] {
+	width: 150px;
+}
+
+.cadastro-paciente form input {
+	height: 20px;
+	background-color: #E0F0FF !important;
+ 	border: none;
+  	-webkit-box-shadow: none;
+  	-moz-box-shadow: none;
+  	box-shadow: inset none;
+  	-webkit-transition: none;
+  	-moz-transition: none;
+  	-o-transition: none;
+  	transition: none;
+}
+
+
+button.btn, input[type="submit"].btn {
+	display: none;
+}
+
+.sessao h5 {
+	margin-bottom: 0%; 
+	margin-top: 0%;
+}
+
+.formulario, .cadastro-paciente form {
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+.mais_atend_2, .mais_atend_3, .mais_atend_4 {
+	display: none;
+}
+
+.print_procedencia {
+	
+}
+.print_procedencia .interior {
+	width: 40%;
+}
+
+footer {
+	display: none;
+}
