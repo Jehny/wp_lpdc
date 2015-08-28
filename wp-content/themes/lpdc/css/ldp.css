@@ -860,6 +860,7 @@ Página de contato
 	font-size: 12px;
 	margin-top: 0;
 	margin-bottom: 0px;
+	float: right;
 }
 
 .atendimento input {
@@ -1489,4 +1490,8 @@ Página de contato
 
 .no_margin_top {
 	margin-top: 0 !important;
+}
+.data_web { display: block !important}
+.data_print {
+	display: none !important;
 }

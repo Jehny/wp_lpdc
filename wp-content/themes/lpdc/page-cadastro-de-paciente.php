@@ -741,7 +741,8 @@ include "layout/header.php";
 							</div>
 							<div class="div_3">
 								<label class="print_data_label">Data:</label>
-								<input type="date" name="data" value="" required>
+								<input class="data_web" type="date" name="data" value="" required>
+								<input class="data_print" type="text" name="data" value="" required >
 							</div>
 						</fieldset>
 					</div>
@@ -772,12 +773,12 @@ include "layout/header.php";
 						</fieldset>
 
 						<fieldset>
-							<div class="div_media">
+							<div class="div_media print_telefone">
 								<label>Telefones para contato:</label>
 								<input type="text" name="telefone" value="" class="input_media">
 							</div>
 
-							<div class="div_media">
+							<div class="div_media print_procedencia">
 								<label>Procedência:</label>
 								<div class="radio-div">
 									<input type="radio" name="procedencia" value="cidade" id="cidade"><span class="radio-label">Cidade</span>
@@ -809,7 +810,7 @@ include "layout/header.php";
 							<div class="divisao att1">
 							<?php 
 								$atendimento_1 = pegar_opcao_atendimento(1);
-								echo "<h6>1º Atendimento <input type='date' name='data_atend' value='' required></h6>";
+								echo "<h6>1º Atendimento <input type='date' name='data_atend' value='' required class='data_web'><input type='text' name='data_atend' value='' required class='data_print'></h6>";
 								foreach ($atendimento_1 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_1[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -823,7 +824,7 @@ include "layout/header.php";
 							<div class="divisao att2">
 							<?php 
 								$atendimento_2 = pegar_opcao_atendimento(2);
-								echo "<h6>2º Atendimento <input type='date' name='data_atend2' value=''></h6>";
+								echo "<h6>2º Atendimento <input type='date' name='data_atend2' value='' class='data_web'><input type='text' name='data_atend2' value='' required class='data_print'></h6>";
 								foreach ($atendimento_2 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_2[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -837,7 +838,7 @@ include "layout/header.php";
 							<div class="divisao att3">
 							<?php 
 								$atendimento_3 = pegar_opcao_atendimento(3);
-								echo "<h6>3º Atendimento <input type='date' name='data_atend3' value=''></h6>";
+								echo "<h6>3º Atendimento <input type='date' name='data_atend3' value='' class='data_web'><input type='text' name='data_atend3' value='' required class='data_print'></h6>";
 								foreach ($atendimento_3 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_3[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -851,7 +852,7 @@ include "layout/header.php";
 							<div class="divisao att4">
 							<?php 
 								$atendimento_4 = pegar_opcao_atendimento(4);
-								echo "<h6>4º Atendimento <input type='date' name='data_atend4' value=''></h6>";
+								echo "<h6>4º Atendimento <input type='date' name='data_atend4' value='' class='data_web'><input type='text' name='data_atend4' value='' required class='data_print'></h6>";
 								foreach ($atendimento_4 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_4[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -865,7 +866,7 @@ include "layout/header.php";
 							<div class="divisao att5">
 							<?php 
 								$atendimento_5 = pegar_opcao_atendimento(1);
-								echo "<h6>5º Atendimento <input type='date' name='data_atend5' value=''></h6>";
+								echo "<h6>5º Atendimento <input type='date' name='data_atend5' value='' class='data_web'><input type='text' name='data_atend5' value='' required class='data_print'></h6>";
 								foreach ($atendimento_5 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_5[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -879,7 +880,7 @@ include "layout/header.php";
 							<div class="divisao att6">
 							<?php 
 								$atendimento_6 = pegar_opcao_atendimento(1);
-								echo "<h6>6º Atendimento <input type='date' name='data_atend6' value=''></h6>";
+								echo "<h6>6º Atendimento <input type='date' name='data_atend6' value='' class='data_web'><input type='text' name='data_atend6' value='' required class='data_print'></h6>";
 								foreach ($atendimento_6 as $key) {
 									echo "<div class='opcao_check'><input type='checkbox' name='atendimento_6[]' value='".$key->opcao."'><span>" . $key->opcao . "</span></div>";
 								}
@@ -949,7 +950,7 @@ include "layout/header.php";
 							</div>
 						</fieldset>
 						<fieldset>
-							<div class="div_media">
+							<div class="div_media print_renda">
 								<label><strong>Renda familiar</strong></label>
 								<div class="div_radio">
 									<input type="radio" name="renda-familiar" value="< 1 SM "> < 1 SM
@@ -968,7 +969,7 @@ include "layout/header.php";
 								</div>
 							</div>
 
-							<div class="div_media">
+							<div class="div_media print_estado_civil">
 								<label><strong>Estado civil</strong></label>
 								<div class="div_radio">
 									<input type="radio" name="estado-civil" value="Solteiro"> Solteiro
@@ -987,7 +988,7 @@ include "layout/header.php";
 								</div>
 							</div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_linha_3">
 							<div>
 								<label>Peso</label>
 								<input type="text" name="peso" value="">
@@ -1003,7 +1004,7 @@ include "layout/header.php";
 						</fieldset>
 
 						<fieldset>
-							<div class="religiao">
+							<div class="religiao print_cor">
 								<label><strong>Cor</strong></label>
 								<div class="div_radio">
 									<input type="radio" name="cor" value="Branco"> Branco
@@ -1018,13 +1019,13 @@ include "layout/header.php";
 								</div>
 							</div>
 
-							<div>
+							<div class="print_religiao">
 								<div class="div_serie">
 									<label>Religião</label>
 									<input type="text" name="religiao" value="">
 								</div>
 							</div>
-							<div class="religiao">
+							<div class="religiao print_pratica">
 								<label>Pratica?</label>
 								<div class="div_radio">
 									<input type="radio" name="religiao-pratica" value="Sim">Sim
@@ -1037,8 +1038,8 @@ include "layout/header.php";
 							
 						</fieldset>
 							
-						<fieldset>
-							<div class="religiao">
+						<fieldset class="print_linha_4">
+							<div class="religiao print_plano_saude">
 								<label>Plano de saúde</label>
 								<div class="div_radio">
 									<input type="radio" name="plano-saude" value="Sim">Sim
@@ -1054,7 +1055,7 @@ include "layout/header.php";
 								<input type="text" name="adquire-medicamento" value="" class="input_maior">
 							</div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_linha_5">
 							<div class="div_full">
 								<label><strong>Residiu o tempo todo em um mesmo local?</strong></label>
 								<div class="div_radio">
@@ -1071,13 +1072,13 @@ include "layout/header.php";
 								<div class="div_full">
 									<h6>RESIDÊNCIA 1</h6>
 									<div>
-										<div>
+										<div class="print_periodo">
 											<label>PERÍODO:</label>	
 											<input type="text" name="periodo_resid_1" value="">
 										</div>							
 									</div>
 									
-									<div class="religiao">
+									<div class="religiao print_area">
 										<label>Área:</label>	
 										<div class="div_radio">
 											<input type="radio" name="area1" value="Urbana">Urbana
@@ -1086,7 +1087,7 @@ include "layout/header.php";
 											<input type="radio" name="area1" value="Rural">Rural
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_cobertura">
 										<label>Tipo de Cobertura:</label>	
 										<div class="div_radio">
 											<input type="radio" name="cobertura1" value="Palha">Palha
@@ -1097,7 +1098,7 @@ include "layout/header.php";
 									</div>
 								</div>
 								<div class="div_full">
-									<div class="div_maior religiao">
+									<div class="div_maior religiao print_tipo_casa">
 										<label>Tipo de casa:</label>
 										<div class="div_radio">
 											<input type="radio" name="tipo-casa1" value="Tijolo com reboco">Tijolo com reboco
@@ -1109,7 +1110,7 @@ include "layout/header.php";
 											<input type="radio" name="tipo-casa1" value="Pau-à-pique e barro">Pau-à-pique e barro
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_predomicilio">
 										<label>Peridomicílio:</label>
 										<div class="div_radio">
 											<input type="radio" name="predomicilio1" value="Galinheiro">Galinheiro
@@ -1151,13 +1152,13 @@ include "layout/header.php";
 								<div class="div_full">
 									<h6>RESIDÊNCIA 2</h6>
 									<div>
-										<div>
+										<div class="print_periodo">
 											<label>PERÍODO:</label>	
 											<input type="text" name="periodo_resid_2" value="">
 										</div>							
 									</div>
 									
-									<div class="religiao">
+									<div class="religiao print_area">
 										<label>Área:</label>	
 										<div class="div_radio">
 											<input type="radio" name="area2" value="Urbana">Urbana
@@ -1166,7 +1167,7 @@ include "layout/header.php";
 											<input type="radio" name="area2" value="Rural">Rural
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_cobertura">
 										<label>Tipo de Cobertura:</label>	
 										<div class="div_radio">
 											<input type="radio" name="cobertura2" value="Palha">Palha
@@ -1177,7 +1178,7 @@ include "layout/header.php";
 									</div>
 								</div>
 								<div class="div_full">
-									<div class="div_maior religiao">
+									<div class="div_maior religiao print_tipo_casa">
 										<label>Tipo de casa:</label>
 										<div class="div_radio">
 											<input type="radio" name="tipo-casa2" value="Tijolo com reboco">Tijolo com reboco
@@ -1189,7 +1190,7 @@ include "layout/header.php";
 											<input type="radio" name="tipo-casa2" value="Pau-à-pique e barro">Pau-à-pique e barro
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_predomicilio">
 										<label>Peridomicílio:</label>
 										<div class="div_radio">
 											<input type="radio" name="predomicilio2" value="Galinheiro">Galinheiro
@@ -1230,13 +1231,13 @@ include "layout/header.php";
 								<div class="div_full">
 									<h6>RESIDÊNCIA 3</h6>
 									<div>
-										<div>
+										<div class="print_periodo">
 											<label>PERÍODO:</label>	
 											<input type="text" name="periodo_resid_3" value="">
 										</div>							
 									</div>
 									
-									<div class="religiao">
+									<div class="religiao print_area">
 										<label>Área:</label>	
 										<div class="div_radio">
 											<input type="radio" name="area3" value="Urbana">Urbana
@@ -1245,7 +1246,7 @@ include "layout/header.php";
 											<input type="radio" name="area3" value="Rural">Rural
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_cobertura">
 										<label>Tipo de Cobertura:</label>	
 										<div class="div_radio">
 											<input type="radio" name="cobertura3" value="Palha">Palha
@@ -1256,7 +1257,7 @@ include "layout/header.php";
 									</div>
 								</div>
 								<div class="div_full">
-									<div class="div_maior religiao">
+									<div class="div_maior religiao print_tipo_casa">
 										<label>Tipo de casa:</label>
 										<div class="div_radio">
 											<input type="radio" name="tipo-casa3" value="Tijolo com reboco">Tijolo com reboco
@@ -1268,7 +1269,7 @@ include "layout/header.php";
 											<input type="radio" name="tipo-casa3" value="Pau-à-pique e barro">Pau-à-pique e barro
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_predomicilio">
 										<label>Peridomicílio:</label>
 										<div class="div_radio">
 											<input type="radio" name="predomicilio3" value="Galinheiro">Galinheiro
@@ -1308,14 +1309,14 @@ include "layout/header.php";
 							<fieldset class="residencias">
 								<div class="div_full">
 									<h6>RESIDÊNCIA 4</h6>
-									<div>
+									<div class="print_periodo">
 										<div>
 											<label>PERÍODO:</label>	
 											<input type="text" name="periodo_resid_4" value="">
 										</div>							
 									</div>
 									
-									<div class="religiao">
+									<div class="religiao print_area">
 										<label>Área:</label>	
 										<div class="div_radio">
 											<input type="radio" name="area4" value="Urbana">Urbana
@@ -1324,7 +1325,7 @@ include "layout/header.php";
 											<input type="radio" name="area4" value="Rural">Rural
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_cobertura">
 										<label>Tipo de Cobertura:</label>	
 										<div class="div_radio">
 											<input type="radio" name="cobertura4" value="Palha">Palha
@@ -1335,7 +1336,7 @@ include "layout/header.php";
 									</div>
 								</div>
 								<div class="div_full">
-									<div class="div_maior religiao">
+									<div class="div_maior religiao print_tipo_casa">
 										<label>Tipo de casa:</label>
 										<div class="div_radio">
 											<input type="radio" name="tipo-casa4" value="Tijolo com reboco">Tijolo com reboco
@@ -1347,7 +1348,7 @@ include "layout/header.php";
 											<input type="radio" name="tipo-casa4" value="Pau-à-pique e barro">Pau-à-pique e barro
 										</div>
 									</div>
-									<div class="religiao">
+									<div class="religiao print_predomicilio">
 										<label>Peridomicílio:</label>
 										<div class="div_radio">
 											<input type="radio" name="predomicilio4" value="Galinheiro">Galinheiro
@@ -1430,7 +1431,7 @@ include "layout/header.php";
 						</fieldset>
 
 						<fieldset>
-							<div class="div_full">
+							<div class="div_full print_estagio">
 								<label>Estágio da doença(a partir do prontuário):</label>
 								<div class="div_radio">
 									<input type="radio" name="estagio-doenca" value="Forma Indeterminada">Forma Inderteminada
@@ -1456,7 +1457,7 @@ include "layout/header.php";
 	
 						</fieldset>
 
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">1.<input type="text" name="problema1" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
@@ -1468,7 +1469,7 @@ include "layout/header.php";
 							</div>
 							<div class="centro"><input type="text" name="problema-data1" value=""></div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">2.<input type="text" name="problema2" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
@@ -1480,7 +1481,7 @@ include "layout/header.php";
 							</div>
 							<div class="centro"><input type="text" name="problema-data2" value=""></div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">3.<input type="text" name="problema3" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
@@ -1492,7 +1493,7 @@ include "layout/header.php";
 							</div>
 							<div class="centro"><input type="text" name="problema-data3" value=""></div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">4.<input type="text" name="problema4" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
@@ -1504,7 +1505,7 @@ include "layout/header.php";
 							</div>
 							<div class="centro"><input type="text" name="problema-data4" value=""></div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">5.<input type="text" name="problema5" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
@@ -1516,7 +1517,7 @@ include "layout/header.php";
 							</div>
 							<div class="centro"><input type="text" name="problema-data5" value=""></div>
 						</fieldset>
-						<fieldset>
+						<fieldset class="print_problemas">
 							<div class="centro">6.<input type="text" name="problema6" value=""></div>
 							<div class="centro">
 								<div class="div_radio">
