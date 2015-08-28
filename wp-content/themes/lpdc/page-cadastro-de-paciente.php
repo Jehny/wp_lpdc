@@ -731,16 +731,16 @@ include "layout/header.php";
 				<form action="" method="post">
 					<div class="sessao row-fluid">
 						<fieldset>
-							<div>
-								<label>Nº Paciente:</label>
+							<div class="div_1">
+								<label class="print_num_label">Nº Paciente:</label>
 								<input type="text" name="num_paciente" value="" class="numero" required>
 							</div>
-							<div>
-								<label>Pesquisador:</label>
-								<input type="text" name="pesquisador" value="" required>
+							<div class="div_2">
+								<label class="print_num_label">Pesquisador:</label>
+								<input type="text" name="pesquisador" value="" required class="print_nome">
 							</div>
-							<div>
-								<label>Data:</label>
+							<div class="div_3">
+								<label class="print_data_label">Data:</label>
 								<input type="date" name="data" value="" required>
 							</div>
 						</fieldset>
@@ -748,12 +748,12 @@ include "layout/header.php";
 					<div class="sessao row-fluid">
 						<h5>Informações Pessoais</h5>
 						<fieldset>
-							<div class="div_maior">
+							<div class="div_maior print_paciente">
 								<label>Nome do paciente:</label>
 								<input type="text" name="nome" value="" class="input_maior" required>
 							</div>
 
-							<div class="text_align_right">
+							<div class="text_align_right print_right">
 								<label>Nº do prontuário:</label>
 								<input type="text" name="prontuario" value="" class="numero" required>
 							</div>
@@ -887,9 +887,9 @@ include "layout/header.php";
 							?>
 							</div>
 					</div>
-					<div class="sessao row-fluid">
+					<div class="sessao row-fluid print_dados_demografico">
 						<h5>Dados Sócio-demográfico/econômicos</h5>
-						<fieldset>
+						<fieldset class="print_linha_1">
 							<div>
 								<label>Data de nascimento:</label>
 								<input type="text" name="dt_nascimento" value="">
@@ -908,7 +908,7 @@ include "layout/header.php";
 							</div>
 						</fieldset>
 
-						<fieldset>
+						<fieldset class="print_linha_2">
 							<div>
 								<label>Trabalha?</label>
 								<div class="radio-ocupacao">

@@ -8,57 +8,69 @@
 }
 
 
-.header_cadastro-paciente, .beforeHeader, #menu {
+.header_cadastro-paciente, .beforeHeader, #menu,
+.cadastro-paciente form .radio-div, .cadastro-paciente form .radio-idoso {
+	font-size: 11pt;
+}
+
+
+.header_cadastro-paciente, .beforeHeader, #menu, .mais_medic2 .mais, .mais_medic3, 
+.mais_medic4, .medic_uso2, .medic_uso3, .medic_uso3,.medic_uso5, .medic_uso6, .medic_uso7, 
+.medic_uso8, .mais_medic2, .mais_medic3, .mais_medic4, footer {
+
 	display: none;
 }
 
-.cadastro-paciente .title h4 {
-	font-size: 15px;
+.cadastro-paciente .title h4 { font-size: 15px;}
+
+.cadastro-paciente form .print_num_label {
+	width: 100px;
+	float: left;
+}
+.cadastro-paciente form .print_data_label {
+	width: 50px;
+	float: left;
 }
 
-.cadastro-paciente form [name="data"] {
-	width: 150px;
-}
+.cadastro-paciente form .sessao h5 {margin-bottom: 2%;}
 
-.cadastro-paciente form input {
-	height: 20px;
-	background-color: #E0F0FF !important;
- 	border: none;
-  	-webkit-box-shadow: none;
-  	-moz-box-shadow: none;
-  	box-shadow: inset none;
-  	-webkit-transition: none;
-  	-moz-transition: none;
-  	-o-transition: none;
-  	transition: none;
+.cadastro-paciente form .numero { width: 80px;}
+.cadastro-paciente form .print_nome{ width: 500px; } 
+.cadastro-paciente form input[name="data"]{ width: 140px; }
+.cadastro-paciente form fieldset .div_1{ width: 20%; }
+.cadastro-paciente form fieldset .div_2{ width: 55%; }
+.cadastro-paciente form fieldset .div_3{ width: 20%; }
+.cadastro-paciente form .sessao .print_paciente { width: 74%; }
+.cadastro-paciente form .sessao .div_maior label{ width: 18%; float: left; }
+.cadastro-paciente form .sessao .div_maior input { width: 72%; }
+.cadastro-paciente form .sessao .print_right { width: 24%; } 
+.cadastro-paciente form .sessao .print_right label { width: 51%; float: left; margin-right: 5%; }
+.cadastro-paciente form .sessao .print_right input { width: 110px; }
+.cadastro-paciente form .div_estado {width: 26%;}
+.cadastro-paciente form .interior input {}
+.cadastro-paciente form .div_estado label {
+	width: 17%;
+	float: left;
 }
+.cadastro-paciente form .sessao .div_maior {}
+.cadastro-paciente form .div_estado input {width: 100px;}
+.cadastro-paciente form .radio-idoso {margin-top: 0;}
+.cadastro-paciente form .radio-idoso input{width: 10% !important;}
+.cadastro-paciente form .idoso_div {width: 50%;}
+.cadastro-paciente form .idoso_div input {width: 241px !important}
+.print_dados_demografico .print_linha_1 div:nth-child(1) {width: 25%;}
+.print_dados_demografico .print_linha_1 div:nth-child(1) label {width: 46%; float: left;}
+.print_dados_demografico .print_linha_1 div:nth-child(1) input {width: 115px;}
+.print_dados_demografico .print_linha_1 div:nth-child(2) {width: 47%;}
+.print_dados_demografico .print_linha_1 div:nth-child(2) label {width: 27%; float: left;}
+.print_dados_demografico .print_linha_1 div:nth-child(2) input {width: 330px;}
+.print_dados_demografico .print_linha_1 div:nth-child(3) {width: 20%;}
+.print_dados_demografico .print_linha_1 div:nth-child(3) label {float: left;}
+.print_dados_demografico .print_linha_1 div:nth-child(3) input { width: 17% !important;}
 
-
-button.btn, input[type="submit"].btn {
-	display: none;
-}
-
-.sessao h5 {
-	margin-bottom: 0%; 
-	margin-top: 0%;
-}
-
-.formulario, .cadastro-paciente form {
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-}
-
-.mais_atend_2, .mais_atend_3, .mais_atend_4 {
-	display: none;
-}
-
-.print_procedencia {
-	
-}
-.print_procedencia .interior {
-	width: 40%;
-}
-
-footer {
-	display: none;
-}
+.print_linha_2 div:nth-child(1) {}
+.print_linha_2 div:nth-child(1) label {width: 26%; float: left;}
+.print_linha_2 div:nth-child(1) .radio-ocupacao input {}
+.print_linha_2 div:nth-child(2)  {}
+.print_linha_2 div:nth-child(2) label {float: left;}
+.print_linha_2 div:nth-child(2) input {}
