@@ -59,10 +59,10 @@ if(isset($_POST['submit'])){
 		'ale_alimento'=> $_POST['alergia_alimento'],
 		'ale_espec_alimento'=> $_POST['ale_alimento'],
 		'ale_outros'=> $_POST['outros'],
-		'qnt_comp_presc'=> $_POST['descoberta-doenca'],
-		'dose_diaria'=> $_POST['descoberta-doenca'],
-		'posologia'=> $_POST['descoberta-doenca'],
-		'dose_total'=> $_POST['descoberta-doenca'],
+		'qnt_comp_presc'=> $_POST['qnt_comp_presc'],
+		'dose_diaria'=> $_POST['dose_diaria'],
+		'posologia'=> $_POST['posologia'],
+		'dose_total'=> $_POST['dose_total'],
 		'evolucao'=> $_POST['evolucao_paciente']
 	);
 
@@ -1118,7 +1118,7 @@ include "layout/header.php";
 											<input type="radio" name="predomicilio1" value="Chiqueiro">Chiqueiro
 										</div>
 										<div class="div_radio">
-											<input type="radio" name="predomicilio" value="Currais">Currais
+											<input type="radio" name="predomicilio1" value="Currais">Currais
 										</div>
 									</div>
 								</div>
