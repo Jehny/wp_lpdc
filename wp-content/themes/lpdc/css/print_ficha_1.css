@@ -103,6 +103,8 @@ input {border: 1px solid #cccccc;}
 .print_pratica .div_radio {}
 
 .print_plano_saude label {width: 50%; /*float: left;*/ font-size: 12pt;}
+.print_linha_3 label { float: left; margin-right: 2%;}
+.print_linha_3 input {width: 50% !important;}
 .print_linha_4 .div_maior label {width: 50% !important;}
 
 .print_linha_5 .div_full label {float: left;}
@@ -110,14 +112,23 @@ input {border: 1px solid #cccccc;}
 
 .print_periodo {width: 98% !important;}
 .print_periodo label {width: 18% !important; /*float: left !important;*/}
+.print_periodo input {width: 80% !important;}
 .print_area label {/*float: left;*/}
 .print_area .div_radio input {}
 .print_cobertura label {/*float: left;*/}
 
+.print_tipo_casa {width: 63% !important;}
 .print_tipo_casa label {/*float: none !important;*/ margin-top: 1%;}
 .print_tipo_casa input {width: 10% !important;}
 
+.print_predomicilio {width: 37% !important;}
 .print_predomicilio label {margin-top: 1%;}
+.print_predomicilio .print_op_1 {width: 36.3% !important;}
+.print_predomicilio .div_radio {width: 35%; font-size: 10.5pt;}
+.print_predomicilio .print_op_3 {width: 28.7%;}
+
+.print_qnt_familiares label {float: left;}
+.print_qnt_familiares input {width: 50%;}
 
 .print_renda div:nth-child(2) { width: 23%;}
 .print_renda div:nth-child(3) {width: 20%;}
